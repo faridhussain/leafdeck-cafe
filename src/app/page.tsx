@@ -1,4 +1,5 @@
 import About from './components/home/About'
+import Catering from './components/home/Catering'
 import Hero from './components/home/Hero'
 import SignatureDishes from './components/home/SignatureDishes'
 
@@ -8,6 +9,7 @@ export default function Home() {
             <Hero />
             <SignatureDishes />
             <About />
+            <Catering />
         </div>
     )
 }
