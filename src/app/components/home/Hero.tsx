@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Fraunces, Inter_Tight } from 'next/font/google'
-import { ArrowRight, Phone } from 'lucide-react'
+import { ArrowRight, Phone, ChevronDown } from 'lucide-react'
 
 const interTight = Inter_Tight({
     subsets: ['latin'],
@@ -16,18 +16,27 @@ const fraunces = Fraunces({
 
 export default function Hero() {
     return (
-        <section className='relative h-screen overflow-hidden select-none'>
-            <Image src='/images/hero_image2.png' alt='Leaf Deck Cafe' fill priority quality={100} className='object-cover object-center saturate-110 contrast-105 brightness-105' />
+        <section className='relative h-screen overflow-hidden bg-[#1B1611] select-none'>
+            <Image
+                src='/images/hero_image2.png'
+                alt='Leaf Deck Cafe'
+                fill
+                priority
+                quality={100}
+                className='object-cover object-center saturate-110 contrast-105 brightness-105'
+                style={{
+                    WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 72%, transparent 100%)',
+                    maskImage: 'linear-gradient(to bottom, black 0%, black 72%, transparent 100%)',
+                }}
+            />
 
             <div className='absolute inset-0 bg-linear-to-b from-black/35 via-black/15 to-black/45' />
 
-            <div className='absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.58)_0%,rgba(0,0,0,0.35)_30%,rgba(0,0,0,0.12)_58%,transparent_80%)]' />
+            <div className='absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.28)_45%,rgba(0,0,0,0.08)_70%,transparent_100%)]' />
 
-            <div className='absolute inset-x-0 top-0 h-36 bg-linear-to-b from-black/45 via-black/15 to-transparent' />
+            <div className='absolute inset-x-0 top-0 h-36 bg-linear-to-b from-black/50 via-black/20 to-transparent' />
 
-            <div className='absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-black/40 to-transparent' />
-
-            <div className='absolute inset-x-0 bottom-[16%] mx-auto h-56 w-140 max-w-[90%] rounded-full bg-black/25 blur-3xl' />
+            <div className='absolute inset-x-0 bottom-[16%] mx-auto h-56 w-140 max-w-[90%] rounded-full bg-black/30 blur-3xl' />
 
             <div className='relative z-10 flex h-full items-center justify-center px-6'>
                 <div className='text-center text-white'>
@@ -43,7 +52,7 @@ export default function Hero() {
                         <span className='h-px w-10 bg-white/35' />
                     </div>
 
-                    <p className={`${fraunces.className} mx-auto mt-5 max-w-xl tracking-wider text-lg italic font-normal text-white/85 md:text-xl`}>Crafted flavours. Memorable moments.</p>
+                    <p className={`${fraunces.className} mx-auto mt-5 max-w-xl text-lg italic tracking-wider text-white/85 md:text-xl`}>Crafted flavours. Memorable moments.</p>
 
                     <div className='mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row'>
                         <Link href='/menu' className='group flex items-center gap-2 rounded-full bg-[#F4EDE1] px-9 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-[#2A2420] shadow-[0_12px_32px_rgba(0,0,0,0.45)] transition-all duration-300 hover:-translate-y-1 hover:bg-white'>
@@ -51,13 +60,21 @@ export default function Hero() {
                             <ArrowRight className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-1' />
                         </Link>
 
-                        <Link href='/call-us' className='group flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-9 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-xs transition-all duration-300 hover:border-white/30 hover:bg-white/10'>
+                        <Link href='/call-us' className='group flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-9 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-300 hover:border-white/40 hover:bg-white/10'>
                             <Phone className='h-4 w-4' />
                             Call Us
                         </Link>
                     </div>
                 </div>
             </div>
+
+            <a href='#signature-dishes' className='group absolute bottom-6 left-1/2 z-20 -translate-x-1/2' aria-label='Scroll to Signature Dishes'>
+                <div className='flex flex-col items-center text-white/50 transition-colors duration-300 group-hover:text-white/80'>
+                    <span className={`${interTight.className} text-[11px] font-medium uppercase tracking-[0.35em]`}>Scroll</span>
+
+                    <ChevronDown className='mt-1 h-5 w-5 animate-gentle-bounce' strokeWidth={1.6} />
+                </div>
+            </a>
         </section>
     )
 }
