@@ -17,7 +17,7 @@ const fraunces = Fraunces({
 export default function Hero() {
     return (
         <section className='relative bg-[#1B1611] select-none'>
-            <div className='relative h-[102vh] overflow-hidden rounded-b-[40px] sm:rounded-b-[56px]'>
+            <div className='relative h-[102vh] overflow-hidden rounded-b-[30px] sm:rounded-b-[30px]'>
                 <Image src='/images/hero_image2.png' alt='Leaf Deck Cafe' fill priority quality={100} className='object-cover object-center saturate-110 contrast-105 brightness-105' />
 
                 <div className='absolute inset-0 bg-linear-to-b from-black/35 via-black/15 to-black/60' />
@@ -63,7 +63,7 @@ export default function Hero() {
                 <a href='#signature-dishes' className='group absolute bottom-6 left-1/2 z-20 -translate-x-1/2'>
                     <div className='flex flex-col items-center text-white/55 transition-all duration-300 group-hover:text-white'>
                         <span className={`${interTight.className} text-[11px] uppercase tracking-[0.35em]`}>Scroll</span>
-                        <ChevronDown strokeWidth={1.5} className='mt-1 h-5 w-5 animate-gentle-bounce' />
+                        <ChevronDown strokeWidth={1.5} className='mt-0.5 h-5 w-5 animate-gentle-bounce' />
                     </div>
                 </a>
             </div>

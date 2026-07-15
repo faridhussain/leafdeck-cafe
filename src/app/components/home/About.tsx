@@ -21,7 +21,7 @@ const stats = [
 export default function AboutSection() {
     return (
         <section className='relative bg-[#1B1611] py-10 select-none'>
-            <div className='relative overflow-hidden rounded-[40px] bg-[#EDE3D0] px-6 py-20 sm:px-10 md:py-24 lg:px-14 lg:py-28'>
+            <div className='relative overflow-hidden rounded-[30px] bg-[#EDE3D0] px-6 py-20 sm:px-10 md:py-24 lg:px-14 lg:py-28'>
                 <div className='pointer-events-none absolute right-0 top-0 h-96 w-96 -translate-y-1/3 translate-x-1/4 rounded-full bg-[#8B5E3C]/10 blur-3xl' />
 
                 <div className='relative z-10 mx-auto max-w-6xl'>
