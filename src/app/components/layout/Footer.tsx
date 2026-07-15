@@ -26,7 +26,7 @@ const navLinks = [
 
 export default function Footer() {
     return (
-        <footer className='relative overflow-hidden bg-black pt-20 select-none'>
+        <footer className='relative overflow-hidden rounded-t-[40px] bg-black pt-20 select-none sm:rounded-t-[30px]'>
             <div className='pointer-events-none absolute left-1/2 top-0 h-120 w-120 -translate-x-1/2 rounded-full bg-[#D8B25A]/5 blur-[150px]' />
 
             <div className='relative z-10 mx-auto max-w-7xl px-6'>
@@ -49,7 +49,7 @@ export default function Footer() {
                             <Image src='/images/logo2.png' alt='Leaf Deck Cafe' fill className='object-contain object-left' />
                         </div>
 
-                        <p className={`${interTight.className} mt-4 max-w-xs text-[15px] leading-7 text-white/55`}>A welcoming destination in the heart of Guwahati, where handcrafted food, warm hospitality, and memorable evenings come together.</p>
+                        <p className={`${interTight.className} mt-4 max-w-xs text-[15px] leading-5 text-white/55`}>A welcoming destination in the heart of Guwahati, where handcrafted food, warm hospitality, and memorable evenings come together.</p>
 
                         <div className='mt-7'>
                             <p className={`${interTight.className} mb-4 text-[11px] uppercase tracking-[0.22em] text-white/40`}>Follow Us</p>
@@ -79,10 +79,8 @@ export default function Footer() {
 
                         <div className={`${interTight.className} mt-6 space-y-2 text-[15px] leading-8 text-white/60 flex flex-col items-center`}>
                             <p>Open Every Day</p>
-
-                            <p className='text-white/45'>Cafe: 11:00 AM – 11:30 PM</p>
-
-                            <p className='text-white/45'>Bar: 12:00 PM – 10:30 PM</p>
+                            <p className='text-white/45'>Cafe: 11:00 AM - 11:30 PM</p>
+                            <p className='text-white/45'>Bar: 12:00 PM - 10:30 PM</p>
                         </div>
                     </div>
 
