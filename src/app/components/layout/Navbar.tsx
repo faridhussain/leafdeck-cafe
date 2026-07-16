@@ -42,7 +42,12 @@ export default function Navbar() {
                     ))}
                 </div>
 
-                <button className='group relative flex cursor-pointer items-center gap-2.5 rounded-full border border-white/20 bg-black/60 px-6 py-3 backdrop-blur-sm shadow-[0_12px_40px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.15)] transition-all duration-300 ease-out active:scale-[0.97] hover:border-white/40 hover:bg-black/80'>
+                <a
+                    href='https://www.zomato.com/guwahati/leaf-deck-cafe-dispur/order'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='group relative flex cursor-pointer items-center gap-2.5 rounded-full border border-white/20 bg-black/60 px-6 py-3 backdrop-blur-sm shadow-[0_12px_40px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.15)] transition-all duration-300 ease-out active:scale-[0.97] hover:border-white/40 hover:bg-black/80'
+                >
                     <div className='absolute inset-0 rounded-full bg-linear-to-b from-white/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
 
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2.5' className='h-4 w-4 text-white/80 transition-all duration-300 group-hover:text-white'>
@@ -54,7 +59,7 @@ export default function Navbar() {
                     </svg>
 
                     <span className='text-sm font-bold uppercase tracking-[0.12em] text-white/90 transition-colors duration-300 group-hover:text-white'>Order Online</span>
-                </button>
+                </a>
             </div>
         </nav>
     )
