@@ -131,12 +131,21 @@ export default function SignatureDishes() {
                     ))}
                 </motion.div>
 
-                <div className='mt-16 flex justify-center'>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{
+                        duration: 0.6,
+                        delay: 0.35,
+                    }}
+                    className='mt-16 flex justify-center'
+                >
                     <Link href='/menu' className='group flex items-center gap-2 rounded-full border border-[#F4EDE1]/20 px-9 py-4 text-[13px] font-semibold uppercase tracking-[0.18em] text-[#F4EDE1] transition-all duration-300 hover:bg-white/3'>
                         Explore Full Menu
                         <ArrowRight className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-1' />
                     </Link>
-                </div>
+                </motion.div>
             </div>
         </section>
     )

@@ -101,6 +101,13 @@ export default function Hero() {
 
                 <motion.a
                     href='#signature-dishes'
+                    onClick={(e) => {
+                        e.preventDefault()
+
+                        document.getElementById('signature-dishes')?.scrollIntoView({
+                            behavior: 'smooth',
+                        })
+                    }}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{

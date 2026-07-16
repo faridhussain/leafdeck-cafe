@@ -44,10 +44,10 @@ export default function Catering() {
                         <ArrowRight className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-1' />
                     </Link>
 
-                    <Link href='/call-us' className='group flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-9 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-xs transition-all duration-300 hover:border-white/40 hover:bg-white/8'>
+                    <a href='tel:+917400190024' className='group flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-9 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-xs transition-all duration-300 hover:border-white/40 hover:bg-white/8'>
                         <Phone className='h-4 w-4' />
                         Call Us
-                    </Link>
+                    </a>
                 </motion.div>
             </motion.div>
         </section>
