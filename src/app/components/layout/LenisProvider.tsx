@@ -3,25 +3,28 @@
 import { ReactNode, useEffect } from 'react'
 import Lenis from 'lenis'
 
+export const lenis = new Lenis({
+    duration: 1.2,
+    smoothWheel: true,
+    touchMultiplier: 1.5,
+})
+
 export default function LenisProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
-        const lenis = new Lenis({
-            duration: 1.2,
-            smoothWheel: true,
-            touchMultiplier: 1.5,
-        })
+        let rafId: number
 
-        function raf(time: number) {
+        const raf = (time: number) => {
             lenis.raf(time)
-            requestAnimationFrame(raf)
+            rafId = requestAnimationFrame(raf)
         }
 
-        requestAnimationFrame(raf)
+        rafId = requestAnimationFrame(raf)
 
         return () => {
+            cancelAnimationFrame(rafId)
             lenis.destroy()
         }
     }, [])
 
-    return children
+    return <>{children}</>
 }

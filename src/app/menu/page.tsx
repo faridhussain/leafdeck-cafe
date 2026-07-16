@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { Fraunces, Inter_Tight } from 'next/font/google'
 import { Search, Menu as MenuIcon, X } from 'lucide-react'
+import { lenis } from '../components/layout/LenisProvider'
 
 const interTight = Inter_Tight({
     subsets: ['latin'],
@@ -476,7 +477,7 @@ export default function MenuPage() {
             const el = contentRef.current
             if (el) {
                 const y = el.getBoundingClientRect().top + window.scrollY - (NAVBAR_OFFSET + 24)
-                window.scrollTo({ top: y, behavior: 'smooth' })
+                lenis.scrollTo(y)
             }
         }
     }, [normalizedQuery])
@@ -489,12 +490,19 @@ export default function MenuPage() {
 
     const scrollToGroup = (id: string) => {
         setMobileMenuOpen(false)
+
         const el = groupRefs.current[id]
-        if (el) {
-            const y = el.getBoundingClientRect().top + window.scrollY - (NAVBAR_OFFSET + 24)
-            window.scrollTo({ top: y, behavior: 'smooth' })
-            setActiveGroup(id)
-        }
+        if (!el) return
+
+        const y = el.getBoundingClientRect().top + window.scrollY - (NAVBAR_OFFSET + 24)
+
+        const distance = Math.abs(window.scrollY - y)
+
+        lenis.scrollTo(y, {
+            duration: distance > 1800 ? 0.45 : 1,
+        })
+
+        setActiveGroup(id)
     }
 
     return (
@@ -572,7 +580,7 @@ export default function MenuPage() {
                                     return (
                                         <button key={group.id} onClick={() => scrollToGroup(group.id)} className='group flex w-full items-center gap-3 py-2.5 text-left'>
                                             <span className={`h-6 w-0.75 rounded-full transition-all duration-300 ${active ? 'bg-[#C9A227]' : 'bg-transparent'}`} />
-                                            <span className={`${interTight.className} text-[15px] font-medium tracking-[-0.01em] transition-colors duration-300 ${active ? 'text-[#F4EDE1]' : 'text-[#A89A8B] group-hover:text-[#F4EDE1]'}`}>{group.label}</span>
+                                            <span className={`${interTight.className} text-[15px] cursor-pointer font-medium tracking-[-0.01em] transition-colors duration-300 ${active ? 'text-[#F4EDE1]' : 'text-[#A89A8B] group-hover:text-[#F4EDE1]'}`}>{group.label}</span>
                                         </button>
                                     )
                                 })}
