@@ -19,7 +19,7 @@ const fraunces = Fraunces({
 
 export default function Hero() {
     return (
-        <section className='relative bg-[#1B1611] select-none'>
+        <section id='home' className='relative bg-[#1B1611] select-none'>
             <div className='relative h-[102vh] overflow-hidden rounded-b-[30px] sm:rounded-b-[30px]'>
                 <Image src='/images/hero_image2.png' alt='Leaf Deck Cafe' fill priority quality={100} className='object-cover object-center saturate-110 contrast-105 brightness-105' />
 
@@ -88,10 +88,13 @@ export default function Hero() {
                                 <ArrowRight className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-1' />
                             </Link>
 
-                            <Link href='/call-us' className='group flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-9 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-[2px] transition-all duration-300 hover:border-white/30 hover:bg-white/10'>
+                            <a
+                                href='tel:+917400190024'
+                                className='group flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-9 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-[2px] transition-all duration-300 hover:border-white/30 hover:bg-white/10'
+                            >
                                 <Phone className='h-4 w-4' />
                                 Call Us
-                            </Link>
+                            </a>
                         </motion.div>
                     </div>
                 </div>

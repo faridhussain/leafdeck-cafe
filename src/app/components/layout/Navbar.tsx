@@ -19,11 +19,22 @@ export default function Navbar() {
 
     return (
         <nav className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${scrolled ? 'bg-[#1B1611]/20 backdrop-blur-md' : 'bg-transparent'}`}>
-            {/* Hero gradient (only at top of page) */}
             <div className={`pointer-events-none absolute inset-0 -z-10 transition-opacity duration-300 ${scrolled ? 'opacity-0' : 'h-40 bg-linear-to-b from-black/45 via-black/15 to-transparent'}`} />
 
             <div className='mx-auto flex max-w-[1600px] items-center justify-between px-6 py-2'>
-                <Link href='/'>
+                <Link
+                    href='/'
+                    onClick={(e) => {
+                        if (window.location.pathname === '/') {
+                            e.preventDefault()
+
+                            document.getElementById('home')?.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start',
+                            })
+                        }
+                    }}
+                >
                     <Image src='/images/logo2.png' alt='Leaf Deck Logo' width={150} height={40} priority quality={100} className='cursor-pointer' />
                 </Link>
 
