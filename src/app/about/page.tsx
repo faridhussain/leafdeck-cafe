@@ -1,7 +1,10 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { Fraunces, Inter_Tight } from 'next/font/google'
 import { ArrowRight, Leaf, HeartHandshake, UtensilsCrossed } from 'lucide-react'
+import { motion, Variants } from 'framer-motion'
 
 const interTight = Inter_Tight({
     subsets: ['latin'],
@@ -13,6 +16,30 @@ const fraunces = Fraunces({
     weight: ['600', '700', '900'],
     style: ['normal', 'italic'],
 })
+
+const containerVariants = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.12,
+        },
+    },
+}
+
+const itemVariants: Variants = {
+    hidden: {
+        opacity: 0,
+        y: 30,
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.6,
+            ease: 'easeOut',
+        },
+    },
+}
 
 const values = [
     {
@@ -47,17 +74,17 @@ export default function AboutPage() {
 
                 <div className='absolute inset-0 bg-linear-to-b from-black/55 via-black/35 to-black/70' />
 
-                <div className='absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-white'>
+                <motion.div className='absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-white' initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
                     <span className={`${interTight.className} text-xs font-medium uppercase tracking-[0.42em] text-white/75 md:text-sm`}>The People Behind The Plates</span>
 
                     <h1 className={`${fraunces.className} mt-4 text-5xl font-black tracking-wide drop-shadow-[0_10px_40px_rgba(0,0,0,0.9)] sm:text-6xl md:text-7xl`}>About Us</h1>
-                </div>
+                </motion.div>
             </section>
 
             <section className='relative overflow-hidden bg-[#1B1611] px-6 py-24 sm:py-28'>
                 <div className='pointer-events-none absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-[#C9A227]/5 blur-3xl' />
 
-                <div className='relative z-10 mx-auto max-w-3xl text-center'>
+                <motion.div className='relative z-10 mx-auto max-w-3xl text-center' initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.8 }}>
                     <span className={`${interTight.className} text-xs font-medium uppercase tracking-[0.42em] text-[#F4EDE1]/50 md:text-sm`}>How It Started</span>
 
                     <h2 className={`${fraunces.className} mt-4 text-4xl font-bold tracking-wide text-white sm:text-5xl`}>A Table Worth Coming Back To</h2>
@@ -69,7 +96,7 @@ export default function AboutPage() {
                     <p className={`${interTight.className} mx-auto mt-5 max-w-xl text-[16px] leading-relaxed tracking-wide text-white/60`}>
                         Since opening in Guwahati, that idea has stayed the same even as the menu, the space, and the crowd have grown. What hasn&apos;t changed is the standard: if it isn&apos;t good enough to serve a friend, it doesn&apos;t leave the kitchen.
                     </p>
-                </div>
+                </motion.div>
             </section>
 
             <section className='relative bg-[#1B1611] select-none'>
@@ -77,9 +104,9 @@ export default function AboutPage() {
                     <div className='pointer-events-none absolute right-0 top-0 h-96 w-96 -translate-y-1/3 translate-x-1/4 rounded-full bg-[#8B5E3C]/10 blur-3xl' />
 
                     <div className='relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-2'>
-                        <div className='relative h-96 w-full overflow-hidden rounded-3xl bg-[#DDD0B4] shadow-[0_30px_60px_rgba(0,0,0,0.2)] sm:h-112'>
+                        <motion.div initial={{ opacity: 0, x: -60 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className='relative h-96 w-full overflow-hidden rounded-3xl bg-[#DDD0B4] shadow-[0_30px_60px_rgba(0,0,0,0.2)] sm:h-112'>
                             <Image src='/images/founder-placeholder.avif' alt='Founder of Leaf Deck Cafe' fill className='object-cover object-top' />
-                        </div>
+                        </motion.div>
 
                         <div>
                             <span className={`${interTight.className} text-xs font-medium uppercase tracking-[0.42em] text-[#8B5E3C]/70`}>From The Founder</span>
@@ -114,17 +141,17 @@ export default function AboutPage() {
                         <p className={`${interTight.className} max-w-xs text-[15px] leading-relaxed text-white/45`}>Three things we don&apos;t compromise on, no matter how busy the room gets.</p>
                     </div>
 
-                    <div className='grid grid-cols-1 divide-y divide-white/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0'>
+                    <motion.div className='grid grid-cols-1 divide-y divide-white/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0' variants={containerVariants} initial='hidden' whileInView='visible' viewport={{ once: true, amount: 0.2 }}>
                         {values.map((value, i) => (
-                            <div key={value.title} className={`flex flex-col gap-4 py-8 sm:py-0 sm:px-8 ${i === 0 ? 'sm:pl-0' : ''} ${i === values.length - 1 ? 'sm:pr-0' : ''}`}>
+                            <motion.div key={value.title} variants={itemVariants} className={`flex flex-col gap-4 py-8 sm:py-0 sm:px-8 ${i === 0 ? 'sm:pl-0' : ''} ${i === values.length - 1 ? 'sm:pr-0' : ''}`}>
                                 <value.icon className='h-6 w-6 text-[#C9A227]' strokeWidth={1.5} />
 
                                 <h3 className={`${fraunces.className} text-xl font-semibold text-white`}>{value.title}</h3>
 
                                 <p className={`${interTight.className} text-[15px] leading-relaxed text-white/55`}>{value.copy}</p>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
@@ -136,28 +163,28 @@ export default function AboutPage() {
                         <h2 className={`${fraunces.className} mt-4 text-4xl font-bold tracking-wide text-white sm:text-5xl`}>The Space</h2>
                     </div>
 
-                    <div className='grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4'>
+                    <motion.div className='grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4' variants={containerVariants} initial='hidden' whileInView='visible' viewport={{ once: true, amount: 0.2 }}>
                         {gallery.map((image, i) => (
-                            <div key={image.alt} className={`relative h-56 overflow-hidden rounded-2xl sm:h-72 ${i % 2 === 1 ? 'lg:mt-8' : ''}`}>
+                            <motion.div key={image.alt} variants={itemVariants} className={`relative h-56 overflow-hidden rounded-2xl sm:h-72 ${i % 2 === 1 ? 'lg:mt-8' : ''}`}>
                                 <div className='absolute inset-0 bg-[#2A2420]' />
                                 <Image src={image.src} alt={image.alt} fill className='object-cover' />
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
             <section className='relative overflow-hidden bg-[#1B1611] px-6 pb-24 select-none sm:pb-28'>
                 <div className='pointer-events-none absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#D8B25A]/5 blur-[130px]' />
 
-                <div className='relative z-10 mx-auto max-w-2xl text-center'>
+                <motion.div className='relative z-10 mx-auto max-w-2xl text-center' initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.8 }}>
                     <h2 className={`${fraunces.className} text-3xl italic text-[#F4EDE1] md:text-4xl`}>Come see the space for yourself.</h2>
 
                     <Link href='/menu' className='group mt-8 inline-flex items-center gap-2 rounded-full bg-[#F4EDE1] px-9 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-[#2A2420] shadow-[0_12px_30px_rgba(0,0,0,.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-white'>
                         View The Menu
                         <ArrowRight className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-1' />
                     </Link>
-                </div>
+                </motion.div>
             </section>
         </main>
     )
