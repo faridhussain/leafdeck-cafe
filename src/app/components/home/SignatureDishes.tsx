@@ -1,12 +1,39 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import { Fraunces } from 'next/font/google'
 import { ArrowRight } from 'lucide-react'
+import { motion, Variants } from 'framer-motion'
 
 const fraunces = Fraunces({
     subsets: ['latin'],
     weight: ['600', '700'],
 })
+
+const containerVariants = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.12,
+        },
+    },
+}
+
+const itemVariants: Variants = {
+    hidden: {
+        opacity: 0,
+        y: 30,
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.6,
+            ease: 'easeOut',
+        },
+    },
+}
 
 const dishes = [
     {
@@ -62,15 +89,23 @@ export default function SignatureDishes() {
             <div className='pointer-events-none absolute left-1/2 top-24 h-128 w-360 -translate-x-1/2 rounded-full bg-[#D8B45A]/6 blur-[180px]' />
 
             <div className='relative z-10 mx-auto w-[92%] max-w-[1800px]'>
-                <div className='mb-16 text-center'>
+                <motion.div
+                    className='mb-16 text-center'
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{
+                        duration: 0.7,
+                    }}
+                >
                     <h2 className={`${fraunces.className} text-5xl font-semibold tracking-[-0.03em] text-white sm:text-6xl lg:text-7xl`}>Our Signature Dishes</h2>
 
                     <p className='mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/60'>A curated selection of our most loved creations.</p>
-                </div>
+                </motion.div>
 
-                <div className='grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3'>
+                <motion.div className='grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3' variants={containerVariants} initial='hidden' whileInView='visible' viewport={{ once: true, amount: 0.15 }}>
                     {dishes.map((dish) => (
-                        <div key={dish.name} className='group'>
+                        <motion.div key={dish.name} variants={itemVariants} className='group'>
                             <div className='relative overflow-hidden rounded-[18px] shadow-[0_18px_50px_rgba(0,0,0,0.18)]'>
                                 <Image
                                     src={dish.image}
@@ -92,9 +127,9 @@ export default function SignatureDishes() {
 
                                 <div className='mx-auto mt-3 h-px w-10 bg-[#C9A227]/45 transition-all duration-500 group-hover:w-20 group-hover:bg-[#D8B45A]' />
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
 
                 <div className='mt-16 flex justify-center'>
                     <Link href='/menu' className='group flex items-center gap-2 rounded-full border border-[#F4EDE1]/20 px-9 py-4 text-[13px] font-semibold uppercase tracking-[0.18em] text-[#F4EDE1] transition-all duration-300 hover:bg-white/3'>
