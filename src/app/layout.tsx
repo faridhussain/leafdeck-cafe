@@ -30,7 +30,7 @@ export default function RootLayout({
             <body className={`${geistSans.className} antialiased bg-[#1B1611]`}>
                 <LenisProvider>
                     <Navbar />
-                    <main>{children}</main>
+                    <main id='page-content'>{children}</main>
                     <Footer />
                 </LenisProvider>
             </body>
