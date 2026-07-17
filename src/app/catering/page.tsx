@@ -225,12 +225,12 @@ export default function CateringPage() {
                     <h2 className={`${fraunces.className} text-3xl italic text-[#F4EDE1] md:text-4xl`}>Planning something? Let&apos;s talk menu.</h2>
 
                     <div className='mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row'>
-                        <Link href='/enquire' className='group flex items-center gap-2 rounded-full bg-[#F4EDE1] px-9 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-[#2A2420] shadow-[0_12px_30px_rgba(0,0,0,.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-white'>
+                        <Link href='/contact' className='group flex items-center gap-2 rounded-full bg-[#F4EDE1] px-9 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-[#2A2420] shadow-[0_12px_30px_rgba(0,0,0,.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-white'>
                             Enquire Now
                             <ArrowRight className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-1' />
                         </Link>
 
-                        <Link href='/call-us' className='group flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-9 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-300 hover:border-white/50 hover:bg-white/10'>
+                        <Link href='tel:+917400019024' className='group flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-9 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-300 hover:border-white/50 hover:bg-white/10'>
                             <Phone className='h-4 w-4' />
                             Call Us
                         </Link>

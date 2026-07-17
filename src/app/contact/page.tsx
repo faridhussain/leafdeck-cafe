@@ -1,10 +1,11 @@
 'use client'
 
+import { lenis } from '../components/layout/LenisProvider'
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Fraunces, Inter_Tight } from 'next/font/google'
-import { MapPin, Phone, Mail, Clock, Send, AlertCircle, MapPinned, ArrowUpRight } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, Send, AlertCircle, MapPinned, ArrowUpRight, ArrowRight } from 'lucide-react'
 
 const interTight = Inter_Tight({
     subsets: ['latin'],
@@ -313,10 +314,10 @@ export default function ContactPage() {
                     <div className='relative h-100 overflow-hidden rounded-[30px] sm:h-115'>
                         <iframe
                             src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.559669025879!2d91.78772437624063!3d26.145896477112572!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a59ff7ccf3fa1%3A0x27d18bd386e8d896!2sLeaf%20Deck%20Caf%C3%A9!5e0!3m2!1sen!2sin!4v1784125667231!5m2!1sen!2sin'
-                            className='h-full w-full'
+                            className='h-full w-full will-change-transform'
                             style={{ border: 0 }}
                             allowFullScreen
-                            loading='lazy'
+                            loading='eager'
                             referrerPolicy='strict-origin-when-cross-origin'
                         ></iframe>
                     </div>
@@ -345,9 +346,15 @@ export default function ContactPage() {
                             Call Us
                         </Link>
 
-                        <Link href='/order' className='group flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-9 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-300 hover:border-white/50 hover:bg-white/10'>
+                        <a
+                            href='https://www.zomato.com/guwahati/leaf-deck-cafe-dispur/order'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='group flex items-center gap-2 rounded-full border border-white/35 bg-white/5 px-9 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-300 hover:border-white/50 hover:bg-white/10'
+                        >
                             Order Online
-                        </Link>
+                            <ArrowRight className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-1' />
+                        </a>
                     </div>
                 </div>
             </section>

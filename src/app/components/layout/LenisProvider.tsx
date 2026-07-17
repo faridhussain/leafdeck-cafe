@@ -8,9 +8,9 @@ export let lenis: Lenis | null = null
 export default function LenisProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
         lenis = new Lenis({
-            duration: 1.2,
             smoothWheel: true,
             touchMultiplier: 1.5,
+            lerp: 0.12,
         })
 
         let rafId: number
