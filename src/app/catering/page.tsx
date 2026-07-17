@@ -1,7 +1,10 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { Fraunces, Inter_Tight } from 'next/font/google'
 import { ArrowRight, Phone, UtensilsCrossed, Soup, IceCreamCone, ClipboardList, ChefHat, PartyPopper } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const interTight = Inter_Tight({
     subsets: ['latin'],
@@ -71,7 +74,6 @@ export default function CateringPage() {
                     <h1 className={`${fraunces.className} mt-4 text-5xl font-black tracking-wide drop-shadow-[0_10px_40px_rgba(0,0,0,0.9)] sm:text-6xl md:text-7xl`}>Catering Services</h1>
                 </div>
             </section>
-
             <section className='relative overflow-hidden bg-[#1B1611] px-6 py-24 sm:py-28'>
                 <div className='pointer-events-none absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-[#C9A227]/5 blur-3xl' />
 
@@ -87,7 +89,6 @@ export default function CateringPage() {
                     <p className={`${interTight.className} mx-auto mt-5 max-w-xl text-[16px] italic leading-relaxed tracking-wide text-white/50`}>Trusted by celebrities, bureaucrats, and everyone in between.</p>
                 </div>
             </section>
-
             <section className='relative bg-[#1B1611] select-none'>
                 <div className='relative overflow-hidden rounded-[30px] bg-[#EDE3D0] px-6 py-14 sm:px-10 lg:px-14'>
                     <div className='pointer-events-none absolute right-0 top-0 h-96 w-96 -translate-y-1/3 translate-x-1/4 rounded-full bg-[#8B5E3C]/10 blur-3xl' />
@@ -116,7 +117,7 @@ export default function CateringPage() {
 
             <section className='relative overflow-hidden bg-[#1B1611] px-6 py-24 sm:py-28'>
                 <div className='relative z-10 mx-auto max-w-6xl'>
-                    <div className='mb-10 flex flex-col items-start gap-6 border-b border-white/10 pb-10 sm:flex-row sm:items-end sm:justify-between'>
+                    <motion.div className='mb-10 flex flex-col items-start gap-6 border-b border-white/10 pb-10 sm:flex-row sm:items-end sm:justify-between' initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }}>
                         <div>
                             <span className={`${interTight.className} text-xs font-medium uppercase tracking-[0.42em] text-[#F4EDE1]/50 md:text-sm`}>How It Works</span>
 
@@ -124,44 +125,102 @@ export default function CateringPage() {
                         </div>
 
                         <p className={`${interTight.className} max-w-xs text-[15px] leading-relaxed text-white/45`}>No fixed packages to squeeze your event into — we build around you.</p>
-                    </div>
+                    </motion.div>
 
-                    <div className='grid grid-cols-1 divide-y divide-white/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0'>
+                    <motion.div
+                        className='grid grid-cols-1 divide-y divide-white/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0'
+                        initial='hidden'
+                        whileInView='visible'
+                        viewport={{ once: true, amount: 0.25 }}
+                        variants={{
+                            visible: {
+                                transition: {
+                                    staggerChildren: 0.12,
+                                },
+                            },
+                        }}
+                    >
                         {steps.map((step, i) => (
-                            <div key={step.title} className={`flex flex-col gap-4 py-8 sm:py-0 sm:px-8 ${i === 0 ? 'sm:pl-0' : ''} ${i === steps.length - 1 ? 'sm:pr-0' : ''}`}>
+                            <motion.div
+                                key={step.title}
+                                variants={{
+                                    hidden: {
+                                        opacity: 0,
+                                        y: 30,
+                                    },
+                                    visible: {
+                                        opacity: 1,
+                                        y: 0,
+                                        transition: {
+                                            duration: 0.55,
+                                            ease: 'easeOut',
+                                        },
+                                    },
+                                }}
+                                className={`flex flex-col gap-4 py-8 sm:py-0 sm:px-8 ${i === 0 ? 'sm:pl-0' : ''} ${i === steps.length - 1 ? 'sm:pr-0' : ''}`}
+                            >
                                 <step.icon className='h-6 w-6 text-[#C9A227]' strokeWidth={1.5} />
 
                                 <h3 className={`${fraunces.className} text-xl font-semibold text-white`}>{step.title}</h3>
 
                                 <p className={`${interTight.className} text-[15px] leading-relaxed text-white/55`}>{step.copy}</p>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
-            <section className='relative bg-[#1B1611] px-6 pb-24 sm:pb-28'>
+            <motion.section className='relative bg-[#1B1611] px-6 pb-24 sm:pb-28' initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.6 }}>
                 <div className='mx-auto max-w-6xl'>
-                    <div className='mb-12 text-center'>
+                    <motion.div className='mb-12 text-center' initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
                         <span className={`${interTight.className} text-xs font-medium uppercase tracking-[0.42em] text-[#F4EDE1]/50 md:text-sm`}>From Past Events</span>
 
                         <h2 className={`${fraunces.className} mt-4 text-4xl font-bold tracking-wide text-white sm:text-5xl`}>On The Table</h2>
-                    </div>
+                    </motion.div>
 
-                    <div className='grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4'>
+                    <motion.div
+                        className='grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4'
+                        variants={{
+                            hidden: {},
+                            visible: {
+                                transition: {
+                                    staggerChildren: 0.12,
+                                },
+                            },
+                        }}
+                        initial='hidden'
+                        whileInView='visible'
+                        viewport={{ once: true, amount: 0.2 }}
+                    >
                         {gallery.map((image, i) => (
-                            <div key={image.alt} className={`relative h-56 overflow-hidden rounded-2xl sm:h-72 ${i % 2 === 1 ? 'lg:mt-8' : ''}`}>
+                            <motion.div
+                                key={image.alt}
+                                variants={{
+                                    hidden: {
+                                        opacity: 0,
+                                        y: 40,
+                                    },
+                                    visible: {
+                                        opacity: 1,
+                                        y: 0,
+                                        transition: {
+                                            duration: 0.55,
+                                            ease: 'easeOut',
+                                        },
+                                    },
+                                }}
+                                className={`relative h-56 overflow-hidden rounded-2xl sm:h-72 ${i % 2 === 1 ? 'lg:mt-8' : ''}`}
+                            >
                                 <div className='absolute inset-0 bg-[#2A2420]' />
+
                                 <Image src={image.src} alt={image.alt} fill quality={100} className='object-cover' />
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
-            </section>
+            </motion.section>
 
             <section className='relative overflow-hidden bg-[#1B1611] px-6 pb-24 select-none sm:pb-28'>
-                <div className='pointer-events-none absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#D8B25A]/5 blur-[130px]' />
-
                 <div className='relative z-10 mx-auto max-w-2xl text-center'>
                     <h2 className={`${fraunces.className} text-3xl italic text-[#F4EDE1] md:text-4xl`}>Planning something? Let&apos;s talk menu.</h2>
 
