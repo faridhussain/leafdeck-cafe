@@ -31,13 +31,13 @@ export default function Footer() {
 
             <div className='relative z-10 mx-auto max-w-7xl px-4 sm:px-8 lg:px-6'>
                 <div className='border-b border-white/15 pb-10 text-center sm:pb-12'>
-                    <h2 className={`${fraunces.className} text-[1.7rem] tracking-tight italic text-[#F4EDE1] sm:text-4xl`}>Ready for your next meal?</h2>
+                    <h2 className={`${fraunces.className} text-[1.7rem] sm:tracking-normal tracking-tight italic text-[#F4EDE1] sm:text-4xl`}>Ready for your next meal?</h2>
 
                     <a
                         href='https://www.zomato.com/guwahati/leaf-deck-cafe-dispur/order'
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='mt-4 inline-flex w-full max-w-70 items-center justify-center rounded-full bg-[#F4EDE1] px-8 py-3.5 text-[12px] font-bold uppercase tracking-[0.14em] text-[#201A15] shadow-[0_12px_30px_rgba(0,0,0,.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_40px_rgba(0,0,0,.45)] sm:w-auto sm:max-w-none sm:px-10 sm:py-4 sm:text-[13px]'
+                        className='sm:mt-6 mt-4 inline-flex w-full max-w-70 items-center justify-center rounded-full bg-[#F4EDE1] px-8 py-3.5 text-[12px] font-bold uppercase tracking-[0.14em] text-[#201A15] shadow-[0_12px_30px_rgba(0,0,0,.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_40px_rgba(0,0,0,.45)] sm:w-auto sm:max-w-none sm:px-10 sm:py-4 sm:text-[13px]'
                     >
                         Order Online
                     </a>
@@ -45,7 +45,7 @@ export default function Footer() {
                     <p className={`${interTight.className} mt-4 text-[9px] uppercase tracking-[0.22em] text-white/45 sm:text-[11px] sm:tracking-[0.24em]`}>Available on Swiggy & Zomato</p>
                 </div>
 
-                <div className='grid gap-15 py-7 text-center sm:gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-10 lg:text-left'>
+                <div className='grid gap-15 py-7 text-center sm:gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-10'>
                     <div className='flex flex-col items-center lg:items-start'>
                         <div className='relative h-14 w-40 sm:h-16 sm:w-44'>
                             <Image src='/images/logo2.png' alt='Leaf Deck Cafe' fill className='object-contain object-center lg:object-left' />
@@ -53,8 +53,8 @@ export default function Footer() {
 
                         <p className={`${interTight.className} mt-4 max-w-xs text-[15px] leading-7 text-white/55`}>A welcoming destination in the heart of Guwahati, where handcrafted food, warm hospitality, and memorable evenings come together.</p>
 
-                        <div className='mt-6 flex flex-col items-center'>
-                            <p className={`${interTight.className} mb-4 text-[11px] uppercase tracking-[0.22em] text-white/40`}>Follow Us</p>
+                        <div className='mt-6 flex w-full flex-col items-center lg:items-start'>
+                            <p className={`${interTight.className} mb-4 text-center text-[11px] uppercase tracking-[0.22em] text-white/40 lg:text-left`}>Follow Us</p>
 
                             <Link
                                 href='https://instagram.com/leafdeckcafe'
@@ -93,11 +93,11 @@ export default function Footer() {
                     <div className='flex flex-col items-center'>
                         <h3 className={`${interTight.className} text-xs font-semibold uppercase tracking-[0.22em] text-white/65`}>Get in Touch</h3>
 
-                        <div className='mt-5 space-y-4'>
-                            <div className='flex items-start gap-3 text-left'>
-                                <MapPin className='mt-1 h-4 w-4 shrink-0 text-white/40' />
+                        <div className='mt-5 flex flex-col items-center space-y-4'>
+                            <div className='flex max-w-sm items-start justify-center gap-1'>
+                                <MapPin className='mt-1.5 h-4 w-4 shrink-0 text-white/40' />
 
-                                <p className={`${interTight.className} text-[15px] leading-7 text-white/60`}>Opp. Guwahati Tea Auction Centre, GS Road, Dispur, Guwahati – 781006</p>
+                                <p className={`${interTight.className} text-center text-[15px] leading-7 text-white/60`}>Opp. Guwahati Tea Auction Centre, GS Road, Dispur, Guwahati – 781006</p>
                             </div>
 
                             <div className='flex items-center gap-3'>
