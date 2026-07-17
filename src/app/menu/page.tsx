@@ -473,12 +473,20 @@ export default function MenuPage() {
     }, [query])
 
     useEffect(() => {
-        if (normalizedQuery) {
-            const el = contentRef.current
-            if (el) {
-                const y = el.getBoundingClientRect().top + window.scrollY - (NAVBAR_OFFSET + 24)
-                lenis.scrollTo(y)
-            }
+        if (!normalizedQuery) return
+
+        const el = contentRef.current
+        if (!el) return
+
+        const y = el.getBoundingClientRect().top + window.scrollY - (NAVBAR_OFFSET + 24)
+
+        if (lenis) {
+            lenis.scrollTo(y)
+        } else {
+            window.scrollTo({
+                top: y,
+                behavior: 'smooth',
+            })
         }
     }, [normalizedQuery])
 
@@ -492,15 +500,23 @@ export default function MenuPage() {
         setMobileMenuOpen(false)
 
         const el = groupRefs.current[id]
+
         if (!el) return
 
         const y = el.getBoundingClientRect().top + window.scrollY - (NAVBAR_OFFSET + 24)
 
         const distance = Math.abs(window.scrollY - y)
 
-        lenis.scrollTo(y, {
-            duration: distance > 1800 ? 0.45 : 1,
-        })
+        if (lenis) {
+            lenis.scrollTo(y, {
+                duration: distance > 1800 ? 0.45 : 1,
+            })
+        } else {
+            window.scrollTo({
+                top: y,
+                behavior: 'smooth',
+            })
+        }
 
         setActiveGroup(id)
     }
@@ -578,9 +594,9 @@ export default function MenuPage() {
                                 {groups.map((group) => {
                                     const active = activeGroup === group.id
                                     return (
-                                        <button key={group.id} onClick={() => scrollToGroup(group.id)} className='group flex w-full items-center gap-3 py-2.5 text-left'>
+                                        <button key={group.id} onClick={() => scrollToGroup(group.id)} className='group flex w-full items-center cursor-pointer gap-3 py-2.5 text-left'>
                                             <span className={`h-6 w-0.75 rounded-full transition-all duration-300 ${active ? 'bg-[#C9A227]' : 'bg-transparent'}`} />
-                                            <span className={`${interTight.className} text-[15px] cursor-pointer font-medium tracking-[-0.01em] transition-colors duration-300 ${active ? 'text-[#F4EDE1]' : 'text-[#A89A8B] group-hover:text-[#F4EDE1]'}`}>{group.label}</span>
+                                            <span className={`${interTight.className} text-[15px] font-medium tracking-[-0.01em] transition-colors duration-300 ${active ? 'text-[#F4EDE1]' : 'text-[#A89A8B] group-hover:text-[#F4EDE1]'}`}>{group.label}</span>
                                         </button>
                                     )
                                 })}

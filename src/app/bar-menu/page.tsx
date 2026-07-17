@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { Fraunces, Inter_Tight } from 'next/font/google'
 import { Search, Menu as MenuIcon, X } from 'lucide-react'
+import { lenis } from '../components/layout/LenisProvider'
 
 const interTight = Inter_Tight({
     subsets: ['latin'],
@@ -381,12 +382,20 @@ export default function BarMenuPage() {
     }, [query])
 
     useEffect(() => {
-        if (normalizedQuery) {
-            const el = contentRef.current
-            if (el) {
-                const y = el.getBoundingClientRect().top + window.scrollY - (NAVBAR_OFFSET + 24)
-                window.scrollTo({ top: y, behavior: 'smooth' })
-            }
+        if (!normalizedQuery) return
+
+        const el = contentRef.current
+        if (!el) return
+
+        const y = el.getBoundingClientRect().top + window.scrollY - (NAVBAR_OFFSET + 24)
+
+        if (lenis) {
+            lenis.scrollTo(y)
+        } else {
+            window.scrollTo({
+                top: y,
+                behavior: 'smooth',
+            })
         }
     }, [normalizedQuery])
 
@@ -398,12 +407,26 @@ export default function BarMenuPage() {
 
     const scrollToGroup = (id: string) => {
         setMobileMenuOpen(false)
+
         const el = groupRefs.current[id]
-        if (el) {
-            const y = el.getBoundingClientRect().top + window.scrollY - (NAVBAR_OFFSET + 24)
-            window.scrollTo({ top: y, behavior: 'smooth' })
-            setActiveGroup(id)
+        if (!el) return
+
+        const y = el.getBoundingClientRect().top + window.scrollY - (NAVBAR_OFFSET + 24)
+
+        const distance = Math.abs(window.scrollY - y)
+
+        if (lenis) {
+            lenis.scrollTo(y, {
+                duration: distance > 1800 ? 0.45 : 1,
+            })
+        } else {
+            window.scrollTo({
+                top: y,
+                behavior: 'smooth',
+            })
         }
+
+        setActiveGroup(id)
     }
 
     return (
@@ -479,7 +502,7 @@ export default function BarMenuPage() {
                                 {groups.map((group) => {
                                     const active = activeGroup === group.id
                                     return (
-                                        <button key={group.id} onClick={() => scrollToGroup(group.id)} className='group flex w-full items-center gap-3 py-2.5 text-left'>
+                                        <button key={group.id} onClick={() => scrollToGroup(group.id)} className='group cursor-pointer flex w-full items-center gap-3 py-2.5 text-left'>
                                             <span className={`h-6 w-0.75 rounded-full transition-all duration-300 ${active ? 'bg-[#C9A227]' : 'bg-transparent'}`} />
                                             <span className={`${interTight.className} text-[15px] font-medium tracking-[-0.01em] transition-colors duration-300 ${active ? 'text-[#F4EDE1]' : 'text-[#A89A8B] group-hover:text-[#F4EDE1]'}`}>{group.label}</span>
                                         </button>
