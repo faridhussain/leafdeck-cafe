@@ -26,49 +26,53 @@ const navLinks = [
 
 export default function Footer() {
     return (
-        <footer className='relative overflow-hidden rounded-t-[30px] bg-black pt-20 select-none'>
-            <div className='pointer-events-none absolute left-1/2 top-0 h-120 w-120 -translate-x-1/2 rounded-full bg-[#D8B25A]/5 blur-[150px]' />
+        <footer className='relative overflow-hidden rounded-t-[30px] bg-black pt-14 select-none sm:rounded-t-[28px] sm:pt-18 lg:rounded-t-[30px] lg:pt-20'>
+            <div className='pointer-events-none absolute left-1/2 top-0 h-70 w-70 -translate-x-1/2 rounded-full bg-[#D8B25A]/5 blur-[110px] sm:h-95 sm:w-95 sm:blur-[130px] lg:h-120 lg:w-120 lg:blur-[150px]' />
 
-            <div className='relative z-10 mx-auto max-w-7xl px-6'>
-                <div className='border-b border-white/15 pb-12 text-center'>
-                    <h2 className={`${fraunces.className} text-3xl italic text-[#F4EDE1] md:text-4xl`}>Ready for your next meal?</h2>
+            <div className='relative z-10 mx-auto max-w-7xl px-4 sm:px-8 lg:px-6'>
+                <div className='border-b border-white/15 pb-10 text-center sm:pb-12'>
+                    <h2 className={`${fraunces.className} text-[1.7rem] tracking-tight italic text-[#F4EDE1] sm:text-4xl`}>Ready for your next meal?</h2>
 
                     <a
                         href='https://www.zomato.com/guwahati/leaf-deck-cafe-dispur/order'
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='mt-8 inline-flex rounded-full bg-[#F4EDE1] px-10 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-[#201A15] shadow-[0_12px_30px_rgba(0,0,0,.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_40px_rgba(0,0,0,.45)]'
+                        className='mt-4 inline-flex w-full max-w-70 items-center justify-center rounded-full bg-[#F4EDE1] px-8 py-3.5 text-[12px] font-bold uppercase tracking-[0.14em] text-[#201A15] shadow-[0_12px_30px_rgba(0,0,0,.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_40px_rgba(0,0,0,.45)] sm:w-auto sm:max-w-none sm:px-10 sm:py-4 sm:text-[13px]'
                     >
                         Order Online
                     </a>
 
-                    <p className={`${interTight.className} mt-5 text-[11px] uppercase tracking-[0.24em] text-white/45`}>Available on Swiggy & Zomato</p>
+                    <p className={`${interTight.className} mt-4 text-[9px] uppercase tracking-[0.22em] text-white/45 sm:text-[11px] sm:tracking-[0.24em]`}>Available on Swiggy & Zomato</p>
                 </div>
 
-                <div className='grid gap-10 py-7 md:grid-cols-2 lg:grid-cols-4'>
-                    <div>
-                        <div className='relative h-16 w-44'>
-                            <Image src='/images/logo2.png' alt='Leaf Deck Cafe' fill className='object-contain object-left' />
+                <div className='grid gap-15 py-7 text-center sm:gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-10 lg:text-left'>
+                    <div className='flex flex-col items-center lg:items-start'>
+                        <div className='relative h-14 w-40 sm:h-16 sm:w-44'>
+                            <Image src='/images/logo2.png' alt='Leaf Deck Cafe' fill className='object-contain object-center lg:object-left' />
                         </div>
 
-                        <p className={`${interTight.className} mt-4 max-w-xs text-[15px] leading-6 text-white/55`}>A welcoming destination in the heart of Guwahati, where handcrafted food, warm hospitality, and memorable evenings come together.</p>
+                        <p className={`${interTight.className} mt-4 max-w-xs text-[15px] leading-7 text-white/55`}>A welcoming destination in the heart of Guwahati, where handcrafted food, warm hospitality, and memorable evenings come together.</p>
 
-                        <div className='mt-7'>
+                        <div className='mt-6 flex flex-col items-center'>
                             <p className={`${interTight.className} mb-4 text-[11px] uppercase tracking-[0.22em] text-white/40`}>Follow Us</p>
 
-                            <Link href='https://instagram.com/leafdeckcafe' target='_blank' className='flex h-12 w-12 items-center justify-center rounded-full border border-white/15 text-white/60 transition-all duration-300 hover:-translate-y-1 hover:border-[#D8B25A]/70 hover:text-[#D8B25A]'>
+                            <Link
+                                href='https://instagram.com/leafdeckcafe'
+                                target='_blank'
+                                className='flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/60 transition-all duration-300 hover:-translate-y-1 hover:border-[#D8B25A]/70 hover:text-[#D8B25A] sm:h-12 sm:w-12'
+                            >
                                 <FaInstagram className='h-5 w-5' />
                             </Link>
                         </div>
                     </div>
 
-                    <div className='flex items-center flex-col'>
+                    <div className='flex flex-col items-center'>
                         <h3 className={`${interTight.className} text-xs font-semibold uppercase tracking-[0.22em] text-white/65`}>Explore</h3>
 
-                        <ul className='mt-6 space-y-3 flex flex-col items-center'>
+                        <ul className='mt-5 space-y-2 sm:space-y-3'>
                             {navLinks.map((link) => (
                                 <li key={link.label}>
-                                    <Link href={link.href} className={`${interTight.className} inline-block text-[15px] text-white/60 transition-all duration-300 hover:text-[#D8B25A]`}>
+                                    <Link href={link.href} className={`${interTight.className} text-[15px] text-white/60 transition-all duration-300 hover:text-[#D8B25A]`}>
                                         {link.label}
                                     </Link>
                                 </li>
@@ -79,7 +83,7 @@ export default function Footer() {
                     <div className='flex flex-col items-center'>
                         <h3 className={`${interTight.className} text-xs font-semibold uppercase tracking-[0.22em] text-white/65`}>We're Open</h3>
 
-                        <div className={`${interTight.className} mt-6 text-[15px] leading-8 text-white/60 flex flex-col items-center`}>
+                        <div className={`${interTight.className} mt-5 text-[15px] leading-7 text-white/60`}>
                             <p>Open Every Day</p>
                             <p className='text-white/45'>Cafe: 11:00 AM - 11:30 PM</p>
                             <p className='text-white/45'>Bar: 12:00 PM - 10:30 PM</p>
@@ -89,9 +93,9 @@ export default function Footer() {
                     <div className='flex flex-col items-center'>
                         <h3 className={`${interTight.className} text-xs font-semibold uppercase tracking-[0.22em] text-white/65`}>Get in Touch</h3>
 
-                        <div className='mt-6 space-y-2 flex flex-col items-center'>
-                            <div className='flex gap-3'>
-                                <MapPin className='mt-1.5 h-4 w-4 shrink-0 text-white/40' />
+                        <div className='mt-5 space-y-4'>
+                            <div className='flex items-start gap-3 text-left'>
+                                <MapPin className='mt-1 h-4 w-4 shrink-0 text-white/40' />
 
                                 <p className={`${interTight.className} text-[15px] leading-7 text-white/60`}>Opp. Guwahati Tea Auction Centre, GS Road, Dispur, Guwahati – 781006</p>
                             </div>
@@ -107,7 +111,7 @@ export default function Footer() {
                             <div className='flex items-center gap-3'>
                                 <Mail className='h-4 w-4 shrink-0 text-white/40' />
 
-                                <a href='mailto:theleafdeck@gmail.com' className={`${interTight.className} text-[15px] tracking-wide text-white/60 transition-colors duration-300 hover:text-[#D8B25A]`}>
+                                <a href='mailto:theleafdeck@gmail.com' className={`${interTight.className} text-[15px] text-white/60 transition-colors duration-300 hover:text-[#D8B25A]`}>
                                     theleafdeck@gmail.com
                                 </a>
                             </div>
@@ -115,8 +119,8 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className='flex flex-col items-center justify-center gap-4 border-t border-white/15 py-8 sm:flex-row'>
-                    <p className={`${interTight.className} text-xs text-white/35 tracking-wide`}>© {new Date().getFullYear()} Leaf Deck Cafe. All rights reserved.</p>
+                <div className='border-t border-white/15 py-6 text-center sm:py-8'>
+                    <p className={`${interTight.className} text-[11px] tracking-wide text-white/35 sm:text-xs`}>© {new Date().getFullYear()} Leaf Deck Cafe. All rights reserved.</p>
                 </div>
             </div>
         </footer>
