@@ -66,7 +66,7 @@ export default function Navbar() {
             <nav className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${scrolled || mobileMenuOpen ? 'bg-[#1B1611]/60 backdrop-blur-md' : 'bg-transparent'}`}>
                 <div className={`pointer-events-none absolute inset-0 -z-10 transition-opacity duration-300 ${scrolled || mobileMenuOpen ? 'opacity-0' : 'h-32 bg-linear-to-b from-black/45 via-black/15 to-transparent sm:h-36 lg:h-40'}`} />
 
-                <div className='mx-auto flex h-15 min-[1096px]:h-18 max-w-[1600px] items-center justify-between px-4 sm:px-2 lg:px-6 xl:px-10'>
+                <div className='mx-auto flex h-15 min-[1096px]:h-18 max-w-[1600px] items-center justify-between px-2 sm:px-4 lg:px-6 xl:px-10'>
                     <Link
                         href='/'
                         onClick={(e) => {
