@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef, useLayoutEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 
@@ -10,6 +10,21 @@ export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
     const pathname = usePathname()
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const navRefs = useRef<(HTMLAnchorElement | null)[]>([])
+
+    const [indicator, setIndicator] = useState({
+        left: 0,
+        width: 0,
+    })
+
+    const navItems = [
+        { href: '/', label: 'Home' },
+        { href: '/about', label: 'About' },
+        { href: '/menu', label: 'Menu' },
+        { href: '/bar-menu', label: 'Bar Menu' },
+        { href: '/catering', label: 'Catering' },
+        { href: '/contact', label: 'Contact' },
+    ]
 
     useEffect(() => {
         const handleScroll = () => {
@@ -31,14 +46,20 @@ export default function Navbar() {
         setMobileMenuOpen(false)
     }, [pathname])
 
-    const navItems = [
-        { href: '/', label: 'Home' },
-        { href: '/about', label: 'About' },
-        { href: '/menu', label: 'Menu' },
-        { href: '/bar-menu', label: 'Bar Menu' },
-        { href: '/catering', label: 'Catering' },
-        { href: '/contact', label: 'Contact' },
-    ]
+    useLayoutEffect(() => {
+        const activeIndex = navItems.findIndex((item) => item.href === pathname)
+
+        const activeLink = navRefs.current[activeIndex]
+
+        if (!activeLink) return
+
+        const lineWidth = 20
+
+        setIndicator({
+            left: activeLink.offsetLeft + (activeLink.offsetWidth - lineWidth) / 2,
+            width: lineWidth,
+        })
+    }, [pathname])
 
     return (
         <>
@@ -64,15 +85,29 @@ export default function Navbar() {
                     </Link>
 
                     <div className='relative hidden min-[850px]:flex gap-0.5 min-[1096px]:gap-1 rounded-full border border-white/15 bg-white/[0.07] px-2 min-[1096px]:px-3 py-1.5 min-[1096px]:py-2 backdrop-blur-[3px] backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_1px_rgba(255,255,255,0.2)] before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-linear-to-b before:from-white/25 before:via-white/5 before:to-transparent before:p-px'>
-                        {navItems.map((item) => {
+                        <motion.div
+                            className='absolute bottom-1 h-0.5 rounded-full bg-white'
+                            animate={{
+                                left: indicator.left,
+                                width: indicator.width,
+                            }}
+                            transition={{
+                                type: 'spring',
+                                stiffness: 420,
+                                damping: 30,
+                            }}
+                        />
+                        {navItems.map((item, index) => {
                             const active = pathname === item.href
+
                             return (
                                 <Link
+                                    ref={(el) => {
+                                        navRefs.current[index] = el
+                                    }}
                                     key={item.href}
                                     href={item.href}
-                                    className={`relative rounded-full px-2.5 min-[1096px]:px-3.5 py-1 min-[1096px]:py-1.5 text-[12px] min-[1096px]:text-sm font-medium uppercase tracking-[0.08em] min-[1096px]:tracking-[0.12em] transition-all duration-300 ${
-                                        active ? 'text-white' : 'text-white/70 hover:text-white'
-                                    }`}
+                                    className={`relative px-2.5 min-[1096px]:px-3.5 py-1.5 text-[12px] min-[1096px]:text-sm uppercase transition-all duration-300 ${active ? 'text-white font-semibold tracking-[0.16em]' : 'text-white/55 font-medium tracking-[0.12em] hover:text-white/85'}`}
                                 >
                                     {item.label}
                                 </Link>
@@ -118,13 +153,7 @@ export default function Navbar() {
                     <div className='fixed inset-0 top-0 left-0 z-40 h-dvh w-full min-[850px]:hidden'>
                         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }} onClick={() => setMobileMenuOpen(false)} className='absolute inset-0 h-full w-full bg-black/35' />
 
-                        <motion.div
-                            initial={{ opacity: 0, y: -8, scale: 0.99 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: -8, scale: 0.99 }}
-                            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                            className='absolute left-4 right-4 top-18 flex flex-col gap-2.5 z-50'
-                        >
+                        <motion.div initial={{ opacity: 0, y: -8, scale: 0.99 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -8, scale: 0.99 }} transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }} className='absolute left-4 right-4 top-18 flex flex-col gap-2.5 z-50'>
                             <div className='rounded-3xl border border-white/10 bg-[#1B1611]/75 p-2.5 shadow-[0_30px_60px_rgba(0,0,0,0.4)] backdrop-blur-sm backdrop-saturate-120'>
                                 <div className='flex flex-col gap-1.5'>
                                     {navItems.map((item, i) => {
