@@ -463,7 +463,7 @@ export default function BarMenuPage() {
                     <div className='hidden lg:block'>
                         <div className='sticky top-0 flex h-screen items-center'>
                             <aside className='w-full'>
-                                <div className='flex flex-col rounded-[26px] bg-[#1B1611] px-6 py-6 shadow-[0_24px_50px_rgba(0,0,0,0.25)]'>
+                                <div className='flex flex-col rounded-[26px] bg-[#1B1611] px-6 py-6 shadow-[0_18px_40px_rgba(0,0,0,0.18)]'>
                                     <div className='relative'>
                                         <Search className='pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8E7D6E]' />
 
@@ -473,7 +473,7 @@ export default function BarMenuPage() {
                                             value={query}
                                             onChange={(e) => setQuery(e.target.value)}
                                             placeholder='Search cocktails, spirits...'
-                                            className={`${interTight.className} w-full rounded-xl border border-[#3A2F28] bg-[#241D18] py-3 pl-11 pr-4 text-[14px] text-[#F4EDE1] placeholder:text-[#8E7D6E] outline-none transition-all duration-300 focus:border-[#6A5442]`}
+                                            className={`${interTight.className} w-full rounded-xl border border-[#3A2F28] bg-[#241D18] py-3 pl-11 pr-4 text-[14px] text-[#F4EDE1] placeholder:text-[#9C8B7B] outline-none transition-all duration-300 focus:border-[#6A5442]`}
                                         />
                                     </div>
 
@@ -489,7 +489,7 @@ export default function BarMenuPage() {
                                                 <button key={group.id} onClick={() => scrollToGroup(group.id)} className='group flex w-full cursor-pointer items-center gap-3 py-2.5 text-left'>
                                                     <span className={`h-6 w-0.75 rounded-full transition-all duration-300 ${active ? 'bg-[#C9A227]' : 'bg-transparent'}`} />
 
-                                                    <span className={`${interTight.className} text-[15px] font-medium tracking-[-0.01em] transition-colors duration-300 ${active ? 'text-[#F4EDE1]' : 'text-[#A89A8B] group-hover:text-[#F4EDE1]'}`}>{group.label}</span>
+                                                    <span className={`${interTight.className} text-[15px] font-semibold tracking-[-0.01em] transition-colors duration-300 ${active ? 'text-[#F4EDE1]' : 'text-[#A89A8B] group-hover:text-[#F4EDE1]'}`}>{group.label}</span>
                                                 </button>
                                             )
                                         })}
@@ -544,7 +544,7 @@ export default function BarMenuPage() {
                                     </div>
                                 </div>
                             ) : (
-                                <div className='space-y-24'>
+                                <div className='space-y-15'>
                                     {groupedCategories.map((group) => (
                                         <div
                                             key={group.id}
@@ -562,23 +562,23 @@ export default function BarMenuPage() {
                                                 </div>
                                             </div>
 
-                                            <div className='space-y-12'>
+                                            <div className='space-y-10'>
                                                 {group.categories.length > 0 ? (
                                                     group.categories.map((category) => (
                                                         <div key={category.id}>
-                                                            <h3 className={`${interTight.className} sm:mb-4 mb-1 text-[13px] font-bold uppercase tracking-[0.2em] text-[#8B5E3C]`}>{category.label}</h3>
+                                                            <h3 className={`${interTight.className} sm:mb-1 text-[13px] font-semibold tracking-[0.28em] uppercase text-[#8B5E3C]`}>{category.label}</h3>
 
                                                             <div className='flex flex-col'>
                                                                 {category.items.map((item) => (
                                                                     <div key={item.name} className='border-b border-[#2A2420]/8 py-5 last:border-none'>
                                                                         <div className='flex items-start justify-between gap-3 sm:hidden'>
                                                                             <div className='min-w-0 flex-1'>
-                                                                                <h4 className={`${interTight.className} text-[15px] leading-[1.8] font-medium tracking-[-0.01em] text-[#2A2420]`}>{item.name}</h4>
+                                                                                <h4 className={`${interTight.className} text-[15px] leading-[1.8] tracking-[-0.01em] text-[#2A2420]`}>{item.name}</h4>
                                                                             </div>
                                                                             <span className={`${interTight.className} shrink-0 text-[14px] font-semibold tracking-[0.02em] text-[#A06C3A]`}>{formatPrice(item.price)}</span>
                                                                         </div>
 
-                                                                        <div className='hidden items-start justify-between gap-6 sm:flex'>
+                                                                        <div className='hidden items-start justify-between gap-8 sm:flex'>
                                                                             <div className='min-w-0 flex-1'>
                                                                                 <h4 className={`${interTight.className} text-[16px] leading-8 text-[#2A2420]`}>{item.name}</h4>
                                                                             </div>
