@@ -308,7 +308,7 @@ function formatPrice(price: number | string) {
     return typeof price === 'number' ? `₹${price}` : `₹ ${price}`
 }
 
-const NAVBAR_OFFSET = 60
+const NAVBAR_OFFSET = 70
 
 export default function BarMenuPage() {
     const [activeGroup, setActiveGroup] = useState(groups[0].id)
@@ -460,37 +460,44 @@ export default function BarMenuPage() {
 
             <section className='relative rounded-[30px] bg-[#F7F0DF] px-4 sm:px-10 sm:py-10 py-5'>
                 <div className='mx-auto grid max8xl grid-cols-1 gap-10 lg:grid-cols-[350px_minmax(0,1fr)]'>
-                    <aside className='hidden self-start lg:sticky lg:block' style={{ top: NAVBAR_OFFSET }}>
-                        <div className='flex flex-col rounded-[26px] bg-[#1B1611] px-6 py-6 shadow-[0_24px_50px_rgba(0,0,0,0.25)]'>
-                            <div className='relative'>
-                                <Search className='pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8E7D6E]' />
-                                <input
-                                    ref={desktopSearchRef}
-                                    type='text'
-                                    value={query}
-                                    onChange={(e) => setQuery(e.target.value)}
-                                    placeholder='Search cocktails, spirits...'
-                                    className={`${interTight.className} w-full rounded-xl border border-[#3A2F28] bg-[#241D18] py-3 pl-11 pr-4 text-[14px] text-[#F4EDE1] placeholder:text-[#8E7D6E] outline-none transition-all duration-300 focus:border-[#6A5442]`}
-                                />
-                            </div>
+                    <div className='hidden lg:block'>
+                        <div className='sticky top-0 flex h-screen items-center'>
+                            <aside className='w-full'>
+                                <div className='flex flex-col rounded-[26px] bg-[#1B1611] px-6 py-6 shadow-[0_24px_50px_rgba(0,0,0,0.25)]'>
+                                    <div className='relative'>
+                                        <Search className='pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8E7D6E]' />
 
-                            <div className='my-6 h-px bg-white/10' />
+                                        <input
+                                            ref={desktopSearchRef}
+                                            type='text'
+                                            value={query}
+                                            onChange={(e) => setQuery(e.target.value)}
+                                            placeholder='Search cocktails, spirits...'
+                                            className={`${interTight.className} w-full rounded-xl border border-[#3A2F28] bg-[#241D18] py-3 pl-11 pr-4 text-[14px] text-[#F4EDE1] placeholder:text-[#8E7D6E] outline-none transition-all duration-300 focus:border-[#6A5442]`}
+                                        />
+                                    </div>
 
-                            <span className={`${interTight.className} mb-4 text-[11px] font-semibold uppercase tracking-[0.35em] text-[#8E7D6E]`}>Sections</span>
+                                    <div className='my-6 h-px bg-white/10' />
 
-                            <div className='space-y-1'>
-                                {groups.map((group) => {
-                                    const active = activeGroup === group.id
-                                    return (
-                                        <button key={group.id} onClick={() => scrollToGroup(group.id)} className='group flex w-full items-center cursor-pointer gap-3 py-2.5 text-left'>
-                                            <span className={`h-6 w-0.75 rounded-full transition-all duration-300 ${active ? 'bg-[#C9A227]' : 'bg-transparent'}`} />
-                                            <span className={`${interTight.className} text-[15px] font-medium tracking-[-0.01em] transition-colors duration-300 ${active ? 'text-[#F4EDE1]' : 'text-[#A89A8B] group-hover:text-[#F4EDE1]'}`}>{group.label}</span>
-                                        </button>
-                                    )
-                                })}
-                            </div>
+                                    <span className={`${interTight.className} mb-4 text-[11px] font-semibold uppercase tracking-[0.35em] text-[#8E7D6E]`}>Sections</span>
+
+                                    <div className='space-y-1'>
+                                        {groups.map((group) => {
+                                            const active = activeGroup === group.id
+
+                                            return (
+                                                <button key={group.id} onClick={() => scrollToGroup(group.id)} className='group flex w-full cursor-pointer items-center gap-3 py-2.5 text-left'>
+                                                    <span className={`h-6 w-0.75 rounded-full transition-all duration-300 ${active ? 'bg-[#C9A227]' : 'bg-transparent'}`} />
+
+                                                    <span className={`${interTight.className} text-[15px] font-medium tracking-[-0.01em] transition-colors duration-300 ${active ? 'text-[#F4EDE1]' : 'text-[#A89A8B] group-hover:text-[#F4EDE1]'}`}>{group.label}</span>
+                                                </button>
+                                            )
+                                        })}
+                                    </div>
+                                </div>
+                            </aside>
                         </div>
-                    </aside>
+                    </div>
 
                     <div ref={contentRef} className='flex min-h-[60vh] flex-col'>
                         {query && groupedCategories.length > 0 && (
