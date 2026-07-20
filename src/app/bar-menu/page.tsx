@@ -17,6 +17,15 @@ const fraunces = Fraunces({
     style: ['normal', 'italic'],
 })
 
+const featuredDrinks = [
+    { name: 'Jumbo LIIT', price: 999, image: '/images/jumbo-liit.jpg' },
+    { name: 'LDC Electric LIIT', price: 599, image: '/images/electric-liit.jpg' },
+    { name: 'Tequila Twist', price: 349, image: '/images/tequila-twist.jpg' },
+    { name: 'Old Fashioned', price: 379, image: '/images/old-fashioned.jpg' },
+    { name: 'Virgin Blue Lagoon', price: 199, image: '/images/blue-lagoon.jpg' },
+    { name: 'Bombay Sapphire', price: '299 / 30ml', image: '/images/bombay-sapphire.jpg' },
+]
+
 type MenuItem = { name: string; price: number | string; desc?: string }
 type Category = { id: string; group: string; label: string; items: MenuItem[] }
 
@@ -27,45 +36,6 @@ const groups = [
     { id: 'spirits', label: 'Whisky & Spirits' },
     { id: 'beer-wine', label: 'Beer & Wine' },
     { id: 'mixers', label: 'Mixers' },
-]
-
-const featuredDrinks = [
-    {
-        name: 'Jumbo LIIT',
-        price: 999,
-        category: 'Signature Cocktail',
-        image: '/images/jumbo-liit.jpg',
-    },
-    {
-        name: 'LDC Electric LIIT',
-        price: 599,
-        category: 'Cocktail',
-        image: '/images/electric-liit.jpg',
-    },
-    {
-        name: 'Tequila Twist',
-        price: 349,
-        category: 'Cocktail',
-        image: '/images/tequila-twist.jpg',
-    },
-    {
-        name: 'Old Fashioned',
-        price: 379,
-        category: 'Classic',
-        image: '/images/old-fashioned.jpg',
-    },
-    {
-        name: 'Virgin Blue Lagoon',
-        price: 199,
-        category: 'Mocktail',
-        image: '/images/blue-lagoon.jpg',
-    },
-    {
-        name: 'Bombay Sapphire',
-        price: '299 / 30ml',
-        category: 'Premium Spirit',
-        image: '/images/bombay-sapphire.jpg',
-    },
 ]
 
 const categories: Category[] = [
@@ -338,7 +308,7 @@ function formatPrice(price: number | string) {
     return typeof price === 'number' ? `₹${price}` : `₹ ${price}`
 }
 
-const NAVBAR_OFFSET = 200
+const NAVBAR_OFFSET = 60
 
 export default function BarMenuPage() {
     const [activeGroup, setActiveGroup] = useState(groups[0].id)
@@ -346,6 +316,8 @@ export default function BarMenuPage() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const groupRefs = useRef<Record<string, HTMLElement | null>>({})
     const contentRef = useRef<HTMLDivElement>(null)
+    const desktopSearchRef = useRef<HTMLInputElement>(null)
+    const mobileSearchRef = useRef<HTMLInputElement>(null)
 
     const normalizedQuery = query.trim().toLowerCase()
 
@@ -364,30 +336,12 @@ export default function BarMenuPage() {
         .filter((group) => group.categories.length > 0)
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const visible = entries.filter((entry) => entry.isIntersecting)
-                if (visible.length > 0) {
-                    setActiveGroup(visible[0].target.id)
-                }
-            },
-            { rootMargin: `-${NAVBAR_OFFSET + 40}px 0px -70% 0px`, threshold: 0 },
-        )
-
-        Object.values(groupRefs.current).forEach((el) => {
-            if (el) observer.observe(el)
-        })
-
-        return () => observer.disconnect()
-    }, [query])
-
-    useEffect(() => {
         if (!normalizedQuery) return
 
         const el = contentRef.current
         if (!el) return
 
-        const y = el.getBoundingClientRect().top + window.scrollY - (NAVBAR_OFFSET + 24)
+        const y = el.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET
 
         if (lenis) {
             lenis.scrollTo(y)
@@ -409,6 +363,7 @@ export default function BarMenuPage() {
         setMobileMenuOpen(false)
 
         const el = groupRefs.current[id]
+
         if (!el) return
 
         const y = el.getBoundingClientRect().top + window.scrollY - (NAVBAR_OFFSET + 24)
@@ -453,25 +408,21 @@ export default function BarMenuPage() {
                 </div>
             </section>
 
-            <section className='relative border-b border-white/5 bg-[#16120E] px-6 py-20 sm:py-24'>
+            <section className='relative border-b border-white/5 bg-[#16120E] sm:px-6 px-4 py-15 sm:py-24'>
                 <div className='mx-auto max-w-6xl'>
                     <div className='mb-12 text-center'>
-                        <span className={`${interTight.className} text-xs font-medium uppercase tracking-[0.42em] text-white/40`}>BAR FAVOURITES</span>
-
-                        <h2 className={`${fraunces.className} mt-4 text-4xl font-bold tracking-wide text-white sm:text-5xl`}>Signature Drinks</h2>
+                        <span className={`${interTight.className} text-xs font-medium uppercase tracking-[0.42em] text-white/40`}>Bar Favourites</span>
+                        <h2 className={`${fraunces.className} mt-2 sm:mt-4 text-4xl font-bold tracking-wide text-white sm:text-5xl`}>Signature Drinks</h2>
                     </div>
-
-                    <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'>
+                    <div className='grid grid-cols-1 gap-6 sm:grid-cols-3'>
                         {featuredDrinks.map((drink) => (
                             <div key={drink.name} className='group'>
-                                <div className='relative h-120 w-full overflow-hidden rounded-2xl'>
-                                    <Image src={drink.image} alt={drink.name} fill quality={100} className='object-cover transition-transform duration-500 group-hover:scale-[1.02]' />
+                                <div className='relative h-72 w-full overflow-hidden rounded-2xl'>
+                                    <Image src={drink.image} alt={drink.name} fill className='object-cover transition-transform duration-500 group-hover:scale-105' />
                                 </div>
-
                                 <div className='mt-4 flex items-center justify-between gap-3'>
                                     <h3 className={`${fraunces.className} text-lg font-semibold text-white`}>{drink.name}</h3>
-
-                                    <span className={`${interTight.className} text-sm font-semibold text-[#C9A227]`}>{typeof drink.price === 'number' ? `₹${drink.price}` : `₹ ${drink.price}`}</span>
+                                    <span className={`${interTight.className} text-sm font-semibold text-[#C9A227]`}>{formatPrice(drink.price)}</span>
                                 </div>
                             </div>
                         ))}
@@ -479,13 +430,14 @@ export default function BarMenuPage() {
                 </div>
             </section>
 
-            <section className='relative rounded-[30px] bg-[#F7F0DF] px-10 py-10'>
-                <div className='mx-auto grid max-w-8xl grid-cols-1 gap-10 lg:grid-cols-[350px_minmax(0,1fr)]'>
+            <section className='relative rounded-[30px] bg-[#F7F0DF] px-4 sm:px-10 sm:py-10 py-5'>
+                <div className='mx-auto grid max8xl grid-cols-1 gap-10 lg:grid-cols-[350px_minmax(0,1fr)]'>
                     <aside className='hidden self-start lg:sticky lg:block' style={{ top: NAVBAR_OFFSET }}>
                         <div className='flex flex-col rounded-[26px] bg-[#1B1611] px-6 py-6 shadow-[0_24px_50px_rgba(0,0,0,0.25)]'>
                             <div className='relative'>
                                 <Search className='pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8E7D6E]' />
                                 <input
+                                    ref={desktopSearchRef}
                                     type='text'
                                     value={query}
                                     onChange={(e) => setQuery(e.target.value)}
@@ -502,7 +454,7 @@ export default function BarMenuPage() {
                                 {groups.map((group) => {
                                     const active = activeGroup === group.id
                                     return (
-                                        <button key={group.id} onClick={() => scrollToGroup(group.id)} className='group cursor-pointer flex w-full items-center gap-3 py-2.5 text-left'>
+                                        <button key={group.id} onClick={() => scrollToGroup(group.id)} className='group flex w-full items-center cursor-pointer gap-3 py-2.5 text-left'>
                                             <span className={`h-6 w-0.75 rounded-full transition-all duration-300 ${active ? 'bg-[#C9A227]' : 'bg-transparent'}`} />
                                             <span className={`${interTight.className} text-[15px] font-medium tracking-[-0.01em] transition-colors duration-300 ${active ? 'text-[#F4EDE1]' : 'text-[#A89A8B] group-hover:text-[#F4EDE1]'}`}>{group.label}</span>
                                         </button>
@@ -521,9 +473,39 @@ export default function BarMenuPage() {
 
                         <div>
                             {groupedCategories.length === 0 ? (
-                                <div className='flex min-h-[60vh] items-center justify-center'>
-                                    <div className='rounded-3xl border border-dashed border-[#2A2420]/15 px-12 py-10'>
-                                        <p className={`${interTight.className} text-[#2A2420]/50`}>No items match "{query}".</p>
+                                <div className='flex min-h-[60vh] items-center justify-center px-6'>
+                                    <div className='mx-auto max-w-md text-center'>
+                                        <div className='mx-auto flex h-18 w-18 items-center justify-center rounded-full bg-[#A06C3A]/10'>
+                                            <Search className='h-8 w-8 text-[#A06C3A]/70' />
+                                        </div>
+
+                                        <h3 className={`${fraunces.className} mt-8 text-3xl font-bold text-[#2A2420]`}>No drinks found</h3>
+
+                                        <p className={`${interTight.className} mt-3 text-[15px] leading-7 text-[#2A2420]/60`}>We couldn't find any drinks matching your search.</p>
+
+                                        <p className={`${interTight.className} mt-5 rounded-full border border-[#2A2420]/10 bg-white/40 px-5 py-3 text-[15px] font-medium text-[#8B5E3C]`}>"{query}"</p>
+
+                                        <button
+                                            onClick={() => {
+                                                setQuery('')
+
+                                                requestAnimationFrame(() => {
+                                                    if (window.innerWidth >= 1024) {
+                                                        desktopSearchRef.current?.focus()
+                                                    } else {
+                                                        mobileSearchRef.current?.focus()
+                                                    }
+                                                })
+                                            }}
+                                            className={`${interTight.className} mt-8 cursor-pointer rounded-full bg-[#1B1611] px-7 py-3 text-[14px] font-semibold tracking-wide text-[#F7F0DF] transition-all duration-300 hover:bg-[#2A2420] active:scale-95`}
+                                        >
+                                            Clear Search
+                                        </button>
+
+                                        <p className={`${interTight.className} mt-8 text-[13px] text-[#2A2420]/40`}>
+                                            Try searching for drinks like
+                                            <span className='font-medium text-[#8B5E3C]'> Whiskey, Mojito, Beer</span>
+                                        </p>
                                     </div>
                                 </div>
                             ) : (
@@ -537,25 +519,36 @@ export default function BarMenuPage() {
                                             }}
                                             className='scroll-mt-32'
                                         >
-                                            <div className='mb-10 flex items-center gap-6'>
-                                                <h2 className={`${fraunces.className} text-4xl font-bold tracking-wide text-[#2A2420] sm:text-5xl`}>{group.label}</h2>
-                                                <div className='h-px flex-1 bg-[#2A2420]/20' />
+                                            <div className='mb-8 sm:mb-10'>
+                                                <div className='flex items-center justify-center gap-4 text-center sm:justify-start sm:text-left sm:gap-6'>
+                                                    <h2 className={`${fraunces.className} text-2xl font-bold text-[#62442d] sm:text-5xl`}>{group.label}</h2>
+
+                                                    <div className='hidden h-px flex-1 bg-[#2A2420]/20 sm:block' />
+                                                </div>
                                             </div>
 
                                             <div className='space-y-12'>
                                                 {group.categories.length > 0 ? (
                                                     group.categories.map((category) => (
                                                         <div key={category.id}>
-                                                            <h3 className={`${interTight.className} mb-4 text-[13px] font-bold uppercase tracking-[0.2em] text-[#8B5E3C]`}>{category.label}</h3>
+                                                            <h3 className={`${interTight.className} sm:mb-4 mb-1 text-[13px] font-bold uppercase tracking-[0.2em] text-[#8B5E3C]`}>{category.label}</h3>
 
                                                             <div className='flex flex-col'>
                                                                 {category.items.map((item) => (
-                                                                    <div key={item.name} className='flex items-start justify-between gap-6 border-b border-[#2A2420]/10 py-4 last:border-none'>
-                                                                        <div className='flex min-w-0 flex-col gap-1'>
-                                                                            <h4 className={`${interTight.className} text-[16px] text-[#2A2420]`}>{item.name}</h4>
-                                                                            {item.desc && <p className={`${interTight.className} text-[13px] leading-snug text-[#2A2420]/55`}>{item.desc}</p>}
+                                                                    <div key={item.name} className='border-b border-[#2A2420]/8 py-5 last:border-none'>
+                                                                        <div className='flex items-start justify-between gap-3 sm:hidden'>
+                                                                            <div className='min-w-0 flex-1'>
+                                                                                <h4 className={`${interTight.className} text-[15px] leading-[1.8] font-medium tracking-[-0.01em] text-[#2A2420]`}>{item.name}</h4>
+                                                                            </div>
+                                                                            <span className={`${interTight.className} shrink-0 text-[14px] font-semibold tracking-[0.02em] text-[#A06C3A]`}>{formatPrice(item.price)}</span>
                                                                         </div>
-                                                                        <span className={`${interTight.className} shrink-0 pt-0.5 text-[16px] font-semibold text-[#8B5E3C]`}>{formatPrice(item.price)}</span>
+
+                                                                        <div className='hidden items-start justify-between gap-6 sm:flex'>
+                                                                            <div className='min-w-0 flex-1'>
+                                                                                <h4 className={`${interTight.className} text-[16px] leading-8 text-[#2A2420]`}>{item.name}</h4>
+                                                                            </div>
+                                                                            <span className={`${interTight.className} shrink-0 pt-0.5 text-[16px] font-semibold text-[#8B5E3C]`}>{formatPrice(item.price)}</span>
+                                                                        </div>
                                                                     </div>
                                                                 ))}
                                                             </div>
@@ -577,17 +570,24 @@ export default function BarMenuPage() {
                 <div className='mx-auto mb-5 h-px w-24 bg-[#C9A227]/30' />
 
                 <p className={`${interTight.className} mx-auto max-w-xl text-[13px] leading-7 font-medium tracking-[0.01em] text-white/60`}>
-                    We charge an optional <span className='text-[#C9A227] font-semibold'>5% service charge</span> to maintain the ambience. Please allow approximately <span className='text-white/80 font-semibold'>20 minutes</span> preparation time.
+                    We charge an optional <span className='text-[#C9A227] font-semibold'>5% service charge</span> to maintain the ambience. Please allow approximately <span className='text-white/80 font-semibold'>20 minutes</span> for careful preparation.
                 </p>
             </section>
 
-            <div className='fixed bottom-6 left-1/2 z-40 w-[90%] max-w-sm -translate-x-1/2 lg:hidden'>
+            <div className='fixed bottom-2 left-1/2 z-40 w-[95%] max-w-sm -translate-x-1/2 lg:hidden'>
                 <div className='flex items-center gap-2 rounded-2xl border border-white/10 bg-[#1B1611]/95 p-2 shadow-2xl backdrop-blur-xl'>
                     <div className='relative flex-1'>
                         <Search className='pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40' />
-                        <input type='text' value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search items...' className={`${interTight.className} w-full rounded-xl bg-white/5 py-2.5 pl-9 pr-3 text-[13px] text-white placeholder:text-white/35 focus:outline-none`} />
+                        <input
+                            type='text'
+                            value={query}
+                            ref={mobileSearchRef}
+                            onChange={(e) => setQuery(e.target.value)}
+                            placeholder='Search items...'
+                            className={`${interTight.className} w-full rounded-xl bg-white/5 py-2.5 pl-9 pr-3 text-[13px] text-white placeholder:text-white/35 focus:outline-none`}
+                        />
                     </div>
-                    <button onClick={() => setMobileMenuOpen(true)} className='flex shrink-0 items-center gap-2 rounded-xl bg-[#F4EDE1] px-4 py-2.5 text-[13px] font-semibold text-[#2A2420] active:scale-95'>
+                    <button onClick={() => setMobileMenuOpen(true)} className='flex cursor-pointer shrink-0 items-center gap-2 rounded-xl bg-[#F4EDE1] px-4 py-2.5 text-[13px] font-semibold text-[#2A2420] active:scale-95'>
                         <MenuIcon className='h-4 w-4' />
                         Menu
                     </button>
@@ -600,7 +600,7 @@ export default function BarMenuPage() {
                     <div className='absolute bottom-0 left-0 right-0 flex max-h-[80vh] flex-col rounded-t-4xl border-t border-white/10 bg-[#16120E] p-6 shadow-2xl'>
                         <div className='flex items-center justify-between border-b border-white/10 pb-6'>
                             <span className={`${fraunces.className} text-xl font-bold text-white`}>Categories</span>
-                            <button onClick={() => setMobileMenuOpen(false)} className='rounded-full bg-white/5 p-1.5 text-white/70'>
+                            <button onClick={() => setMobileMenuOpen(false)} className='rounded-full cursor-pointer bg-white/5 p-1.5 text-white/70'>
                                 <X className='h-5 w-5' />
                             </button>
                         </div>
@@ -610,7 +610,7 @@ export default function BarMenuPage() {
                                 <button
                                     key={group.id}
                                     onClick={() => scrollToGroup(group.id)}
-                                    className={`${interTight.className} flex w-full items-center justify-between rounded-xl px-4 py-3.5 text-left text-sm font-medium transition-all duration-300 ${activeGroup === group.id ? 'bg-white/10 text-[#F4EDE1]' : 'text-white/60'}`}
+                                    className={`${interTight.className} flex w-full items-center justify-between cursor-pointer rounded-xl px-4 py-3.5 text-left text-sm font-medium transition-all duration-300 hover:text-white ${activeGroup === group.id ? 'bg-white/10 text-[#F4EDE1]' : 'text-white/60'}`}
                                 >
                                     <span>{group.label}</span>
                                     {activeGroup === group.id && <span className='h-1.5 w-1.5 rounded-full bg-[#C9A227]' />}
