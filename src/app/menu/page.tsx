@@ -443,7 +443,7 @@ function VegDot({ veg }: { veg: boolean }) {
     )
 }
 
-const NAVBAR_OFFSET = 200
+const NAVBAR_OFFSET = 60
 
 export default function MenuPage() {
     const [activeGroup, setActiveGroup] = useState(groups[0].id)
@@ -469,30 +469,12 @@ export default function MenuPage() {
         .filter((group) => group.categories.length > 0)
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const visible = entries.filter((entry) => entry.isIntersecting)
-                if (visible.length > 0) {
-                    setActiveGroup(visible[0].target.id)
-                }
-            },
-            { rootMargin: `-${NAVBAR_OFFSET + 40}px 0px -70% 0px`, threshold: 0 },
-        )
-
-        Object.values(groupRefs.current).forEach((el) => {
-            if (el) observer.observe(el)
-        })
-
-        return () => observer.disconnect()
-    }, [query])
-
-    useEffect(() => {
         if (!normalizedQuery) return
 
         const el = contentRef.current
         if (!el) return
 
-        const y = el.getBoundingClientRect().top + window.scrollY - (NAVBAR_OFFSET + 24)
+        const y = el.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET
 
         if (lenis) {
             lenis.scrollTo(y)
@@ -565,7 +547,6 @@ export default function MenuPage() {
                         <span className={`${interTight.className} text-xs font-medium uppercase tracking-[0.42em] text-white/40`}>Fan Favourites</span>
                         <h2 className={`${fraunces.className} mt-2 sm:mt-4 text-4xl font-bold tracking-wide text-white sm:text-5xl`}>Where To Start</h2>
                     </div>
-
                     <div className='grid grid-cols-1 gap-6 sm:grid-cols-3'>
                         {heroDishes.map((dish) => (
                             <div key={dish.name} className='group'>
@@ -645,7 +626,7 @@ export default function MenuPage() {
                                         >
                                             <div className='mb-8 sm:mb-10'>
                                                 <div className='flex items-center justify-center gap-4 text-center sm:justify-start sm:text-left sm:gap-6'>
-                                                    <h2 className={`${fraunces.className} shrink-0 whitespace-nowrap text-[2rem] font-bold tracking-[-0.02em] text-[#2A2420] sm:text-5xl`}>{group.label}</h2>
+                                                    <h2 className={`${fraunces.className} text-2xl font-bold text-[#62442d] sm:text-5xl`}>{group.label}</h2>
 
                                                     <div className='hidden h-px flex-1 bg-[#2A2420]/20 sm:block' />
                                                 </div>
