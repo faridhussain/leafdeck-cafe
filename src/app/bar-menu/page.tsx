@@ -359,6 +359,34 @@ export default function BarMenuPage() {
         }
     }, [normalizedQuery])
 
+    useEffect(() => {
+        if (normalizedQuery) return
+
+        const handleScroll = () => {
+            const OFFSET = NAVBAR_OFFSET + 40
+
+            let current = groups[0].id
+
+            Object.entries(groupRefs.current).forEach(([id, el]) => {
+                if (!el) return
+
+                if (el.getBoundingClientRect().top <= OFFSET) {
+                    current = id
+                }
+            })
+
+            setActiveGroup(current)
+        }
+
+        handleScroll()
+
+        window.addEventListener('scroll', handleScroll, { passive: true })
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [normalizedQuery])
+
     const scrollToGroup = (id: string) => {
         setMobileMenuOpen(false)
 
