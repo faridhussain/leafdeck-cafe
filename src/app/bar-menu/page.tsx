@@ -362,29 +362,31 @@ export default function BarMenuPage() {
     useEffect(() => {
         if (normalizedQuery) return
 
-        const handleScroll = () => {
-            const OFFSET = NAVBAR_OFFSET + 40
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)
 
-            let current = groups[0].id
+                if (!visible.length) return
 
-            Object.entries(groupRefs.current).forEach(([id, el]) => {
-                if (!el) return
+                const id = visible[0].target.id
 
-                if (el.getBoundingClientRect().top <= OFFSET) {
-                    current = id
-                }
-            })
+                setActiveGroup((prev) => (prev === id ? prev : id))
+            },
+            {
+                root: null,
 
-            setActiveGroup(current)
-        }
+                // navbar
+                rootMargin: `-${NAVBAR_OFFSET + 20}px 0px -65% 0px`,
 
-        handleScroll()
+                threshold: [0, 0.15, 0.3, 0.5],
+            },
+        )
 
-        window.addEventListener('scroll', handleScroll, { passive: true })
+        Object.values(groupRefs.current).forEach((el) => {
+            if (el) observer.observe(el)
+        })
 
-        return () => {
-            window.removeEventListener('scroll', handleScroll)
-        }
+        return () => observer.disconnect()
     }, [normalizedQuery])
 
     const scrollToGroup = (id: string) => {
@@ -566,7 +568,7 @@ export default function BarMenuPage() {
                                                 {group.categories.length > 0 ? (
                                                     group.categories.map((category) => (
                                                         <div key={category.id}>
-                                                            <h3 className={`${interTight.className} sm:mb-1 text-[13px] font-semibold tracking-[0.28em] uppercase text-[#8B5E3C]`}>{category.label}</h3>
+                                                            <h3 className={`${interTight.className} sm:mb-1 text-[15px] font-semibold tracking-wider uppercase text-[#8B5E3C]`}>{category.label}</h3>
 
                                                             <div className='flex flex-col'>
                                                                 {category.items.map((item) => (
@@ -580,7 +582,7 @@ export default function BarMenuPage() {
 
                                                                         <div className='hidden items-start justify-between gap-8 sm:flex'>
                                                                             <div className='min-w-0 flex-1'>
-                                                                                <h4 className={`${interTight.className} text-[16px] leading-8 text-[#2A2420]`}>{item.name}</h4>
+                                                                                <h4 className={`${interTight.className} text-[16px] font-medium leading-8 text-[#2A2420]`}>{item.name}</h4>
                                                                             </div>
                                                                             <span className={`${interTight.className} shrink-0 pt-0.5 text-[16px] font-semibold text-[#8B5E3C]`}>{formatPrice(item.price)}</span>
                                                                         </div>

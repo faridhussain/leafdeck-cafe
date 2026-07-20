@@ -9,7 +9,7 @@ export default function LenisProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
         lenis = new Lenis({
             smoothWheel: true,
-            touchMultiplier: 1.5,
+            touchMultiplier: 1,
             lerp: 0.12,
         })
 
