@@ -423,8 +423,22 @@ const categories: Category[] = [
 
 function VegDot({ veg }: { veg: boolean }) {
     return (
-        <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-xs border transition-colors duration-300 ${veg ? 'border-emerald-500/40 bg-emerald-500/5' : 'border-rose-500/40 bg-rose-500/5'}`}>
-            <span className={`h-1.5 w-1.5 rounded-full ${veg ? 'bg-emerald-500' : 'bg-rose-500'}`} />
+        <span
+            className={`
+                flex h-3 w-3 shrink-0 items-center justify-center
+                rounded-xs border
+                transition-colors duration-300
+                sm:h-4 sm:w-4 sm:rounded-xs
+                ${veg ? 'border-emerald-500/40 bg-emerald-500/5' : 'border-rose-500/40 bg-rose-500/5'}
+            `}
+        >
+            <span
+                className={`
+                    h-1 w-1 rounded-full
+                    sm:h-1.5 sm:w-1.5
+                    ${veg ? 'bg-emerald-500' : 'bg-rose-500'}
+                `}
+            />
         </span>
     )
 }
@@ -545,11 +559,11 @@ export default function MenuPage() {
                 </div>
             </section>
 
-            <section className='relative border-b border-white/5 bg-[#16120E] px-6 py-20 sm:py-24'>
+            <section className='relative border-b border-white/5 bg-[#16120E] sm:px-6 px-4 py-15 sm:py-24'>
                 <div className='mx-auto max-w-6xl'>
                     <div className='mb-12 text-center'>
                         <span className={`${interTight.className} text-xs font-medium uppercase tracking-[0.42em] text-white/40`}>Fan Favourites</span>
-                        <h2 className={`${fraunces.className} mt-4 text-4xl font-bold tracking-wide text-white sm:text-5xl`}>Where To Start</h2>
+                        <h2 className={`${fraunces.className} mt-2 sm:mt-4 text-4xl font-bold tracking-wide text-white sm:text-5xl`}>Where To Start</h2>
                     </div>
 
                     <div className='grid grid-cols-1 gap-6 sm:grid-cols-3'>
@@ -571,8 +585,8 @@ export default function MenuPage() {
                 </div>
             </section>
 
-            <section className='relative rounded-[30px] bg-[#F7F0DF] px-10 py-10'>
-                <div className='mx-auto grid max-w-8xl grid-cols-1 gap-10 lg:grid-cols-[350px_minmax(0,1fr)]'>
+            <section className='relative rounded-[30px] bg-[#F7F0DF] px-4 sm:px-10 sm:py-10 py-5'>
+                <div className='mx-auto grid max-w8xl grid-cols-1 gap-10 lg:grid-cols-[350px_minmax(0,1fr)]'>
                     <aside className='hidden self-start lg:sticky lg:block' style={{ top: NAVBAR_OFFSET }}>
                         <div className='flex flex-col rounded-[26px] bg-[#1B1611] px-6 py-6 shadow-[0_24px_50px_rgba(0,0,0,0.25)]'>
                             <div className='relative'>
@@ -629,9 +643,12 @@ export default function MenuPage() {
                                             }}
                                             className='scroll-mt-32'
                                         >
-                                            <div className='mb-10 flex items-center gap-6'>
-                                                <h2 className={`${fraunces.className} text-4xl font-bold tracking-wide text-[#2A2420] sm:text-5xl`}>{group.label}</h2>
-                                                <div className='h-px flex-1 bg-[#2A2420]/20' />
+                                            <div className='mb-8 sm:mb-10'>
+                                                <div className='flex items-center justify-center gap-4 text-center sm:justify-start sm:text-left sm:gap-6'>
+                                                    <h2 className={`${fraunces.className} shrink-0 whitespace-nowrap text-[2rem] font-bold tracking-[-0.02em] text-[#2A2420] sm:text-5xl`}>{group.label}</h2>
+
+                                                    <div className='hidden h-px flex-1 bg-[#2A2420]/20 sm:block' />
+                                                </div>
                                             </div>
 
                                             <div className='space-y-12'>
@@ -642,12 +659,30 @@ export default function MenuPage() {
 
                                                             <div className='flex flex-col'>
                                                                 {category.items.map((item) => (
-                                                                    <div key={item.name} className='flex items-center justify-between gap-6 border-b border-[#2A2420]/10 py-4 last:border-none'>
-                                                                        <div className='flex min-w-0 items-center gap-3'>
-                                                                            <VegDot veg={item.veg} />
-                                                                            <h4 className={`${interTight.className} text-[16px] text-[#2A2420]`}>{item.name}</h4>
+                                                                    <div key={item.name} className='border-b border-[#2A2420]/8 py-5 last:border-none'>
+                                                                        <div className='sm:hidden'>
+                                                                            <div className='grid grid-cols-[16px_1fr] gap-x-3'>
+                                                                                <div className='pt-1'>
+                                                                                    <VegDot veg={item.veg} />
+                                                                                </div>
+
+                                                                                <div className='min-w-0 flex-1'>
+                                                                                    <h4 className={`${interTight.className} text-[15px] leading-[1.8] font-medium tracking-[-0.01em] text-[#2A2420]`}>{item.name}</h4>
+
+                                                                                    <p className={`${interTight.className} mt-1.5 text-[14px] font-semibold tracking-[0.02em] text-[#A06C3A]`}>{typeof item.price === 'number' ? `₹${item.price}` : `₹ ${item.price}`}</p>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
-                                                                        <span className={`${interTight.className} shrink-0 text-[16px] font-semibold text-[#8B5E3C]`}>{typeof item.price === 'number' ? `₹${item.price}` : `₹ ${item.price}`}</span>
+
+                                                                        <div className='hidden items-center justify-between gap-6 sm:flex'>
+                                                                            <div className='flex min-w-0 items-center gap-3'>
+                                                                                <VegDot veg={item.veg} />
+
+                                                                                <h4 className={`${interTight.className} text-[16px] leading-8 text-[#2A2420]`}>{item.name}</h4>
+                                                                            </div>
+
+                                                                            <span className={`${interTight.className} shrink-0 text-[16px] font-semibold text-[#8B5E3C]`}>{typeof item.price === 'number' ? `₹${item.price}` : `₹ ${item.price}`}</span>
+                                                                        </div>
                                                                     </div>
                                                                 ))}
                                                             </div>
