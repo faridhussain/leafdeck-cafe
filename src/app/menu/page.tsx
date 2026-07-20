@@ -451,6 +451,8 @@ export default function MenuPage() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const groupRefs = useRef<Record<string, HTMLElement | null>>({})
     const contentRef = useRef<HTMLDivElement>(null)
+    const desktopSearchRef = useRef<HTMLInputElement>(null)
+    const mobileSearchRef = useRef<HTMLInputElement>(null)
 
     const normalizedQuery = query.trim().toLowerCase()
 
@@ -573,6 +575,7 @@ export default function MenuPage() {
                             <div className='relative'>
                                 <Search className='pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8E7D6E]' />
                                 <input
+                                    ref={desktopSearchRef}
                                     type='text'
                                     value={query}
                                     onChange={(e) => setQuery(e.target.value)}
@@ -608,9 +611,39 @@ export default function MenuPage() {
 
                         <div>
                             {groupedCategories.length === 0 ? (
-                                <div className='flex min-h-[60vh] items-center justify-center'>
-                                    <div className='rounded-3xl border border-dashed border-[#2A2420]/15 px-12 py-10'>
-                                        <p className={`${interTight.className} text-[#2A2420]/50`}>No dishes match "{query}".</p>
+                                <div className='flex min-h-[60vh] items-center justify-center px-6'>
+                                    <div className='mx-auto max-w-md text-center'>
+                                        <div className='mx-auto flex h-18 w-18 items-center justify-center rounded-full bg-[#A06C3A]/10'>
+                                            <Search className='h-8 w-8 text-[#A06C3A]/70' />
+                                        </div>
+
+                                        <h3 className={`${fraunces.className} mt-8 text-3xl font-bold text-[#2A2420]`}>No dishes found</h3>
+
+                                        <p className={`${interTight.className} mt-3 text-[15px] leading-7 text-[#2A2420]/60`}>We couldn't find any dishes matching your search.</p>
+
+                                        <p className={`${interTight.className} mt-5 rounded-full border border-[#2A2420]/10 bg-white/40 px-5 py-3 text-[15px] font-medium text-[#8B5E3C]`}>"{query}"</p>
+
+                                        <button
+                                            onClick={() => {
+                                                setQuery('')
+
+                                                requestAnimationFrame(() => {
+                                                    if (window.innerWidth >= 1024) {
+                                                        desktopSearchRef.current?.focus()
+                                                    } else {
+                                                        mobileSearchRef.current?.focus()
+                                                    }
+                                                })
+                                            }}
+                                            className={`${interTight.className} mt-8 cursor-pointer rounded-full bg-[#1B1611] px-7 py-3 text-[14px] font-semibold tracking-wide text-[#F7F0DF] transition-all duration-300 hover:bg-[#2A2420] active:scale-95`}
+                                        >
+                                            Clear Search
+                                        </button>
+
+                                        <p className={`${interTight.className} mt-8 text-[13px] text-[#2A2420]/40`}>
+                                            Try searching for dishes like
+                                            <span className='font-medium text-[#8B5E3C]'> Chicken, Biryani, Pizza</span>
+                                        </p>
                                     </div>
                                 </div>
                             ) : (
@@ -636,7 +669,7 @@ export default function MenuPage() {
                                                 {group.categories.length > 0 ? (
                                                     group.categories.map((category) => (
                                                         <div key={category.id}>
-                                                            <h3 className={`${interTight.className} mb-4 text-[13px] font-bold uppercase tracking-[0.2em] text-[#8B5E3C]`}>{category.label}</h3>
+                                                            <h3 className={`${interTight.className} sm:mb-4 mb-1 text-[13px] font-bold uppercase tracking-[0.2em] text-[#8B5E3C]`}>{category.label}</h3>
 
                                                             <div className='flex flex-col'>
                                                                 {category.items.map((item) => (
@@ -691,7 +724,14 @@ export default function MenuPage() {
                 <div className='flex items-center gap-2 rounded-2xl border border-white/10 bg-[#1B1611]/95 p-2 shadow-2xl backdrop-blur-xl'>
                     <div className='relative flex-1'>
                         <Search className='pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40' />
-                        <input type='text' value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search items...' className={`${interTight.className} w-full rounded-xl bg-white/5 py-2.5 pl-9 pr-3 text-[13px] text-white placeholder:text-white/35 focus:outline-none`} />
+                        <input
+                            type='text'
+                            value={query}
+                            ref={mobileSearchRef}
+                            onChange={(e) => setQuery(e.target.value)}
+                            placeholder='Search items...'
+                            className={`${interTight.className} w-full rounded-xl bg-white/5 py-2.5 pl-9 pr-3 text-[13px] text-white placeholder:text-white/35 focus:outline-none`}
+                        />
                     </div>
                     <button onClick={() => setMobileMenuOpen(true)} className='flex cursor-pointer shrink-0 items-center gap-2 rounded-xl bg-[#F4EDE1] px-4 py-2.5 text-[13px] font-semibold text-[#2A2420] active:scale-95'>
                         <MenuIcon className='h-4 w-4' />
