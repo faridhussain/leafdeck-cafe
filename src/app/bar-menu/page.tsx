@@ -375,7 +375,6 @@ export default function BarMenuPage() {
             {
                 root: null,
 
-                // navbar
                 rootMargin: `-${NAVBAR_OFFSET + 20}px 0px -65% 0px`,
 
                 threshold: [0, 0.15, 0.3, 0.5],

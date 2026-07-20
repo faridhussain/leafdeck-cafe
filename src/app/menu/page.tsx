@@ -443,7 +443,7 @@ function VegDot({ veg }: { veg: boolean }) {
     )
 }
 
-const NAVBAR_OFFSET = 60
+const NAVBAR_OFFSET = 70
 
 export default function MenuPage() {
     const [activeGroup, setActiveGroup] = useState(groups[0].id)
@@ -492,6 +492,35 @@ export default function MenuPage() {
         if (normalizedQuery && groupedCategories.length > 0) {
             setActiveGroup(groupedCategories[0].id)
         }
+    }, [normalizedQuery])
+
+    useEffect(() => {
+        if (normalizedQuery) return
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+
+                if (!visible.length) return
+
+                const id = visible[0].target.id
+
+                setActiveGroup((prev) => (prev === id ? prev : id))
+            },
+            {
+                root: null,
+
+                rootMargin: `-${NAVBAR_OFFSET + 20}px 0px -65% 0px`,
+
+                threshold: [0, 0.15, 0.3, 0.5],
+            },
+        )
+
+        Object.values(groupRefs.current).forEach((el) => {
+            if (el) observer.observe(el)
+        })
+
+        return () => observer.disconnect()
     }, [normalizedQuery])
 
     const scrollToGroup = (id: string) => {
@@ -569,38 +598,45 @@ export default function MenuPage() {
             </section>
 
             <section className='relative rounded-[30px] bg-[#F7F0DF] px-4 sm:px-10 sm:py-10 py-5'>
-                <div className='mx-auto grid max-w8xl grid-cols-1 gap-10 lg:grid-cols-[350px_minmax(0,1fr)]'>
-                    <aside className='hidden self-start lg:sticky lg:block' style={{ top: NAVBAR_OFFSET }}>
-                        <div className='flex flex-col rounded-[26px] bg-[#1B1611] px-6 py-6 shadow-[0_24px_50px_rgba(0,0,0,0.25)]'>
-                            <div className='relative'>
-                                <Search className='pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8E7D6E]' />
-                                <input
-                                    ref={desktopSearchRef}
-                                    type='text'
-                                    value={query}
-                                    onChange={(e) => setQuery(e.target.value)}
-                                    placeholder='Search dishes...'
-                                    className={`${interTight.className} w-full rounded-xl border border-[#3A2F28] bg-[#241D18] py-3 pl-11 pr-4 text-[14px] text-[#F4EDE1] placeholder:text-[#8E7D6E] outline-none transition-all duration-300 focus:border-[#6A5442]`}
-                                />
-                            </div>
+                <div className='mx-auto grid max8xl grid-cols-1 gap-10 lg:grid-cols-[350px_minmax(0,1fr)]'>
+                    <div className='hidden lg:block'>
+                        <div className='sticky top-0 flex h-screen items-center'>
+                            <aside className='w-full'>
+                                <div className='flex flex-col rounded-[26px] bg-[#1B1611] px-6 py-6 shadow-[0_18px_40px_rgba(0,0,0,0.18)]'>
+                                    <div className='relative'>
+                                        <Search className='pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8E7D6E]' />
 
-                            <div className='my-6 h-px bg-white/10' />
+                                        <input
+                                            ref={desktopSearchRef}
+                                            type='text'
+                                            value={query}
+                                            onChange={(e) => setQuery(e.target.value)}
+                                            placeholder='Search dishes...'
+                                            className={`${interTight.className} w-full rounded-xl border border-[#3A2F28] bg-[#241D18] py-3 pl-11 pr-4 text-[14px] text-[#F4EDE1] placeholder:text-[#9C8B7B] outline-none transition-all duration-300 focus:border-[#6A5442]`}
+                                        />
+                                    </div>
 
-                            <span className={`${interTight.className} mb-4 text-[11px] font-semibold uppercase tracking-[0.35em] text-[#8E7D6E]`}>Sections</span>
+                                    <div className='my-6 h-px bg-white/10' />
 
-                            <div className='space-y-1'>
-                                {groups.map((group) => {
-                                    const active = activeGroup === group.id
-                                    return (
-                                        <button key={group.id} onClick={() => scrollToGroup(group.id)} className='group flex w-full items-center cursor-pointer gap-3 py-2.5 text-left'>
-                                            <span className={`h-6 w-0.75 rounded-full transition-all duration-300 ${active ? 'bg-[#C9A227]' : 'bg-transparent'}`} />
-                                            <span className={`${interTight.className} text-[15px] font-medium tracking-[-0.01em] transition-colors duration-300 ${active ? 'text-[#F4EDE1]' : 'text-[#A89A8B] group-hover:text-[#F4EDE1]'}`}>{group.label}</span>
-                                        </button>
-                                    )
-                                })}
-                            </div>
+                                    <span className={`${interTight.className} mb-4 text-[11px] font-semibold uppercase tracking-[0.35em] text-[#8E7D6E]`}>Sections</span>
+
+                                    <div className='space-y-1'>
+                                        {groups.map((group) => {
+                                            const active = activeGroup === group.id
+
+                                            return (
+                                                <button key={group.id} onClick={() => scrollToGroup(group.id)} className='group flex w-full cursor-pointer items-center gap-3 py-2.5 text-left'>
+                                                    <span className={`h-6 w-0.75 rounded-full transition-all duration-300 ${active ? 'bg-[#C9A227]' : 'bg-transparent'}`} />
+
+                                                    <span className={`${interTight.className} text-[15px] font-semibold tracking-[-0.01em] transition-colors duration-300 ${active ? 'text-[#F4EDE1]' : 'text-[#A89A8B] group-hover:text-[#F4EDE1]'}`}>{group.label}</span>
+                                                </button>
+                                            )
+                                        })}
+                                    </div>
+                                </div>
+                            </aside>
                         </div>
-                    </aside>
+                    </div>
 
                     <div ref={contentRef} className='flex min-h-[60vh] flex-col'>
                         {query && groupedCategories.length > 0 && (
@@ -647,7 +683,7 @@ export default function MenuPage() {
                                     </div>
                                 </div>
                             ) : (
-                                <div className='space-y-24'>
+                                <div className='space-y-15'>
                                     {groupedCategories.map((group) => (
                                         <div
                                             key={group.id}
@@ -665,35 +701,34 @@ export default function MenuPage() {
                                                 </div>
                                             </div>
 
-                                            <div className='space-y-12'>
+                                            <div className='space-y-10'>
                                                 {group.categories.length > 0 ? (
                                                     group.categories.map((category) => (
                                                         <div key={category.id}>
-                                                            <h3 className={`${interTight.className} sm:mb-4 mb-1 text-[13px] font-bold uppercase tracking-[0.2em] text-[#8B5E3C]`}>{category.label}</h3>
+                                                            <h3 className={`${interTight.className} sm:mb-1 text-[15px] font-semibold tracking-wider uppercase text-[#8B5E3C]`}>{category.label}</h3>
 
                                                             <div className='flex flex-col'>
                                                                 {category.items.map((item) => (
                                                                     <div key={item.name} className='border-b border-[#2A2420]/8 py-5 last:border-none'>
-                                                                        <div className='flex items-start gap-3'>
-                                                                            <div className='flex h-7 w-4 items-center justify-center'>
+                                                                        <div className='flex items-start gap-3 sm:hidden'>
+                                                                            <div className='flex h-7 w-4 items-center justify-center pt-1'>
                                                                                 <VegDot veg={item.veg} />
                                                                             </div>
 
                                                                             <div className='min-w-0 flex-1'>
-                                                                                <h4 className={`${interTight.className} text-[15px] leading-[1.8] font-medium tracking-[-0.01em] text-[#2A2420]`}>{item.name}</h4>
+                                                                                <h4 className={`${interTight.className} text-[15px] leading-[1.8] tracking-[-0.01em] text-[#2A2420]`}>{item.name}</h4>
 
-                                                                                <p className={`${interTight.className} mt-1.5 text-[14px] font-semibold tracking-[0.02em] text-[#A06C3A]`}>{typeof item.price === 'number' ? `₹${item.price}` : `₹ ${item.price}`}</p>
+                                                                                <span className={`${interTight.className} mt-2 inline-block text-[14px] font-semibold tracking-[0.02em] text-[#A06C3A]`}>{typeof item.price === 'number' ? `₹${item.price}` : `₹ ${item.price}`}</span>
                                                                             </div>
                                                                         </div>
 
-                                                                        <div className='hidden items-center justify-between gap-6 sm:flex'>
-                                                                            <div className='flex min-w-0 items-center gap-3'>
+                                                                        <div className='hidden items-start justify-between gap-8 sm:flex'>
+                                                                            <div className='flex min-w-0 flex-1 items-center gap-3'>
                                                                                 <VegDot veg={item.veg} />
 
-                                                                                <h4 className={`${interTight.className} text-[16px] leading-8 text-[#2A2420]`}>{item.name}</h4>
+                                                                                <h4 className={`${interTight.className} text-[16px] font-medium leading-8 text-[#2A2420]`}>{item.name}</h4>
                                                                             </div>
-
-                                                                            <span className={`${interTight.className} shrink-0 text-[16px] font-semibold text-[#8B5E3C]`}>{typeof item.price === 'number' ? `₹${item.price}` : `₹ ${item.price}`}</span>
+                                                                            <span className={`${interTight.className} shrink-0 pt-0.5 text-[16px] font-semibold text-[#8B5E3C]`}>{typeof item.price === 'number' ? `₹${item.price}` : `₹ ${item.price}`}</span>
                                                                         </div>
                                                                     </div>
                                                                 ))}
