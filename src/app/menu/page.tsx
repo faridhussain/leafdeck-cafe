@@ -660,17 +660,15 @@ export default function MenuPage() {
                                                             <div className='flex flex-col'>
                                                                 {category.items.map((item) => (
                                                                     <div key={item.name} className='border-b border-[#2A2420]/8 py-5 last:border-none'>
-                                                                        <div className='sm:hidden'>
-                                                                            <div className='grid grid-cols-[16px_1fr] gap-x-3'>
-                                                                                <div className='pt-1'>
-                                                                                    <VegDot veg={item.veg} />
-                                                                                </div>
+                                                                        <div className='flex items-start gap-3'>
+                                                                            <div className='flex h-7 w-4 items-center justify-center'>
+                                                                                <VegDot veg={item.veg} />
+                                                                            </div>
 
-                                                                                <div className='min-w-0 flex-1'>
-                                                                                    <h4 className={`${interTight.className} text-[15px] leading-[1.8] font-medium tracking-[-0.01em] text-[#2A2420]`}>{item.name}</h4>
+                                                                            <div className='min-w-0 flex-1'>
+                                                                                <h4 className={`${interTight.className} text-[15px] leading-[1.8] font-medium tracking-[-0.01em] text-[#2A2420]`}>{item.name}</h4>
 
-                                                                                    <p className={`${interTight.className} mt-1.5 text-[14px] font-semibold tracking-[0.02em] text-[#A06C3A]`}>{typeof item.price === 'number' ? `₹${item.price}` : `₹ ${item.price}`}</p>
-                                                                                </div>
+                                                                                <p className={`${interTight.className} mt-1.5 text-[14px] font-semibold tracking-[0.02em] text-[#A06C3A]`}>{typeof item.price === 'number' ? `₹${item.price}` : `₹ ${item.price}`}</p>
                                                                             </div>
                                                                         </div>
 
@@ -708,13 +706,13 @@ export default function MenuPage() {
                 </p>
             </section>
 
-            <div className='fixed bottom-6 left-1/2 z-40 w-[90%] max-w-sm -translate-x-1/2 lg:hidden'>
+            <div className='fixed bottom-2 left-1/2 z-40 w-[95%] max-w-sm -translate-x-1/2 lg:hidden'>
                 <div className='flex items-center gap-2 rounded-2xl border border-white/10 bg-[#1B1611]/95 p-2 shadow-2xl backdrop-blur-xl'>
                     <div className='relative flex-1'>
                         <Search className='pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40' />
                         <input type='text' value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search items...' className={`${interTight.className} w-full rounded-xl bg-white/5 py-2.5 pl-9 pr-3 text-[13px] text-white placeholder:text-white/35 focus:outline-none`} />
                     </div>
-                    <button onClick={() => setMobileMenuOpen(true)} className='flex shrink-0 items-center gap-2 rounded-xl bg-[#F4EDE1] px-4 py-2.5 text-[13px] font-semibold text-[#2A2420] active:scale-95'>
+                    <button onClick={() => setMobileMenuOpen(true)} className='flex cursor-pointer shrink-0 items-center gap-2 rounded-xl bg-[#F4EDE1] px-4 py-2.5 text-[13px] font-semibold text-[#2A2420] active:scale-95'>
                         <MenuIcon className='h-4 w-4' />
                         Menu
                     </button>
@@ -727,7 +725,7 @@ export default function MenuPage() {
                     <div className='absolute bottom-0 left-0 right-0 flex max-h-[80vh] flex-col rounded-t-4xl border-t border-white/10 bg-[#16120E] p-6 shadow-2xl'>
                         <div className='flex items-center justify-between border-b border-white/10 pb-6'>
                             <span className={`${fraunces.className} text-xl font-bold text-white`}>Categories</span>
-                            <button onClick={() => setMobileMenuOpen(false)} className='rounded-full bg-white/5 p-1.5 text-white/70'>
+                            <button onClick={() => setMobileMenuOpen(false)} className='rounded-full cursor-pointer bg-white/5 p-1.5 text-white/70'>
                                 <X className='h-5 w-5' />
                             </button>
                         </div>
@@ -737,7 +735,7 @@ export default function MenuPage() {
                                 <button
                                     key={group.id}
                                     onClick={() => scrollToGroup(group.id)}
-                                    className={`${interTight.className} flex w-full items-center justify-between rounded-xl px-4 py-3.5 text-left text-sm font-medium transition-all duration-300 ${activeGroup === group.id ? 'bg-white/10 text-[#F4EDE1]' : 'text-white/60'}`}
+                                    className={`${interTight.className} flex w-full items-center justify-between cursor-pointer rounded-xl px-4 py-3.5 text-left text-sm font-medium transition-all duration-300 hover:text-white ${activeGroup === group.id ? 'bg-white/10 text-[#F4EDE1]' : 'text-white/60'}`}
                                 >
                                     <span>{group.label}</span>
                                     {activeGroup === group.id && <span className='h-1.5 w-1.5 rounded-full bg-[#C9A227]' />}
