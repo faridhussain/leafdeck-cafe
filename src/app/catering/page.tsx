@@ -91,41 +91,43 @@ export default function CateringPage() {
                         <span className='sm:ml-3'>Our Kitchen</span>
                     </h2>
 
-                    <p className={`${interTight.className} mx-auto mt-6 max-w-2xl text-[15px] leading-8 text-white/65 sm:text-[16px]`}>
+                    <p className={`${interTight.className} mx-auto mt-6 max-w-2xl text-[15px] leading-7 tracking-wide text-white/65 sm:text-[16px]`}>
                         From birthday parties to corporate lunches and wedding celebrations, we bring the same care to your event that we bring to every table at Leaf Deck. Every menu is crafted around your guests, your preferences, and your budget — never the other way around.
                     </p>
 
-                    <div className='mx-auto mt-8 h-px w-20 bg-[#C9A227]/30' />
+                    <div className='mx-auto mt-6 sm:mt-8 h-px w-20 bg-[#C9A227]/30' />
 
-                    <p className={`${interTight.className} mx-auto mt-8 max-w-xl text-[14px] italic leading-7 text-white/45 sm:text-[15px]`}>Trusted by celebrities, bureaucrats, corporate teams, and families across Assam.</p>
+                    <p className={`${interTight.className} mx-auto sm:mt-8 mt-6 max-w-xl text-[14px] italic leading-7 text-white/45 sm:text-[15px]`}>Trusted by celebrities, bureaucrats, corporate teams, and families across Assam.</p>
                 </div>
             </section>
 
             <section className='relative bg-[#1B1611] select-none'>
-                <div className='relative overflow-hidden rounded-[28px] bg-[#EDE3D0] px-4 py-16 sm:px-8 sm:py-20 lg:px-14 lg:py-24'>
+                <div className='relative overflow-hidden rounded-[28px] bg-[#EDE3D0] px-4 py-10 sm:px-8 sm:py-20 lg:px-14 lg:py-24'>
                     <div className='pointer-events-none absolute right-0 top-0 h-72 w-72 -translate-y-1/3 translate-x-1/4 rounded-full bg-[#8B5E3C]/10 blur-3xl sm:h-96 sm:w-96' />
 
                     <div className='relative z-10 mx-auto max-w-6xl'>
-                        <div className='mb-14 text-center sm:mb-16'>
+                        <div className='mb-10 text-center sm:mb-16'>
                             <span className={`${interTight.className} text-[11px] font-semibold uppercase tracking-[0.42em] text-[#8B5E3C]/70 sm:text-xs`}>What's On Offer</span>
 
-                            <h2 className={`${fraunces.className} mt-4 text-3xl font-bold tracking-wide text-[#2A2420] sm:text-5xl`}>
+                            <h2 className={`${fraunces.className} mt-4 text-[1.95rem] font-bold tracking-wide text-[#2A2420] sm:text-5xl`}>
                                 Built Course
                                 <br className='sm:hidden' />
                                 <span className='sm:ml-3'>By Course</span>
                             </h2>
                         </div>
 
-                        <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8'>
+                        <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8'>
                             {categories.map((category) => (
-                                <div key={category.title} className='group rounded-3xl border border-[#2A2420]/8 bg-white/35 p-7 transition-all duration-300 hover:-translate-y-1 hover:bg-white/55'>
-                                    <div className='mb-6 flex h-13 w-13 items-center justify-center rounded-2xl bg-[#8B5E3C]/10'>
-                                        <category.icon className='h-6 w-6 text-[#8B5E3C]' strokeWidth={1.6} />
+                                <div key={category.title} className='group rounded-3xl border border-[#2A2420]/8 bg-white/35 p-5 transition-all duration-300 hover:-translate-y-1 hover:bg-white/55 sm:p-7'>
+                                    <div className='flex items-center justify-between gap-4'>
+                                        <h3 className={`${fraunces.className} text-[1.55rem] leading-tight font-semibold text-[#2A2420] sm:text-2xl`}>{category.title}</h3>
+
+                                        <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#8B5E3C]/10 sm:h-13 sm:w-13 sm:rounded-2xl'>
+                                            <category.icon className='h-4.5 w-4.5 text-[#8B5E3C] sm:h-6 sm:w-6' strokeWidth={1.6} />
+                                        </div>
                                     </div>
 
-                                    <h3 className={`${fraunces.className} text-2xl font-semibold text-[#2A2420]`}>{category.title}</h3>
-
-                                    <p className={`${interTight.className} mt-4 text-[15px] leading-7 text-[#2A2420]/65`}>{category.copy}</p>
+                                    <p className={`${interTight.className} mt-4 text-[13.5px] leading-6 text-[#2A2420]/65 sm:text-[15px] sm:leading-7`}>{category.copy}</p>
                                 </div>
                             ))}
                         </div>
@@ -133,24 +135,32 @@ export default function CateringPage() {
                 </div>
             </section>
 
-            <section className='relative overflow-hidden bg-[#1B1611] px-4 py-18 sm:px-6 sm:py-24 lg:py-28'>
+            <section className='relative overflow-hidden bg-[#1B1611] px-4 py-12 sm:px-6 sm:py-24 lg:py-28'>
                 <div className='relative z-10 mx-auto max-w-6xl'>
-                    <motion.div className='mb-14 flex flex-col gap-8 border-b border-white/10 pb-10 lg:mb-16 lg:flex-row lg:items-end lg:justify-between' initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }}>
-                        <div>
+                    <motion.div
+                        className='mb-10 flex flex-col items-center gap-6 border-b border-white/10 pb-8 text-center lg:mb-16 lg:flex-row lg:items-end lg:justify-between lg:gap-8 lg:pb-10 lg:text-left'
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <div className='lg:text-left'>
                             <span className={`${interTight.className} text-[11px] font-semibold uppercase tracking-[0.42em] text-[#F4EDE1]/50 sm:text-xs md:text-sm`}>How It Works</span>
 
-                            <h2 className={`${fraunces.className} mt-4 text-3xl font-bold text-white sm:text-5xl`}>
+                            <h2 className={`${fraunces.className} mt-4 text-[1.95rem] font-bold text-white sm:text-5xl`}>
                                 Three Steps,
                                 <br className='sm:hidden' />
                                 <span className='sm:ml-3'>Start To Finish</span>
                             </h2>
                         </div>
 
-                        <p className={`${interTight.className} max-w-md text-[15px] leading-7 text-white/50`}>No fixed packages to squeeze your event into. Every catering experience is tailored around your guests, your occasion, and your budget.</p>
+                        <p className={`${interTight.className} mx-auto max-w-md text-[13.5px] leading-6 text-white/50 sm:text-[15px] sm:leading-7 lg:mx-0 lg:text-left`}>
+                            No fixed packages to squeeze your event into. Every catering experience is tailored around your guests, your occasion, and your budget.
+                        </p>
                     </motion.div>
 
                     <motion.div
-                        className='grid grid-cols-1 gap-6 md:grid-cols-3'
+                        className='grid grid-cols-1 gap-5 md:grid-cols-3'
                         initial='hidden'
                         whileInView='visible'
                         viewport={{ once: true, amount: 0.25 }}
@@ -179,37 +189,36 @@ export default function CateringPage() {
                                         },
                                     },
                                 }}
-                                className='group relative overflow-hidden rounded-3xl border border-white/10 bg-white/3 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-[#C9A227]/25 hover:bg-white/5'
+                                className='group relative overflow-hidden rounded-3xl border border-white/10 bg-white/3 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#C9A227]/25 hover:bg-white/5 sm:p-8'
                             >
-                                <span className={`${fraunces.className} absolute right-6 top-6 text-5xl font-bold text-white/5`}>0{index + 1}</span>
+                                <span className={`${fraunces.className} absolute right-6 top-6 text-[2.6rem] font-bold text-white/5 sm:text-5xl`}>0{index + 1}</span>
 
-                                <div className='mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#C9A227]/10'>
-                                    <step.icon className='h-7 w-7 text-[#C9A227]' strokeWidth={1.5} />
+                                <div className='mb-6 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#C9A227]/10 sm:h-14 sm:w-14'>
+                                    <step.icon className='h-5 w-5 text-[#C9A227] sm:h-7 sm:w-7' strokeWidth={1.5} />
                                 </div>
 
-                                <h3 className={`${fraunces.className} text-2xl font-semibold text-white`}>{step.title}</h3>
+                                <h3 className={`${fraunces.className} text-[1.45rem] font-semibold text-white sm:text-2xl`}>{step.title}</h3>
 
-                                <p className={`${interTight.className} mt-4 text-[15px] leading-7 text-white/55`}>{step.copy}</p>
+                                <p className={`${interTight.className} mt-2.5 text-[13.5px] leading-6 text-white/55 sm:mt-4 sm:text-[15px] sm:leading-7`}>{step.copy}</p>
                             </motion.div>
                         ))}
                     </motion.div>
                 </div>
             </section>
 
-            <motion.section className='relative bg-[#1B1611] px-4 pb-18 sm:px-6 sm:pb-24 lg:pb-28' initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.6 }}>
+            <motion.section className='relative bg-[#1B1611] px-4 pb-12 sm:px-6 sm:pb-24 lg:pb-28' initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.6 }}>
                 <div className='mx-auto max-w-6xl'>
-                    <motion.div className='mb-12 text-center lg:mb-14' initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+                    <motion.div className='mb-8 text-center lg:mb-14' initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
                         <span className={`${interTight.className} text-[11px] font-semibold uppercase tracking-[0.42em] text-[#F4EDE1]/50 sm:text-xs md:text-sm`}>From Past Events</span>
 
-                        <h2 className={`${fraunces.className} mt-4 text-3xl font-bold tracking-wide text-white sm:text-5xl`}>
+                        <h2 className={`${fraunces.className} mt-2 text-[1.95rem] font-bold tracking-wide text-white sm:text-5xl`}>
                             On The
-                            <br className='sm:hidden' />
                             <span className='sm:ml-3'>Table</span>
                         </h2>
                     </motion.div>
 
                     <motion.div
-                        className='grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4 lg:gap-6'
+                        className='grid grid-cols-2 gap-2.5 sm:gap-5 lg:grid-cols-4 lg:gap-6'
                         variants={{
                             hidden: {},
                             visible: {
@@ -241,7 +250,7 @@ export default function CateringPage() {
                                 }}
                                 className={`group relative overflow-hidden rounded-2xl sm:rounded-3xl ${i % 2 === 1 ? 'lg:mt-10' : ''}`}
                             >
-                                <div className='relative h-44 sm:h-64 lg:h-80'>
+                                <div className='relative h-36 sm:h-64 lg:h-80'>
                                     <Image src={image.src} alt={image.alt} fill quality={100} className='object-cover transition-transform duration-700 group-hover:scale-105' />
 
                                     <div className='absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-100' />
@@ -252,27 +261,27 @@ export default function CateringPage() {
                 </div>
             </motion.section>
 
-            <section className='relative overflow-hidden bg-[#1B1611] px-4 pb-20 select-none sm:px-6 sm:pb-24 lg:pb-28'>
+            <section className='relative overflow-hidden bg-[#1B1611] px-4 pb-16 select-none sm:px-6 sm:pb-24 lg:pb-28'>
                 <div className='pointer-events-none absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A227]/5 blur-3xl sm:h-112 sm:w-md' />
 
-                <div className='relative mx-auto max-w-5xl overflow-hidden rounded-[28px] border border-white/10 bg-linear-to-br from-white/4 via-white/2 to-transparent px-6 py-14 backdrop-blur-xl sm:px-10 sm:py-18 lg:px-16 lg:py-20'>
+                <div className='relative mx-auto max-w-5xl overflow-hidden rounded-[28px] border border-white/10 bg-linear-to-br from-white/4 via-white/2 to-transparent px-5 py-10 backdrop-blur-xl sm:px-10 sm:py-18 lg:px-16 lg:py-20'>
                     <div className='mx-auto max-w-3xl text-center'>
                         <span className={`${interTight.className} text-[11px] font-semibold uppercase tracking-[0.42em] text-[#F4EDE1]/45 sm:text-xs`}>Let's Make It Memorable</span>
 
-                        <h2 className={`${fraunces.className} mt-5 text-3xl font-bold leading-tight text-[#F4EDE1] sm:text-5xl`}>
+                        <h2 className={`${fraunces.className} mt-3 text-[1.95rem] font-bold leading-tight text-[#F4EDE1] sm:text-5xl`}>
                             Planning Something
                             <br className='sm:hidden' />
                             <span className='sm:ml-3'>Special?</span>
                         </h2>
 
-                        <p className={`${interTight.className} mx-auto mt-6 max-w-2xl text-[15px] leading-8 text-white/60 sm:text-[16px]`}>
+                        <p className={`${interTight.className} mx-auto mt-4 max-w-2xl text-[13.5px] leading-6 text-white/60 sm:mt-6 sm:text-[16px] sm:leading-8`}>
                             Whether it's an intimate gathering or a large celebration, we'll help you create a menu your guests will remember. Reach out today and let's start planning your event.
                         </p>
 
-                        <div className='mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center'>
+                        <div className='mt-7 flex flex-col gap-4 sm:flex-row sm:justify-center'>
                             <Link
                                 href='/contact'
-                                className='group inline-flex items-center justify-center gap-2 rounded-full bg-[#F4EDE1] px-8 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-[#2A2420] shadow-[0_14px_35px_rgba(0,0,0,.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-white'
+                                className='group inline-flex items-center justify-center gap-2 rounded-full bg-[#F4EDE1] px-6 py-3.5 text-[13px] font-bold uppercase tracking-[0.14em] text-[#2A2420] shadow-[0_14px_35px_rgba(0,0,0,.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-white sm:px-8 sm:py-4'
                             >
                                 Enquire Now
                                 <ArrowRight className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-1' />
@@ -280,7 +289,7 @@ export default function CateringPage() {
 
                             <Link
                                 href='tel:+917400019024'
-                                className='group inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/4 px-8 py-4 text-[13px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-300 hover:border-[#C9A227]/40 hover:bg-white/[0.07]'
+                                className='group inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/4 px-6 py-3.5 text-[13px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-300 hover:border-[#C9A227]/40 hover:bg-white/[0.07] sm:px-8 sm:py-4'
                             >
                                 <Phone className='h-4 w-4 text-[#C9A227]' />
                                 Call Us
