@@ -499,19 +499,26 @@ export default function MenuPage() {
 
         const observer = new IntersectionObserver(
             (entries) => {
-                const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+                const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => Math.abs(a.boundingClientRect.top - NAVBAR_OFFSET) - Math.abs(b.boundingClientRect.top - NAVBAR_OFFSET))
 
-                if (!visible.length) return
+                if (visible.length) {
+                    setActiveGroup(visible[0].target.id)
+                    return
+                }
 
-                const id = visible[0].target.id
+                const beverages = groupRefs.current['beverages']
 
-                setActiveGroup((prev) => (prev === id ? prev : id))
+                if (beverages) {
+                    const rect = beverages.getBoundingClientRect()
+
+                    if (rect.top <= NAVBAR_OFFSET + 20) {
+                        setActiveGroup('beverages')
+                    }
+                }
             },
             {
                 root: null,
-
-                rootMargin: `-${NAVBAR_OFFSET + 20}px 0px -65% 0px`,
-
+                rootMargin: `-${NAVBAR_OFFSET + 20}px 0px -45% 0px`,
                 threshold: [0, 0.15, 0.3, 0.5],
             },
         )
@@ -520,7 +527,9 @@ export default function MenuPage() {
             if (el) observer.observe(el)
         })
 
-        return () => observer.disconnect()
+        return () => {
+            observer.disconnect()
+        }
     }, [normalizedQuery])
 
     const scrollToGroup = (id: string) => {
