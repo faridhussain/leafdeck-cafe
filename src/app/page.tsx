@@ -1,6 +1,7 @@
 import About from './components/home/About'
 import Catering from './components/home/Catering'
 import Hero from './components/home/Hero'
+import Reviews from './components/home/Reviews'
 import SignatureDishes from './components/home/SignatureDishes'
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
             <Hero />
             <SignatureDishes />
             <About />
+            <Reviews />
             <Catering />
         </div>
     )
