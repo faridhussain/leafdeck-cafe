@@ -149,7 +149,7 @@ function ReviewCard({ review, hidden, onClick }: { review: Review; hidden: boole
         <article
             aria-hidden={hidden}
             onClick={onClick}
-            className='group relative flex h-44.5 w-65 shrink-0 cursor-pointer flex-col rounded-3xl border border-white/10 bg-white/4 p-4 backdrop-blur-md transition-all duration-300 hover:border-[#C9A227]/25 hover:bg-white/5.5 sm:h-46.5 sm:w-85 sm:p-5 lg:w-95'
+            className='group relative flex h-40.5 w-65 shrink-0 cursor-pointer flex-col rounded-3xl border border-white/10 bg-white/4 p-4 backdrop-blur-md transition-all duration-300 hover:border-[#C9A227]/25 hover:bg-white/5.5 sm:h-46.5 sm:w-85 sm:p-5 lg:w-95'
         >
             <div className='pointer-events-none absolute inset-0 rounded-[28px] bg-[#C9A227]/5 opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-100' />
 
@@ -225,7 +225,7 @@ export default function Reviews() {
     }, [selectedReview])
 
     return (
-        <section className='relative overflow-hidden bg-[#1C1712] py-8 select-none sm:py-14 lg:py-20'>
+        <section className='relative overflow-hidden bg-[#1C1712] pt-8 pb-4 select-none sm:pt-14 sm:pb-10 lg:pt-20 lg:pb-14'>
             <style>{`
                 @keyframes marquee-ltr {
                     from { transform: translateX(-50%); }
