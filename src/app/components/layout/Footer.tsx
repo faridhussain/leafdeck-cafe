@@ -99,6 +99,16 @@ export default function Footer() {
 
                                 <p className={`${interTight.className} text-center text-[15px] leading-7 text-white/60`}>Opp. Guwahati Tea Auction Centre, GS Road, Dispur, Guwahati – 781006</p>
                             </div>
+                            
+                            <div className='w-full max-w-xs overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md'>
+                                <iframe
+                                    src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.559669025879!2d91.78772437624063!3d26.145896477112572!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a59ff7ccf3fa1%3A0x27d18bd386e8d896!2sLeaf%20Deck%20Caf%C3%A9!5e0!3m2!1sen!2sin!4v1784125667231!5m2!1sen!2sin'
+                                    className='h-40 w-full rounded-xl border-0'
+                                    loading='lazy'
+                                    allowFullScreen
+                                    referrerPolicy='strict-origin-when-cross-origin'
+                                />
+                            </div>
 
                             <div className='flex items-center gap-3'>
                                 <Phone className='h-4 w-4 shrink-0 text-white/40' />
