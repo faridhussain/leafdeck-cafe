@@ -22,3 +22,23 @@ html {
 body::-webkit-scrollbar {
     display: none;
 }
+
+:focus-visible {
+    outline: none;
+    box-shadow:
+        0 0 0 2px #c9a227,
+        0 0 0 4px rgba(201, 162, 39, 0.15);
+    border-radius: 10px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: none;
+    box-shadow:
+        0 0 0 2px #c9a227,
+        0 0 0 4px rgba(201, 162, 39, 0.15);
+    border-radius: 10px;
+}
