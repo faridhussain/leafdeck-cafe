@@ -25,6 +25,7 @@ const heroDishes = [
 
 type MenuItem = { name: string; price: number | string; veg: boolean }
 type Category = { id: string; group: string; label: string; items: MenuItem[] }
+type VegFilter = 'all' | 'veg' | 'nonveg'
 
 const groups = [
     { id: 'starters-snacks', label: 'Starters & Snacks' },
@@ -34,6 +35,12 @@ const groups = [
     { id: 'wraps-burgers-group', label: 'Wraps & Burgers' },
     { id: 'desserts', label: 'Desserts' },
     { id: 'beverages', label: 'Beverages' },
+]
+
+const vegFilterOptions: { id: VegFilter; label: string }[] = [
+    { id: 'all', label: 'All' },
+    { id: 'veg', label: 'Veg' },
+    { id: 'nonveg', label: 'Non-Veg' },
 ]
 
 const categories: Category[] = [
@@ -443,11 +450,64 @@ function VegDot({ veg }: { veg: boolean }) {
     )
 }
 
+function VegFilterControl({ value, onChange, variant = 'dark' }: { value: VegFilter; onChange: (v: VegFilter) => void; variant?: 'dark' | 'light' }) {
+    const isDark = variant === 'dark'
+    const activeIndex = vegFilterOptions.findIndex((o) => o.id === value)
+
+    return (
+        <div
+            className={`relative flex rounded-full p-1 ${
+                isDark ? 'bg-[#12100D] ring-1 ring-white/6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),inset_0_-1px_2px_rgba(0,0,0,0.4)]' : 'bg-[#EFE6D4] ring-1 ring-[#2A2420]/6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.7),inset_0_-1px_2px_rgba(42,36,32,0.06)]'
+            }`}
+        >
+            {/* sliding capsule */}
+            <div
+                aria-hidden
+                className={`absolute inset-y-1 left-1 rounded-full transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                    isDark ? 'bg-linear-to-b from-[#F7F0DF] to-[#E8DAB8] shadow-[0_4px_14px_rgba(0,0,0,0.45),0_0_0_1px_rgba(201,162,39,0.25)]' : 'bg-linear-to-b from-[#2A2118] to-[#1B1611] shadow-[0_4px_14px_rgba(0,0,0,0.25),0_0_0_1px_rgba(201,162,39,0.3)]'
+                }`}
+                style={{
+                    width: 'calc((100% - 8px) / 3)',
+                    transform: `translateX(${activeIndex * 100}%)`,
+                }}
+            />
+
+            {vegFilterOptions.map((opt) => {
+                const active = value === opt.id
+
+                return (
+                    <button
+                        key={opt.id}
+                        onClick={() => onChange(opt.id)}
+                        className={`${interTight.className} relative z-10 flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-full py-2.5 text-[11px] font-bold uppercase tracking-[0.08em] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C9A227]/60 active:scale-[0.97] ${
+                            active ? (isDark ? 'text-[#1B1611]' : 'text-[#F4EDE1]') : isDark ? 'text-[#8E7D6E] hover:text-[#D9CBBB]' : 'text-[#2A2420]/45 hover:text-[#2A2420]/75'
+                        }`}
+                    >
+                        {opt.id === 'veg' && (
+                            <span className={`flex h-3 w-3 items-center justify-center rounded-[3px] border transition-colors duration-300 ${active ? 'border-emerald-600/60 bg-emerald-500/10' : 'border-emerald-600/25 bg-transparent'}`}>
+                                <span className={`h-1.5 w-1.5 rounded-full transition-colors duration-300 ${active ? 'bg-emerald-600' : 'bg-emerald-600/50'}`} />
+                            </span>
+                        )}
+                        {opt.id === 'nonveg' && (
+                            <span className={`flex h-3 w-3 items-center justify-center rounded-[3px] border transition-colors duration-300 ${active ? 'border-rose-600/60 bg-rose-500/10' : 'border-rose-600/25 bg-transparent'}`}>
+                                <span className={`h-1.5 w-1.5 rounded-full transition-colors duration-300 ${active ? 'bg-rose-600' : 'bg-rose-500/50'}`} />
+                            </span>
+                        )}
+                        {opt.id === 'all' && <span className={`h-1.5 w-1.5 rounded-full transition-colors duration-300 ${active ? (isDark ? 'bg-[#C9A227]' : 'bg-[#8B5E3C]') : isDark ? 'bg-[#8E7D6E]' : 'bg-[#2A2420]/30'}`} />}
+                        {opt.label}
+                    </button>
+                )
+            })}
+        </div>
+    )
+}
+
 const NAVBAR_OFFSET = 70
 
 export default function MenuPage() {
     const [activeGroup, setActiveGroup] = useState(groups[0].id)
     const [query, setQuery] = useState('')
+    const [vegFilter, setVegFilter] = useState<VegFilter>('all')
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const groupRefs = useRef<Record<string, HTMLElement | null>>({})
     const contentRef = useRef<HTMLDivElement>(null)
@@ -455,11 +515,16 @@ export default function MenuPage() {
     const mobileSearchRef = useRef<HTMLInputElement>(null)
 
     const normalizedQuery = query.trim().toLowerCase()
+    const hasActiveFilters = Boolean(normalizedQuery) || vegFilter !== 'all'
 
     const filteredCategories = categories
         .map((category) => ({
             ...category,
-            items: normalizedQuery ? category.items.filter((item) => item.name.toLowerCase().includes(normalizedQuery)) : category.items,
+            items: category.items.filter((item) => {
+                const matchesQuery = !normalizedQuery || item.name.toLowerCase().includes(normalizedQuery)
+                const matchesVeg = vegFilter === 'all' || (vegFilter === 'veg' ? item.veg : !item.veg)
+                return matchesQuery && matchesVeg
+            }),
         }))
         .filter((category) => category.items.length > 0)
 
@@ -471,7 +536,7 @@ export default function MenuPage() {
         .filter((group) => group.categories.length > 0)
 
     useEffect(() => {
-        if (!normalizedQuery) return
+        if (!hasActiveFilters) return
 
         const el = contentRef.current
         if (!el) return
@@ -486,16 +551,24 @@ export default function MenuPage() {
                 behavior: 'smooth',
             })
         }
-    }, [normalizedQuery])
+    }, [normalizedQuery, vegFilter])
 
     useEffect(() => {
-        if (normalizedQuery && groupedCategories.length > 0) {
+        if (hasActiveFilters && groupedCategories.length > 0) {
             setActiveGroup(groupedCategories[0].id)
         }
-    }, [normalizedQuery])
+    }, [normalizedQuery, vegFilter])
 
     useEffect(() => {
-        if (normalizedQuery) return
+        if (!groupedCategories.some((group) => group.id === activeGroup)) {
+            if (groupedCategories.length > 0) {
+                setActiveGroup(groupedCategories[0].id)
+            }
+        }
+    }, [groupedCategories, activeGroup])
+
+    useEffect(() => {
+        if (hasActiveFilters) return
 
         const observer = new IntersectionObserver(
             (entries) => {
@@ -530,7 +603,7 @@ export default function MenuPage() {
         return () => {
             observer.disconnect()
         }
-    }, [normalizedQuery])
+    }, [normalizedQuery, vegFilter])
 
     const scrollToGroup = (id: string) => {
         setMobileMenuOpen(false)
@@ -555,6 +628,19 @@ export default function MenuPage() {
         }
 
         setActiveGroup(id)
+    }
+
+    const clearFilters = () => {
+        setQuery('')
+        setVegFilter('all')
+
+        requestAnimationFrame(() => {
+            if (window.innerWidth >= 1024) {
+                desktopSearchRef.current?.focus()
+            } else {
+                mobileSearchRef.current?.focus()
+            }
+        })
     }
 
     return (
@@ -607,6 +693,9 @@ export default function MenuPage() {
             </section>
 
             <section className='relative rounded-[30px] bg-[#F7F0DF] px-4 sm:px-10 sm:py-10 py-5'>
+                <div className='mx-auto mb-8 max-w-sm lg:hidden'>
+                    <VegFilterControl value={vegFilter} onChange={setVegFilter} variant='light' />
+                </div>
                 <div className='mx-auto grid max8xl grid-cols-1 gap-10 lg:grid-cols-[350px_minmax(0,1fr)]'>
                     <div className='hidden lg:block'>
                         <div className='sticky top-0 flex h-screen items-center'>
@@ -620,9 +709,13 @@ export default function MenuPage() {
                                             type='text'
                                             value={query}
                                             onChange={(e) => setQuery(e.target.value)}
-                                            placeholder='Search dishes...'
+                                            placeholder='Search items...'
                                             className={`${interTight.className} w-full rounded-xl border border-[#3A2F28] bg-[#241D18] py-3 pl-11 pr-4 text-[14px] text-[#F4EDE1] placeholder:text-[#9C8B7B] outline-none transition-all duration-300 focus:border-[#6A5442]`}
                                         />
+                                    </div>
+
+                                    <div className='mt-5'>
+                                        <VegFilterControl value={vegFilter} onChange={setVegFilter} variant='dark' />
                                     </div>
 
                                     <div className='my-6 h-px bg-white/10' />
@@ -630,7 +723,7 @@ export default function MenuPage() {
                                     <span className={`${interTight.className} mb-4 text-[11px] font-semibold uppercase tracking-[0.35em] text-[#8E7D6E]`}>Sections</span>
 
                                     <div className='space-y-1'>
-                                        {groups.map((group) => {
+                                        {groupedCategories.map((group) => {
                                             const active = activeGroup === group.id
 
                                             return (
@@ -648,12 +741,6 @@ export default function MenuPage() {
                     </div>
 
                     <div ref={contentRef} className='flex min-h-[60vh] flex-col'>
-                        {query && groupedCategories.length > 0 && (
-                            <p className={`${interTight.className} mb-8 border-b border-[#2A2420]/15 pb-4 text-sm text-[#2A2420]/60`}>
-                                Showing results for <span className='font-semibold text-[#2A2420]'>&ldquo;{query}&rdquo;</span>
-                            </p>
-                        )}
-
                         <div>
                             {groupedCategories.length === 0 ? (
                                 <div className='flex min-h-[60vh] items-center justify-center px-6'>
@@ -664,25 +751,12 @@ export default function MenuPage() {
 
                                         <h3 className={`${fraunces.className} mt-8 text-3xl font-bold text-[#2A2420]`}>No dishes found</h3>
 
-                                        <p className={`${interTight.className} mt-3 text-[15px] leading-7 text-[#2A2420]/60`}>We couldn't find any dishes matching your search.</p>
+                                        <p className={`${interTight.className} mt-3 text-[15px] leading-7 text-[#2A2420]/60`}>We couldn't find any dishes matching your filters.</p>
 
-                                        <p className={`${interTight.className} mt-5 rounded-full border border-[#2A2420]/10 bg-white/40 px-5 py-3 text-[15px] font-medium text-[#8B5E3C]`}>"{query}"</p>
+                                        {normalizedQuery && <p className={`${interTight.className} mt-5 rounded-full border border-[#2A2420]/10 bg-white/40 px-5 py-3 text-[15px] font-medium text-[#8B5E3C]`}>"{query}"</p>}
 
-                                        <button
-                                            onClick={() => {
-                                                setQuery('')
-
-                                                requestAnimationFrame(() => {
-                                                    if (window.innerWidth >= 1024) {
-                                                        desktopSearchRef.current?.focus()
-                                                    } else {
-                                                        mobileSearchRef.current?.focus()
-                                                    }
-                                                })
-                                            }}
-                                            className={`${interTight.className} mt-8 cursor-pointer rounded-full bg-[#1B1611] px-7 py-3 text-[14px] font-semibold tracking-wide text-[#F7F0DF] transition-all duration-300 hover:bg-[#2A2420] active:scale-95`}
-                                        >
-                                            Clear Search
+                                        <button onClick={clearFilters} className={`${interTight.className} mt-8 cursor-pointer rounded-full bg-[#1B1611] px-7 py-3 text-[14px] font-semibold tracking-wide text-[#F7F0DF] transition-all duration-300 hover:bg-[#2A2420] active:scale-95`}>
+                                            Clear Filters
                                         </button>
 
                                         <p className={`${interTight.className} mt-8 text-[13px] text-[#2A2420]/40`}>
@@ -765,22 +839,24 @@ export default function MenuPage() {
             </section>
 
             <div className='fixed bottom-2 left-1/2 z-40 w-[95%] max-w-sm -translate-x-1/2 lg:hidden'>
-                <div className='flex items-center gap-2 rounded-2xl border border-white/10 bg-[#1B1611]/95 p-2 shadow-2xl backdrop-blur-xl'>
-                    <div className='relative flex-1'>
-                        <Search className='pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40' />
-                        <input
-                            type='text'
-                            value={query}
-                            ref={mobileSearchRef}
-                            onChange={(e) => setQuery(e.target.value)}
-                            placeholder='Search items...'
-                            className={`${interTight.className} w-full rounded-xl bg-white/5 py-2.5 pl-9 pr-3 text-[13px] text-white placeholder:text-white/35 focus:outline-none`}
-                        />
+                <div className='flex flex-col gap-2 rounded-2xl border border-white/10 bg-[#1B1611]/95 p-2 shadow-2xl backdrop-blur-xl'>
+                    <div className='flex items-center gap-2'>
+                        <div className='relative flex-1'>
+                            <Search className='pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40' />
+                            <input
+                                type='text'
+                                value={query}
+                                ref={mobileSearchRef}
+                                onChange={(e) => setQuery(e.target.value)}
+                                placeholder='Search items...'
+                                className={`${interTight.className} w-full rounded-xl bg-white/5 py-2.5 pl-9 pr-3 text-[13px] text-white placeholder:text-white/35 focus:outline-none`}
+                            />
+                        </div>
+                        <button onClick={() => setMobileMenuOpen(true)} className='flex cursor-pointer shrink-0 items-center gap-2 rounded-xl bg-[#F4EDE1] px-4 py-2.5 text-[13px] font-semibold text-[#2A2420] active:scale-95'>
+                            <MenuIcon className='h-4 w-4' />
+                            Menu
+                        </button>
                     </div>
-                    <button onClick={() => setMobileMenuOpen(true)} className='flex cursor-pointer shrink-0 items-center gap-2 rounded-xl bg-[#F4EDE1] px-4 py-2.5 text-[13px] font-semibold text-[#2A2420] active:scale-95'>
-                        <MenuIcon className='h-4 w-4' />
-                        Menu
-                    </button>
                 </div>
             </div>
 
@@ -796,7 +872,7 @@ export default function MenuPage() {
                         </div>
 
                         <div className='custom-sidebar-scrollbar flex-1 space-y-2 overflow-y-auto py-6 pr-2'>
-                            {groups.map((group) => (
+                            {groupedCategories.map((group) => (
                                 <button
                                     key={group.id}
                                     onClick={() => scrollToGroup(group.id)}
