@@ -460,7 +460,6 @@ function VegFilterControl({ value, onChange, variant = 'dark' }: { value: VegFil
                 isDark ? 'bg-[#12100D] ring-1 ring-white/6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),inset_0_-1px_2px_rgba(0,0,0,0.4)]' : 'bg-[#EFE6D4] ring-1 ring-[#2A2420]/6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.7),inset_0_-1px_2px_rgba(42,36,32,0.06)]'
             }`}
         >
-            {/* sliding capsule */}
             <div
                 aria-hidden
                 className={`absolute inset-y-1 left-1 rounded-full transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
@@ -513,9 +512,11 @@ export default function MenuPage() {
     const contentRef = useRef<HTMLDivElement>(null)
     const desktopSearchRef = useRef<HTMLInputElement>(null)
     const mobileSearchRef = useRef<HTMLInputElement>(null)
+    const isProgrammaticScroll = useRef(false)
 
     const normalizedQuery = query.trim().toLowerCase()
-    const hasActiveFilters = Boolean(normalizedQuery) || vegFilter !== 'all'
+    const hasSearchFilter = Boolean(normalizedQuery)
+    const hasActiveFilters = hasSearchFilter
 
     const filteredCategories = categories
         .map((category) => ({
@@ -554,10 +555,10 @@ export default function MenuPage() {
     }, [normalizedQuery, vegFilter])
 
     useEffect(() => {
-        if (hasActiveFilters && groupedCategories.length > 0) {
+        if (hasSearchFilter && groupedCategories.length > 0) {
             setActiveGroup(groupedCategories[0].id)
         }
-    }, [normalizedQuery, vegFilter])
+    }, [normalizedQuery])
 
     useEffect(() => {
         if (!groupedCategories.some((group) => group.id === activeGroup)) {
@@ -568,66 +569,89 @@ export default function MenuPage() {
     }, [groupedCategories, activeGroup])
 
     useEffect(() => {
-        if (hasActiveFilters) return
+        if (hasSearchFilter) return
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => Math.abs(a.boundingClientRect.top - NAVBAR_OFFSET) - Math.abs(b.boundingClientRect.top - NAVBAR_OFFSET))
+        const READING_LINE = NAVBAR_OFFSET + 120
 
-                if (visible.length) {
-                    setActiveGroup(visible[0].target.id)
-                    return
+        const computeActiveGroup = () => {
+            if (isProgrammaticScroll.current) return
+            let current: string | null = null
+
+            for (const group of groupedCategories) {
+                const el = groupRefs.current[group.id]
+                if (!el) continue
+
+                const top = el.getBoundingClientRect().top
+
+                if (top - READING_LINE <= 0) {
+                    current = group.id
+                } else {
+                    break
                 }
+            }
 
-                const beverages = groupRefs.current['beverages']
+            if (!current && groupedCategories.length > 0) {
+                current = groupedCategories[0].id
+            }
 
-                if (beverages) {
-                    const rect = beverages.getBoundingClientRect()
+            if (current) {
+                setActiveGroup((prev) => (prev === current ? prev : current))
+            }
+        }
 
-                    if (rect.top <= NAVBAR_OFFSET + 20) {
-                        setActiveGroup('beverages')
-                    }
-                }
-            },
-            {
-                root: null,
-                rootMargin: `-${NAVBAR_OFFSET + 20}px 0px -45% 0px`,
-                threshold: [0, 0.15, 0.3, 0.5],
-            },
-        )
+        let ticking = false
 
-        Object.values(groupRefs.current).forEach((el) => {
-            if (el) observer.observe(el)
-        })
+        const onScroll = () => {
+            if (ticking) return
+
+            ticking = true
+
+            requestAnimationFrame(() => {
+                computeActiveGroup()
+                ticking = false
+            })
+        }
+
+        computeActiveGroup()
+
+        window.addEventListener('scroll', onScroll, { passive: true })
+        window.addEventListener('resize', onScroll)
 
         return () => {
-            observer.disconnect()
+            window.removeEventListener('scroll', onScroll)
+            window.removeEventListener('resize', onScroll)
         }
-    }, [normalizedQuery, vegFilter])
+    }, [groupedCategories, hasSearchFilter])
 
     const scrollToGroup = (id: string) => {
         setMobileMenuOpen(false)
 
         const el = groupRefs.current[id]
-
         if (!el) return
 
-        const y = el.getBoundingClientRect().top + window.scrollY - (NAVBAR_OFFSET + 24)
+        isProgrammaticScroll.current = true
+        setActiveGroup(id)
 
-        const distance = Math.abs(window.scrollY - y)
+        const top = el.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET - 12
 
         if (lenis) {
-            lenis.scrollTo(y, {
-                duration: distance > 1800 ? 0.45 : 1,
+            lenis.scrollTo(top, {
+                duration: 1.1,
+                onComplete: () => {
+                    setActiveGroup(id)
+                    isProgrammaticScroll.current = false
+                },
             })
         } else {
             window.scrollTo({
-                top: y,
+                top,
                 behavior: 'smooth',
             })
-        }
 
-        setActiveGroup(id)
+            setTimeout(() => {
+                isProgrammaticScroll.current = false
+            }, 500)
+        }
     }
 
     const clearFilters = () => {
@@ -768,7 +792,7 @@ export default function MenuPage() {
                             ) : (
                                 <div className='space-y-15'>
                                     {groupedCategories.map((group) => (
-                                        <div
+                                        <section
                                             key={group.id}
                                             id={group.id}
                                             ref={(el) => {
@@ -822,7 +846,7 @@ export default function MenuPage() {
                                                     <div className='py-10 text-[#2A2420]/35'>No matching dishes.</div>
                                                 )}
                                             </div>
-                                        </div>
+                                        </section>
                                     ))}
                                 </div>
                             )}
