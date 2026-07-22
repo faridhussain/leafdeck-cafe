@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useLayoutEffect, useState } from 'react'
 import Image from 'next/image'
 import { Fraunces, Inter_Tight } from 'next/font/google'
 import { Search, Menu as MenuIcon, X } from 'lucide-react'
@@ -536,8 +536,28 @@ export default function MenuPage() {
         }))
         .filter((group) => group.categories.length > 0)
 
+    useLayoutEffect(() => {
+        if (vegFilter === 'all') return
+
+        const el = groupRefs.current[activeGroup]
+        if (!el) return
+
+        const top = el.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET - 12
+
+        if (lenis) {
+            lenis.scrollTo(top, {
+                immediate: true,
+            })
+        } else {
+            window.scrollTo({
+                top,
+                behavior: 'instant',
+            })
+        }
+    }, [vegFilter, activeGroup, groupedCategories])
+
     useEffect(() => {
-        if (!hasActiveFilters) return
+        if (!hasSearchFilter) return
 
         const el = contentRef.current
         if (!el) return
@@ -552,7 +572,7 @@ export default function MenuPage() {
                 behavior: 'smooth',
             })
         }
-    }, [normalizedQuery, vegFilter])
+    }, [normalizedQuery])
 
     useEffect(() => {
         if (hasSearchFilter && groupedCategories.length > 0) {
