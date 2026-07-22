@@ -537,9 +537,13 @@ export default function MenuPage() {
         .filter((group) => group.categories.length > 0)
 
     useLayoutEffect(() => {
-        if (vegFilter === 'all') return
+        if (groupedCategories.length === 0) return
 
-        const el = groupRefs.current[activeGroup]
+        const firstGroup = groupedCategories[0]
+
+        setActiveGroup(firstGroup.id)
+
+        const el = groupRefs.current[firstGroup.id]
         if (!el) return
 
         const top = el.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET - 12
@@ -554,7 +558,7 @@ export default function MenuPage() {
                 behavior: 'instant',
             })
         }
-    }, [vegFilter, activeGroup, groupedCategories])
+    }, [vegFilter])
 
     useEffect(() => {
         if (!hasSearchFilter) return
