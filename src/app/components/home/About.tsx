@@ -22,7 +22,7 @@ const stats = [
 
 export default function AboutSection() {
     return (
-        <section className='relative bg-[#1B1611] py-12 select-none sm:py-16 lg:py-20'>
+        <section className='relative bg-[#1B1611] py-12 sm:py-16 lg:py-20'>
             <div className='relative overflow-hidden rounded-[30px] bg-[#EDE3D0] px-4 py-10 sm:rounded-[28px] sm:px-8 sm:py-18 lg:rounded-[30px] lg:px-14 lg:py-24'>
                 <div className='pointer-events-none absolute right-0 top-0 h-60 w-60 -translate-y-1/3 translate-x-1/4 rounded-full bg-[#8B5E3C]/10 blur-[80px] sm:h-80 sm:w-80 sm:blur-[110px] lg:h-96 lg:w-96 lg:blur-[140px]' />
 

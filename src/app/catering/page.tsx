@@ -62,7 +62,7 @@ const gallery = [
 
 export default function CateringPage() {
     return (
-        <main className='bg-[#1B1611] select-none'>
+        <main className='bg-[#1B1611]'>
             <section className='relative h-[42vh] overflow-hidden rounded-b-[28px] sm:h-[50vh] lg:h-[68vh]'>
                 <Image src='/images/catering-banner.png' alt='Catering spread by Leaf Deck Cafe' fill priority quality={100} className='object-cover object-center saturate-110 contrast-105 brightness-95' />
 
@@ -101,7 +101,7 @@ export default function CateringPage() {
                 </div>
             </section>
 
-            <section className='relative bg-[#1B1611] select-none'>
+            <section className='relative bg-[#1B1611]'>
                 <div className='relative overflow-hidden rounded-[28px] bg-[#EDE3D0] px-4 py-10 sm:px-8 sm:py-20 lg:px-14 lg:py-24'>
                     <div className='pointer-events-none absolute right-0 top-0 h-72 w-72 -translate-y-1/3 translate-x-1/4 rounded-full bg-[#8B5E3C]/10 blur-3xl sm:h-96 sm:w-96' />
 
@@ -261,7 +261,7 @@ export default function CateringPage() {
                 </div>
             </motion.section>
 
-            <section className='relative overflow-hidden bg-[#1B1611] px-4 pb-16 select-none sm:px-6 sm:pb-24 lg:pb-28'>
+            <section className='relative overflow-hidden bg-[#1B1611] px-4 pb-16 sm:px-6 sm:pb-24 lg:pb-28'>
                 <div className='pointer-events-none absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A227]/5 blur-3xl sm:h-112 sm:w-md' />
 
                 <div className='relative mx-auto max-w-5xl overflow-hidden rounded-[28px] border border-white/10 bg-linear-to-br from-white/4 via-white/2 to-transparent px-5 py-10 backdrop-blur-xl sm:px-10 sm:py-18 lg:px-16 lg:py-20'>

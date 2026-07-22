@@ -692,7 +692,7 @@ export default function MenuPage() {
     }
 
     return (
-        <main className='min-h-screen select-none bg-[#1B1611] text-white/95'>
+        <main className='min-h-screen bg-[#1B1611] text-white/95'>
             <style jsx global>{`
                 .custom-sidebar-scrollbar::-webkit-scrollbar {
                     width: 4px;

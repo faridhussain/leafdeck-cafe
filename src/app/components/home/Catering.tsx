@@ -18,7 +18,7 @@ const fraunces = Fraunces({
 
 export default function Catering() {
     return (
-        <section className='relative overflow-hidden bg-[#1C1712] px-4 py-10 select-none sm:px-8 lg:px-6 sm:pb-20 sm:pt-10'>
+        <section className='relative overflow-hidden bg-[#1C1712] px-4 py-10 sm:px-8 lg:px-6 sm:pb-20 sm:pt-10'>
             <div className='pointer-events-none absolute left-1/2 top-1/2 h-65 w-65 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A227]/5 blur-[90px] sm:h-95 sm:w-95 sm:blur-[120px] lg:h-130 lg:w-130 lg:blur-[160px]' />
 
             <motion.div className='relative z-10 mx-auto max-w-4xl text-center' initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.8 }}>

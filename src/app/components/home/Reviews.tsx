@@ -225,7 +225,7 @@ export default function Reviews() {
     }, [selectedReview])
 
     return (
-        <section className='relative overflow-hidden bg-[#1C1712] pt-8 pb-4 select-none sm:pt-14 sm:pb-10 lg:pt-20 lg:pb-14'>
+        <section className='relative overflow-hidden bg-[#1C1712] pt-8 pb-4 sm:pt-14 sm:pb-10 lg:pt-20 lg:pb-14'>
             <style>{`
                 @keyframes marquee-ltr {
                     from { transform: translateX(-50%); }

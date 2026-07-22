@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang='en' className={`${geistSans.variable} ${geistMono.variable}`}>
-            <body className={`${geistSans.className} antialiased bg-[#1B1611]`}>
+            <body className={`${geistSans.className} antialiased bg-[#1B1611] select-none`}>
                 <LenisProvider>
                     <Navbar />
                     <main id='page-content'>{children}</main>

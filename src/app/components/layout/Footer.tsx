@@ -26,7 +26,7 @@ const navLinks = [
 
 export default function Footer() {
     return (
-        <footer className='relative overflow-hidden rounded-t-[30px] bg-black pt-14 select-none sm:rounded-t-[28px] sm:pt-18 lg:rounded-t-[30px] lg:pt-20'>
+        <footer className='relative overflow-hidden rounded-t-[30px] bg-black pt-14 sm:rounded-t-[28px] sm:pt-18 lg:rounded-t-[30px] lg:pt-20'>
             <div className='pointer-events-none absolute left-1/2 top-0 h-70 w-70 -translate-x-1/2 rounded-full bg-[#D8B25A]/5 blur-[110px] sm:h-95 sm:w-95 sm:blur-[130px] lg:h-120 lg:w-120 lg:blur-[150px]' />
 
             <div className='relative z-10 mx-auto max-w-7xl px-4 sm:px-8 lg:px-6'>

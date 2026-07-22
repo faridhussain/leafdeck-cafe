@@ -68,7 +68,7 @@ const gallery = [
 
 export default function AboutPage() {
     return (
-        <main className='bg-[#1B1611] select-none'>
+        <main className='bg-[#1B1611]'>
             <section className='relative h-[52svh] min-h-105 overflow-hidden rounded-b-3xl sm:h-[60svh] sm:min-h-130 sm:rounded-b-[28px] lg:h-[68svh] lg:rounded-b-[30px]'>
                 <Image src='/images/about-banner.avif' alt='Inside Leaf Deck Cafe' fill priority quality={100} className='object-cover object-center saturate-110 contrast-105 brightness-95' />
 
@@ -107,7 +107,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            <section className='relative bg-[#1B1611] select-none'>
+            <section className='relative bg-[#1B1611]'>
                 <div className='relative overflow-hidden rounded-3xl bg-[#EDE3D0] px-4 py-6 sm:rounded-[28px] sm:px-8 sm:py-18 lg:rounded-[30px] lg:px-14 lg:py-24'>
                     <div className='pointer-events-none absolute right-0 top-0 h-60 w-60 -translate-y-1/3 translate-x-1/4 rounded-full bg-[#8B5E3C]/10 blur-[80px] sm:h-80 sm:w-80 sm:blur-[110px] lg:h-96 lg:w-96 lg:blur-[140px]' />
 
@@ -183,7 +183,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            <section className='relative overflow-hidden bg-[#1B1611] px-4 pb-16 select-none sm:px-8 sm:pb-20 lg:px-6 lg:pb-28'>
+            <section className='relative overflow-hidden bg-[#1B1611] px-4 pb-16 sm:px-8 sm:pb-20 lg:px-6 lg:pb-28'>
                 <div className='pointer-events-none absolute left-1/2 top-1/2 h-60 w-60 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A227]/5 blur-[90px] sm:h-80 sm:w-80 sm:blur-[120px] lg:h-105 lg:w-105 lg:blur-[160px]' />
 
                 <div className='relative z-10 mx-auto max-w-3xl text-center'>

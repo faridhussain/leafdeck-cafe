@@ -85,7 +85,7 @@ const dishes = [
 
 export default function SignatureDishes() {
     return (
-        <section id='signature-dishes' className='relative overflow-hidden bg-[#1B1611] py-14 select-none sm:py-18 lg:py-23'>
+        <section id='signature-dishes' className='relative overflow-hidden bg-[#1B1611] py-14 sm:py-18 lg:py-23'>
             <div className='pointer-events-none absolute left-1/2 top-16 h-80 w-[320px] -translate-x-1/2 rounded-full bg-[#D8B45A]/6 blur-[110px] sm:top-20 sm:h-105 sm:w-175 sm:blur-[140px] lg:top-24 lg:h-130 lg:w-360 lg:blur-[180px]' />
 
             <div className='relative z-10 mx-auto w-[92%] max-w-[1800px]'>

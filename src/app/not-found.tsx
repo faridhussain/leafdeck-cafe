@@ -36,7 +36,7 @@ const container = {
 
 export default function NotFound() {
     return (
-        <main className='relative flex min-h-screen items-center justify-center overflow-hidden bg-[#1B1611] px-5 py-20 select-none sm:px-6'>
+        <main className='relative flex min-h-screen items-center justify-center overflow-hidden bg-[#1B1611] px-5 py-20 sm:px-6'>
             <div className='pointer-events-none absolute left-1/2 top-[38%] h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A227]/10 blur-[100px] sm:h-125 sm:w-125 sm:blur-[150px]' />
 
             <div className='pointer-events-none absolute right-0 bottom-0 h-64 w-64 translate-x-1/4 translate-y-1/4 rounded-full bg-[#8B5E3C]/10 blur-[90px] sm:h-96 sm:w-96 sm:blur-[130px]' />
