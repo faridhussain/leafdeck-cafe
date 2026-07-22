@@ -4,6 +4,7 @@ import './globals.css'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import LenisProvider from './components/layout/LenisProvider'
+import ScrollToTop from './components/layout/ScrollToTop'
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -29,6 +30,7 @@ export default function RootLayout({
         <html lang='en' className={`${geistSans.variable} ${geistMono.variable}`}>
             <body className={`${geistSans.className} antialiased bg-[#1B1611] select-none`}>
                 <LenisProvider>
+                    <ScrollToTop />
                     <Navbar />
                     <main id='page-content'>{children}</main>
                     <Footer />
