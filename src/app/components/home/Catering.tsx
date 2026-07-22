@@ -22,7 +22,7 @@ export default function Catering() {
             <div className='pointer-events-none absolute left-1/2 top-1/2 h-65 w-65 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A227]/5 blur-[90px] sm:h-95 sm:w-95 sm:blur-[120px] lg:h-130 lg:w-130 lg:blur-[160px]' />
 
             <motion.div className='relative z-10 mx-auto max-w-4xl text-center' initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.8 }}>
-                <span className={`${interTight.className} text-[10px] font-medium uppercase tracking-[0.32em] text-[#F4EDE1]/70 sm:text-xs sm:tracking-[0.38em] md:text-sm md:tracking-[0.42em]`}>Beyond the Table</span>
+                <span className={`${interTight.className} text-[10px] font-medium uppercase tracking-[0.32em] text-[#F4EDE1]/70 sm:text-xs sm:tracking-[0.38em] md:text-sm md:tracking-[0.42em]`}>Beyond the Café</span>
 
                 <div className='mt-4 flex items-center justify-center gap-3 sm:mt-5 sm:gap-4'>
                     <span className='h-px w-8 bg-[#F4EDE1]/25 sm:w-10' />
@@ -32,14 +32,14 @@ export default function Catering() {
 
                 <h2 className={`${fraunces.className} mt-2 text-[2.3rem] font-bold tracking-[-1px] text-white sm:text-5xl sm:tracking-[-0.03em] lg:text-6xl`}>Catering Services</h2>
 
-                <p className={`${interTight.className} mx-auto mt-4 max-w-2xl text-[15px] leading-7 tracking-wide text-white/70 sm:mt-6 sm:text-base lg:text-lg`}>
-                    From birthday parties to corporate lunches and weddings, we bring the same care and flavour to your event that we bring to every table at Leaf Deck. Every menu is customized to fit your occasion and your budget.
+                <p className={`${interTight.className} mx-auto mt-4 max-w-3xl text-[15px] leading-7 tracking-wide text-white/70 sm:mt-6 sm:text-base lg:text-lg`}>
+                    From birthday celebrations and corporate lunches to weddings and private events, Leaf Deck Café offers bespoke catering with thoughtfully curated menus tailored to your occasion, guest count, and budget. Having catered events featuring{' '}
+                    <span className='font-semibold text-[#C9A227]'>Zubeen Garg</span>, <span className='font-semibold text-[#C9A227]'>Yankee Parasar</span>, <span className='font-semibold text-[#C9A227]'>Achurya Borpatra</span>, along with many renowned celebrities and bureaucrats, we bring the same
+                    exceptional quality and hospitality beyond our café.
                 </p>
 
-                <p className={`${fraunces.className} mx-auto mt-5 max-w-xl text-base italic text-[#F4EDE1]/80 sm:mt-6 sm:text-lg lg:text-xl`}>Trusted by celebrities, bureaucrats, and everyone in between.</p>
-
                 <motion.div
-                    className='mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-4 mb-8'
+                    className='mt-8 mb-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-4'
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -52,7 +52,7 @@ export default function Catering() {
                         href='/catering'
                         className='group flex w-full max-w-70 items-center justify-center gap-2 rounded-full bg-[#F4EDE1] px-8 py-3.5 text-[12px] font-bold uppercase tracking-[0.14em] text-[#2A2420] shadow-[0_12px_32px_rgba(0,0,0,0.45)] transition-all duration-300 hover:-translate-y-1 hover:bg-white sm:w-auto sm:max-w-none sm:px-9 sm:py-4 sm:text-[13px]'
                     >
-                        Enquire Now
+                        Explore Catering
                         <ArrowRight className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-1' />
                     </Link>
 
