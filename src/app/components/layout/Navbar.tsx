@@ -107,7 +107,7 @@ export default function Navbar() {
                                     }}
                                     key={item.href}
                                     href={item.href}
-                                    className={`relative px-2.5 min-[1096px]:px-3.5 py-1.5 text-[12px] min-[1096px]:text-sm uppercase transition-all duration-300 ${active ? 'text-white font-semibold tracking-[0.16em]' : 'text-white/55 font-medium tracking-[0.12em] hover:text-white/85'}`}
+                                    className={`relative px-2.5 min-[1096px]:px-3.5 py-1.5 text-[12px] min-[1096px]:text-sm uppercase transition-all duration-300 ${active ? 'text-white font-semibold tracking-[0.16em]' : 'text-white/85 font-medium tracking-[0.12em] hover:text-white/85'}`}
                                 >
                                     {item.label}
                                 </Link>
