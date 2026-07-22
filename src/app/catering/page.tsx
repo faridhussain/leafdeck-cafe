@@ -261,6 +261,27 @@ export default function CateringPage() {
                 </div>
             </motion.section>
 
+            <section className='relative overflow-hidden bg-[#1B1611] px-4 py-16 sm:px-6 sm:py-24 lg:py-28'>
+                <div className='pointer-events-none absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A227]/5 blur-3xl' />
+
+                <div className='relative mx-auto max-w-5xl'>
+                    <div className='text-center'>
+                        <span className={`${interTight.className} text-[11px] font-semibold uppercase tracking-[0.42em] text-[#F4EDE1]/45 sm:text-xs`}>Trusted Across Assam</span>
+
+                        <h2 className={`${fraunces.className} mt-4 text-[2rem] font-bold leading-tight text-white sm:text-5xl`}>
+                            Events We've Been
+                            <br className='sm:hidden' />
+                            <span className='sm:ml-3'>Proud To Serve</span>
+                        </h2>
+
+                        <p className={`${interTight.className} mx-auto mt-6 max-w-3xl text-[15px] leading-7 tracking-wide text-white/70 sm:text-base lg:text-lg`}>
+                            From intimate celebrations to large corporate gatherings, Leaf Deck Café has proudly catered memorable occasions across Assam. Our catering has been trusted for events featuring <span className='font-semibold text-[#C9A227]'>Zubeen Garg</span>,{' '}
+                            <span className='font-semibold text-[#C9A227]'>Yankee Parasar</span>, <span className='font-semibold text-[#C9A227]'>Achurya Borpatra</span>, along with many renowned celebrities, bureaucrats, corporate teams, weddings, birthdays, and family celebrations.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
             <section className='relative overflow-hidden bg-[#1B1611] px-4 pb-16 sm:px-6 sm:pb-24 lg:pb-28'>
                 <div className='pointer-events-none absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A227]/5 blur-3xl sm:h-112 sm:w-md' />
 
@@ -268,13 +289,13 @@ export default function CateringPage() {
                     <div className='mx-auto max-w-3xl text-center'>
                         <span className={`${interTight.className} text-[11px] font-semibold uppercase tracking-[0.42em] text-[#F4EDE1]/45 sm:text-xs`}>Let's Make It Memorable</span>
 
-                        <h2 className={`${fraunces.className} mt-3 text-[1.95rem] font-bold leading-tight text-[#F4EDE1] sm:text-5xl`}>
+                        <h2 className={`${fraunces.className} mt-3 text-[1.50rem] tracking-wide font-bold leading-tight text-[#F4EDE1] sm:text-5xl`}>
                             Planning Something
                             <br className='sm:hidden' />
                             <span className='sm:ml-3'>Special?</span>
                         </h2>
 
-                        <p className={`${interTight.className} mx-auto mt-4 max-w-2xl text-[13.5px] leading-6 text-white/60 sm:mt-6 sm:text-[16px] sm:leading-8`}>
+                        <p className={`${interTight.className} mx-auto mt-4 max-w-2xl tracking-wide text-[13.5px] leading-6 text-white/60 sm:mt-6 sm:text-[16px] sm:leading-7`}>
                             Whether it's an intimate gathering or a large celebration, we'll help you create a menu your guests will remember. Reach out today and let's start planning your event.
                         </p>
 
