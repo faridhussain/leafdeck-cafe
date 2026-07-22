@@ -124,12 +124,12 @@ function initials(name: string) {
 
 function Avatar({ name, avatar }: { name: string; avatar: string }) {
     if (avatar) {
-        return <img src={avatar} alt='' className='h-11 w-11 shrink-0 rounded-full object-cover sm:h-12 sm:w-12' />
+        return <img src={avatar} alt='' className='h-10 w-10 shrink-0 rounded-full object-cover sm:h-11 sm:w-11 lg:h-12 lg:w-12' />
     }
 
     return (
-        <div className='flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#C9A227]/25 bg-linear-to-br from-[#C9A227]/20 to-[#C9A227]/5 sm:h-12 sm:w-12'>
-            <span className={`${fraunces.className} text-[13px] font-semibold text-[#C9A227] sm:text-sm`}>{initials(name)}</span>
+        <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#C9A227]/25 bg-linear-to-br from-[#C9A227]/20 to-[#C9A227]/5 sm:h-11 sm:w-11 lg:h-12 lg:w-12'>
+            <span className={`${fraunces.className} text-[12px] font-semibold text-[#C9A227] sm:text-[13px] lg:text-sm`}>{initials(name)}</span>
         </div>
     )
 }
@@ -146,19 +146,22 @@ function StarRow({ rating }: { rating: number }) {
 
 function ReviewCard({ review, hidden, onClick }: { review: Review; hidden: boolean; onClick: () => void }) {
     return (
-        <article aria-hidden={hidden} onClick={onClick} className='group relative flex h-h-47.5 w-75 shrink-0 cursor-pointer flex-col rounded-3xl border border-white/10 bg-white/4 p-6 backdrop-blur-md transition-all duration-300 hover:border-[#C9A227]/25 hover:bg-white/5.5 sm:w-85 lg:w-95'>
+        <article
+            aria-hidden={hidden}
+            onClick={onClick}
+            className='group relative flex h-44.5 w-65 shrink-0 cursor-pointer flex-col rounded-3xl border border-white/10 bg-white/4 p-4 backdrop-blur-md transition-all duration-300 hover:border-[#C9A227]/25 hover:bg-white/5.5 sm:h-46.5 sm:w-85 sm:p-5 lg:w-95'
+        >
             <div className='pointer-events-none absolute inset-0 rounded-[28px] bg-[#C9A227]/5 opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-100' />
 
-            <div className='pointer-events-none absolute top-9 right-5 translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100'>
+            <div className='pointer-events-none absolute top-8 right-5 translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 sm:top-9'>
                 <ArrowRight className='h-4 w-4 text-[#C9A227]/80' />
             </div>
 
-            {/* Header */}
-            <div className='flex items-center gap-3'>
+            <div className='flex items-center gap-2.5 sm:gap-3'>
                 <Avatar name={review.name} avatar={review.avatar} />
 
                 <div>
-                    <p className={`${fraunces.className} text-[15px] font-semibold text-white transition-colors duration-300 group-hover:text-[#F7F2EA]`}>{review.name}</p>
+                    <p className={`${fraunces.className} text-[14px] font-semibold text-white transition-colors duration-300 group-hover:text-[#F7F2EA] sm:text-[15px]`}>{review.name}</p>
 
                     <div className='mt-1'>
                         <StarRow rating={review.rating} />
@@ -166,9 +169,8 @@ function ReviewCard({ review, hidden, onClick }: { review: Review; hidden: boole
                 </div>
             </div>
 
-            {/* Review */}
-            <div className='mt-5 flex-1 overflow-hidden'>
-                <p className={`${interTight.className} line-clamp-3 text-[13.5px] leading-6 tracking-wide text-white/65 transition-colors duration-300 group-hover:text-white/80 sm:text-[14px]`}>{review.review}</p>
+            <div className='mt-4 flex-1 overflow-hidden sm:mt-5'>
+                <p className={`${interTight.className} line-clamp-3 text-[13px] leading-5.5 tracking-wide text-white/65 transition-colors duration-300 group-hover:text-white/80 sm:text-[14px] sm:leading-6`}>{review.review}</p>
             </div>
         </article>
     )
@@ -181,7 +183,7 @@ function MarqueeRow({ items, direction, duration, onReviewClick, isPaused }: { i
     return (
         <div className='marquee-mask relative w-full overflow-hidden' onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
             <div
-                className='flex w-max gap-5'
+                className='flex w-max gap-4 sm:gap-5'
                 style={{
                     animationName: direction === 'ltr' ? 'marquee-ltr' : 'marquee-rtl',
                     animationDuration: `${duration}s`,
@@ -245,80 +247,80 @@ export default function Reviews() {
                 }
             `}</style>
 
-            <div className='pointer-events-none absolute left-1/2 top-1/3 h-65 w-65 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A227]/5 blur-[90px] sm:h-95 sm:w-95 sm:blur-[120px] lg:h-130 lg:w-130 lg:blur-[160px]' />
+            <div className='pointer-events-none absolute left-1/2 top-1/3 h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A227]/5 blur-[70px] sm:h-95 sm:w-95 sm:blur-[120px] lg:h-130 lg:w-130 lg:blur-[160px]' />
 
             <motion.div className='relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-8 lg:px-6' initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.8 }}>
-                <span className={`${interTight.className} text-[10px] font-medium uppercase tracking-[0.32em] text-[#F4EDE1]/70 sm:text-xs sm:tracking-[0.38em] md:text-sm md:tracking-[0.42em]`}>Loved By Guests</span>
+                <span className={`${interTight.className} text-[9.5px] font-medium uppercase tracking-[0.28em] text-[#F4EDE1]/70 sm:text-xs sm:tracking-[0.38em] md:text-sm md:tracking-[0.42em]`}>Loved By Guests</span>
 
-                <div className='mt-4 flex items-center justify-center gap-3 sm:mt-5 sm:gap-4'>
-                    <span className='h-px w-8 bg-[#F4EDE1]/25 sm:w-10' />
+                <div className='mt-3 flex items-center justify-center gap-2.5 sm:mt-5 sm:gap-4'>
+                    <span className='h-px w-6 bg-[#F4EDE1]/25 sm:w-10' />
                     <span className='h-1 w-1 rounded-full bg-[#F4EDE1]/40' />
-                    <span className='h-px w-8 bg-[#F4EDE1]/25 sm:w-10' />
+                    <span className='h-px w-6 bg-[#F4EDE1]/25 sm:w-10' />
                 </div>
 
-                <h2 className={`${fraunces.className} mt-2 sm:mt-4 text-[2.3rem] font-bold tracking-[-1px] text-white sm:text-5xl sm:tracking-wide lg:text-6xl`}>
+                <h2 className={`${fraunces.className} mt-2 text-[1.9rem] font-bold leading-[1.08] tracking-[-0.5px] text-white sm:mt-4 sm:text-5xl sm:tracking-wide lg:text-6xl`}>
                     Every Visit
                     <br />
                     Leaves A Story
                 </h2>
 
-                <p className={`${interTight.className} mx-auto mt-4 max-w-2xl text-[15px] leading-7 tracking-wide text-white/70 sm:mt-6 sm:text-base lg:text-lg`}>Thousands of guests have made Leaf Deck a part of their celebrations, conversations and everyday coffee moments.</p>
+                <p className={`${interTight.className} mx-auto mt-3 max-w-2xl text-[13.5px] leading-6 tracking-wide text-white/70 sm:mt-6 sm:text-base sm:leading-7 lg:text-lg`}>Thousands of guests have made Leaf Deck a part of their celebrations, conversations and everyday coffee moments.</p>
 
-                <div className='mt-10 flex flex-col items-center gap-3'>
+                <div className='mt-7 flex flex-col items-center gap-2.5 sm:mt-10 sm:gap-3'>
                     <div className='flex items-center'>
                         <div className='flex items-center'>
                             {Array.from({ length: 4 }).map((_, i) => (
-                                <Star key={i} className='h-5 w-5 fill-[#C9A227] text-[#C9A227]' strokeWidth={1.5} />
+                                <Star key={i} className='h-4 w-4 fill-[#C9A227] text-[#C9A227] sm:h-5 sm:w-5' strokeWidth={1.5} />
                             ))}
 
-                            <div className='relative h-5 w-5'>
-                                <Star className='absolute inset-0 h-5 w-5 text-white/20' strokeWidth={1.5} />
+                            <div className='relative h-4 w-4 sm:h-5 sm:w-5'>
+                                <Star className='absolute inset-0 h-4 w-4 text-white/20 sm:h-5 sm:w-5' strokeWidth={1.5} />
 
                                 <div className='absolute inset-0 overflow-hidden' style={{ width: '20%' }}>
-                                    <Star className='h-5 w-5 fill-[#C9A227] text-[#C9A227]' strokeWidth={1.5} />
+                                    <Star className='h-4 w-4 fill-[#C9A227] text-[#C9A227] sm:h-5 sm:w-5' strokeWidth={1.5} />
                                 </div>
                             </div>
                         </div>
 
-                        <span className='relative mx-6 h-7 w-px bg-linear-to-b from-transparent via-white/20 to-transparent sm:h-8'>
+                        <span className='relative mx-4 h-6 w-px bg-linear-to-b from-transparent via-white/20 to-transparent sm:mx-6 sm:h-8'>
                             <span className='absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A227] shadow-[0_0_8px_rgba(201,162,39,0.8)]' />
                         </span>
 
-                        <span className={`${fraunces.className} text-[30px] font-semibold leading-none tracking-[-0.02em] text-white`}>4.1</span>
+                        <span className={`${fraunces.className} text-[24px] font-semibold leading-none tracking-[-0.02em] text-white sm:text-[30px]`}>4.1</span>
                     </div>
 
-                    <p className={`${interTight.className} text-[15px] font-medium tracking-[0.04em] text-white/60`}>
+                    <p className={`${interTight.className} text-[13px] font-medium tracking-[0.03em] text-white/60 sm:text-[15px] sm:tracking-[0.04em]`}>
                         Based on <span className='font-semibold text-[#C9A227]'>900+</span> guest reviews
                     </p>
                 </div>
             </motion.div>
 
-            <motion.div className='relative z-10 mt-12 flex flex-col gap-5 sm:mt-16 sm:gap-6' initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.9, delay: 0.15 }}>
+            <motion.div className='relative z-10 mt-10 flex flex-col gap-4 sm:mt-16 sm:gap-6' initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.9, delay: 0.15 }}>
                 <MarqueeRow items={rowOne} direction='ltr' duration={45} onReviewClick={setSelectedReview} isPaused={!!selectedReview} />
                 <MarqueeRow items={rowTwo} direction='rtl' duration={38} onReviewClick={setSelectedReview} isPaused={!!selectedReview} />
             </motion.div>
 
-            <motion.div className='relative z-10 mt-12 flex justify-center px-4 sm:mt-14' initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.3 }}>
+            <motion.div className='relative z-10 mt-10 flex justify-center px-4 sm:mt-14' initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.3 }}>
                 <Link
                     href='https://www.google.com/search?sca_esv=2a19c6b8f1ef7130&sxsrf=APpeQnvZcxn4KeArrCIQO8dpLUisMRyiyw:1784699903200&q=Leaf+Deck+Cafe+Guwahati&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_-Gul7Kp2StDjy2ltD221loMDCSnCfY1ij1mKYi4hsef9mHJffPUIkjqsV8Tc-SzN7--KEX4oDX4fvx6eJ8G0c7QHtOl&sa=X&ved=2ahUKEwiI2IqezeWVAxUyMtAFHUYSMZUQrrQLegQIHBAB&biw=1680&bih=866&dpr=2'
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='group flex items-center justify-center gap-2 rounded-full bg-[#F4EDE1] px-8 py-3.5 text-[12px] font-bold uppercase tracking-[0.14em] text-[#2A2420] shadow-[0_12px_32px_rgba(0,0,0,0.45)] transition-all duration-300 hover:-translate-y-1 hover:bg-white sm:px-9 sm:py-4 sm:text-[13px]'
+                    className='group flex w-full items-center justify-center gap-2 rounded-full bg-[#F4EDE1] px-6 py-3 text-[11.5px] font-bold uppercase tracking-[0.14em] text-[#2A2420] shadow-[0_12px_32px_rgba(0,0,0,0.45)] transition-all duration-300 hover:-translate-y-1 hover:bg-white sm:w-auto sm:px-9 sm:py-4 sm:text-[13px]'
                 >
                     Read More Reviews
                     <ArrowRight className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-1' />
                 </Link>
             </motion.div>
 
-            <div className='relative z-10 mx-auto mt-24 flex max-w-6xl items-center justify-center px-4'>
+            <div className='relative z-10 mx-auto mt-14 flex max-w-6xl items-center justify-center px-4 sm:mt-24'>
                 <span className='h-px flex-1 bg-linear-to-r from-transparent via-white/10 to-transparent' />
-                <span className='mx-5 h-2 w-2 rounded-full bg-[#C9A227]/70 shadow-[0_0_18px_rgba(201,162,39,0.5)]' />
+                <span className='mx-4 h-2 w-2 rounded-full bg-[#C9A227]/70 shadow-[0_0_18px_rgba(201,162,39,0.5)] sm:mx-5' />
                 <span className='h-px flex-1 bg-linear-to-r from-transparent via-white/10 to-transparent' />
             </div>
 
             <AnimatePresence>
                 {selectedReview && (
-                    <motion.div className='fixed inset-0 z-999 flex items-center justify-center bg-black/70 p-5 backdrop-blur-md' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedReview(null)}>
+                    <motion.div className='fixed inset-0 z-999 flex items-center justify-center bg-black/70 p-4 backdrop-blur-md sm:p-5' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedReview(null)}>
                         <motion.div
                             initial={{ opacity: 0, scale: 0.92, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -328,35 +330,35 @@ export default function Reviews() {
                                 ease: [0.22, 1, 0.36, 1],
                             }}
                             onClick={(e) => e.stopPropagation()}
-                            className='relative w-full max-w-2xl overflow-hidden rounded-3xl border border-white/10  p-7 shadow-[0_40px_120px_rgba(0,0,0,0.65)]'
+                            className='relative max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-white/10 p-5 shadow-[0_40px_120px_rgba(0,0,0,0.65)] sm:p-7'
                         >
                             <div className='pointer-events-none absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 rounded-full bg-[#C9A227]/10 blur-[120px]' />
 
-                            <button onClick={() => setSelectedReview(null)} className='absolute top-6 right-6 z-20 cursor-pointer rounded-full border border-white/10 bg-white/5 p-2 text-white/70 transition hover:bg-white/10 hover:text-white'>
-                                <X className='h-5 w-5' />
+                            <button onClick={() => setSelectedReview(null)} className='absolute top-5 right-5 z-20 cursor-pointer rounded-full border border-white/10 bg-white/5 p-2 text-white/70 transition hover:bg-white/10 hover:text-white sm:top-6 sm:right-6'>
+                                <X className='h-4 w-4 sm:h-5 sm:w-5' />
                             </button>
 
                             <div className='relative'>
-                                <div className='flex items-center gap-4'>
+                                <div className='flex items-center gap-3 pr-10 sm:gap-4'>
                                     <Avatar name={selectedReview.name} avatar={selectedReview.avatar} />
 
                                     <div>
-                                        <h3 className={`${fraunces.className} text-2xl text-white`}>{selectedReview.name}</h3>
-                                        <div className='mt-2'>
+                                        <h3 className={`${fraunces.className} text-lg text-white sm:text-2xl`}>{selectedReview.name}</h3>
+                                        <div className='mt-1.5 sm:mt-2'>
                                             <StarRow rating={selectedReview.rating} />
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className='my-7 h-px bg-linear-to-r from-transparent via-white/10 to-transparent' />
+                                <div className='my-5 h-px bg-linear-to-r from-transparent via-white/10 to-transparent sm:my-7' />
 
-                                <p className={`${interTight.className} text-[16px] leading-7 tracking-wide text-white/80 md:text-[17px] md:leading-8`}>{selectedReview.review}</p>
+                                <p className={`${interTight.className} text-[14px] leading-6 tracking-wide text-white/80 sm:text-[16px] sm:leading-7 md:text-[17px] md:leading-8`}>{selectedReview.review}</p>
 
-                                <div className='mt-10 flex justify-end'>
+                                <div className='mt-7 flex justify-end sm:mt-10'>
                                     <Link
                                         href='https://www.google.com/search?sca_esv=2a19c6b8f1ef7130&sxsrf=APpeQnvZcxn4KeArrCIQO8dpLUisMRyiyw:1784699903200&q=Leaf+Deck+Cafe+Guwahati&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_-Gul7Kp2StDjy2ltD221loMDCSnCfY1ij1mKYi4hsef9mHJffPUIkjqsV8Tc-SzN7--KEX4oDX4fvx6eJ8G0c7QHtOl&sa=X&ved=2ahUKEwiI2IqezeWVAxUyMtAFHUYSMZUQrrQLegQIHBAB&biw=1680&bih=866&dpr=2'
                                         target='_blank'
-                                        className='group inline-flex items-center gap-2 text-sm font-medium tracking-wide text-[#C9A227]'
+                                        className='group inline-flex items-center gap-2 text-[13px] font-medium tracking-wide text-[#C9A227] sm:text-sm'
                                     >
                                         Read more on Google
                                         <ArrowRight className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-1' />
