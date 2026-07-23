@@ -150,7 +150,7 @@ export default function ContactPage() {
                 <div className='relative z-10 mx-auto max-w-3xl text-center'>
                     <span className={`${interTight.className} text-[11px] font-medium uppercase tracking-[0.42em] text-[#F4EDE1]/50 sm:text-xs md:text-sm`}>We&apos;d Love To Hear From You</span>
 
-                    <h2 className={`${fraunces.className} mt-4 text-[1.95rem] font-bold tracking-wide text-white sm:text-5xl`}>Questions, Bookings, Anything Else</h2>
+                    <h2 className={`${fraunces.className} mt-4 text-[1.7rem] font-bold tracking-wide text-white sm:text-5xl`}>Questions, Bookings, Anything Else</h2>
 
                     <p className={`${interTight.className} mx-auto mt-4 max-w-xl text-[13.5px] leading-6 tracking-wide text-white/60 sm:mt-6 sm:text-[16px] sm:leading-relaxed`}>
                         Whether it&apos;s a reservation, a catering enquiry, or just a question about the menu — send us a note and we&apos;ll get back to you as soon as we can.
@@ -159,16 +159,16 @@ export default function ContactPage() {
             </section>
 
             <section className='relative bg-[#1B1611]'>
-                <div className='relative overflow-hidden rounded-3xl bg-[#EDE3D0] px-4 pt-12 pb-10 sm:px-10 sm:pt-24 sm:pb-16 lg:px-14'>
+                <div className='relative overflow-hidden rounded-3xl bg-[#EDE3D0] px-4 pt-12 pb-10 sm:px-10 sm:pt-18 sm:pb-16 lg:px-14'>
                     <div className='pointer-events-none absolute right-0 top-0 h-72 w-72 -translate-y-1/3 translate-x-1/4 rounded-full bg-[#8B5E3C]/10 blur-3xl sm:h-96 sm:w-96' />
 
                     <div className='relative z-10 mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16'>
-                        <div>
+                        <div className='text-center lg:text-left'>
                             <span className={`${interTight.className} text-[11px] font-medium uppercase tracking-[0.42em] text-[#8B5E3C]/70 sm:text-xs`}>Reach Us Directly</span>
 
-                            <h2 className={`${fraunces.className} mt-3 text-[1.95rem] font-bold tracking-wide text-[#2A2420] sm:mt-4 sm:text-4xl`}>Come Say Hello</h2>
+                            <h2 className={`${fraunces.className} text-[1.95rem] font-bold tracking-wide text-[#2A2420] sm:mt-4 sm:text-4xl`}>Come Say Hello</h2>
 
-                            <div className='mt-7 flex flex-col divide-y divide-[#2A2420]/15 sm:mt-10'>
+                            <div className='mt-10 flex flex-col divide-y divide-[#2A2420]/15 text-left sm:mt-15'>
                                 {details.map((item) => (
                                     <div key={item.title} className='flex gap-3 py-5 first:pt-0 last:pb-0 sm:gap-4 sm:py-6'>
                                         <item.icon className='mt-1 h-4 w-4 shrink-0 text-[#8B5E3C] sm:h-5 sm:w-5' strokeWidth={1.5} />
@@ -326,11 +326,11 @@ export default function ContactPage() {
                         href='https://www.google.com/maps/place/Leaf+Deck+Caf%C3%A9/@26.1458965,91.7877244,17z/data=!4m6!3m5!1s0x375a59ff7ccf3fa1:0x27d18bd386e8d896!8m2!3d26.1458965!4d91.7902993!16s%2Fg%2F11n13vjrfz?entry=ttu&g_ep=EgoyMDI2MDcxMi4wIKXMDSoASAFQAw%3D%3D'
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='group mx-auto mt-7 flex w-fit items-center gap-2.5 rounded-full border border-[#F4EDE1]/20 bg-white/5 px-6 py-3.5 text-[12px] font-semibold uppercase tracking-[0.18em] text-[#F4EDE1] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#C9A227]/60 hover:bg-white/10 sm:mt-10 sm:gap-3 sm:px-8 sm:py-4 sm:text-[13px]'
+                        className='group mx-auto mt-7 flex w-fit items-center gap-2 rounded-full border border-[#F4EDE1]/20 bg-white/5 px-5 py-3 text-[11.5px] font-semibold uppercase tracking-[0.14em] text-[#F4EDE1] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#C9A227]/60 hover:bg-white/10 sm:mt-10 sm:gap-3 sm:px-8 sm:py-4 sm:text-[13px] sm:tracking-[0.18em]'
                     >
-                        <MapPinned className='h-4 w-4 transition-transform duration-300 group-hover:scale-110 sm:h-5 sm:w-5' />
+                        <MapPinned className='h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110 sm:h-5 sm:w-5' />
                         Open in Google Maps
-                        <ArrowUpRight className='h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
+                        <ArrowUpRight className='h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 sm:h-4 sm:w-4' />
                     </Link>
                 </div>
             </section>
@@ -344,9 +344,9 @@ export default function ContactPage() {
                     <div className='mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center sm:justify-center sm:gap-4'>
                         <Link
                             href='tel:+917400019024'
-                            className='group flex w-full items-center justify-center gap-2 rounded-full bg-[#F4EDE1] px-6 py-3.5 text-[12.5px] font-bold uppercase tracking-[0.14em] text-[#2A2420] shadow-[0_12px_30px_rgba(0,0,0,.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-white sm:w-auto sm:px-9 sm:py-4 sm:text-[13px]'
+                            className='group flex w-full items-center justify-center gap-2 rounded-full bg-[#F4EDE1] px-5 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-[#2A2420] shadow-[0_12px_30px_rgba(0,0,0,.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-white sm:w-auto sm:px-9 sm:py-4 sm:text-[13px] sm:tracking-[0.14em]'
                         >
-                            <Phone className='h-4 w-4' />
+                            <Phone className='h-3.5 w-3.5 sm:h-4 sm:w-4' />
                             Call Us
                         </Link>
 
@@ -354,10 +354,10 @@ export default function ContactPage() {
                             href='https://www.zomato.com/guwahati/leaf-deck-cafe-dispur/order'
                             target='_blank'
                             rel='noopener noreferrer'
-                            className='group flex w-full items-center justify-center gap-2 rounded-full border border-white/35 bg-white/5 px-6 py-3.5 text-[12.5px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-300 hover:border-white/50 hover:bg-white/10 sm:w-auto sm:px-9 sm:py-4 sm:text-[13px]'
+                            className='group flex w-full items-center justify-center gap-2 rounded-full border border-white/35 bg-white/5 px-5 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-white backdrop-blur-md transition-all duration-300 hover:border-white/50 hover:bg-white/10 sm:w-auto sm:px-9 sm:py-4 sm:text-[13px] sm:tracking-[0.14em]'
                         >
                             Order Online
-                            <ArrowRight className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-1' />
+                            <ArrowRight className='h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1 sm:h-4 sm:w-4' />
                         </a>
                     </div>
                 </div>
