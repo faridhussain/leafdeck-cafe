@@ -63,7 +63,7 @@ const gallery = [
 export default function CateringPage() {
     return (
         <main className='bg-[#1B1611]'>
-            <section className='relative h-[42vh] overflow-hidden rounded-b-[28px] sm:h-[50vh] lg:h-[68vh]'>
+            <section className='relative h-[42vh] overflow-hidden rounded-b-3xl sm:h-[50vh] lg:h-[68vh]'>
                 <Image src='/images/catering-banner.png' alt='Catering spread by Leaf Deck Cafe' fill priority quality={100} className='object-cover object-center saturate-110 contrast-105 brightness-95' />
 
                 <div className='absolute inset-0 bg-linear-to-b from-black/55 via-black/35 to-black/70' />
@@ -102,7 +102,7 @@ export default function CateringPage() {
             </section>
 
             <section className='relative bg-[#1B1611]'>
-                <div className='relative overflow-hidden rounded-[28px] bg-[#EDE3D0] px-4 py-10 sm:px-8 sm:py-20 lg:px-14 lg:py-24'>
+                <div className='relative overflow-hidden rounded-3xl bg-[#EDE3D0] px-4 py-10 sm:px-8 sm:py-20 lg:px-14 lg:py-24'>
                     <div className='pointer-events-none absolute right-0 top-0 h-72 w-72 -translate-y-1/3 translate-x-1/4 rounded-full bg-[#8B5E3C]/10 blur-3xl sm:h-96 sm:w-96' />
 
                     <div className='relative z-10 mx-auto max-w-6xl'>
@@ -122,7 +122,7 @@ export default function CateringPage() {
                                     <div className='flex items-center justify-between gap-4'>
                                         <h3 className={`${fraunces.className} text-[1.55rem] leading-tight font-semibold text-[#2A2420] sm:text-2xl`}>{category.title}</h3>
 
-                                        <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#8B5E3C]/10 sm:h-13 sm:w-13 sm:rounded-2xl'>
+                                        <div className='flex h-10 w-10 shrink-0 items-center justify-center bg-[#8B5E3C]/10 sm:h-13 sm:w-13 rounded-xl'>
                                             <category.icon className='h-4.5 w-4.5 text-[#8B5E3C] sm:h-6 sm:w-6' strokeWidth={1.6} />
                                         </div>
                                     </div>
@@ -189,11 +189,11 @@ export default function CateringPage() {
                                         },
                                     },
                                 }}
-                                className='group relative overflow-hidden rounded-3xl border border-white/10 bg-white/3 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#C9A227]/25 hover:bg-white/5 sm:p-8'
+                                className='group relative overflow-hidden rounded-2xl border border-white/10 bg-white/3 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#C9A227]/25 hover:bg-white/5 sm:p-8'
                             >
                                 <span className={`${fraunces.className} absolute right-6 top-6 text-[2.6rem] font-bold text-white/5 sm:text-5xl`}>0{index + 1}</span>
 
-                                <div className='mb-6 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#C9A227]/10 sm:h-14 sm:w-14'>
+                                <div className='mb-6 flex h-11 w-11 items-center justify-center rounded-xl bg-[#C9A227]/10 sm:h-14 sm:w-14'>
                                     <step.icon className='h-5 w-5 text-[#C9A227] sm:h-7 sm:w-7' strokeWidth={1.5} />
                                 </div>
 
@@ -248,7 +248,7 @@ export default function CateringPage() {
                                         },
                                     },
                                 }}
-                                className={`group relative overflow-hidden rounded-2xl sm:rounded-3xl ${i % 2 === 1 ? 'lg:mt-10' : ''}`}
+                                className={`group relative overflow-hidden rounded2xl ${i % 2 === 1 ? 'lg:mt-10' : ''}`}
                             >
                                 <div className='relative h-36 sm:h-64 lg:h-80'>
                                     <Image src={image.src} alt={image.alt} fill quality={100} className='object-cover transition-transform duration-700 group-hover:scale-105' />
@@ -285,7 +285,7 @@ export default function CateringPage() {
             <section className='relative overflow-hidden bg-[#1B1611] px-4 pb-16 sm:px-6 sm:pb-24 lg:pb-28'>
                 <div className='pointer-events-none absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A227]/5 blur-3xl sm:h-112 sm:w-md' />
 
-                <div className='relative mx-auto max-w-5xl overflow-hidden rounded-[28px] border border-white/10 bg-linear-to-br from-white/4 via-white/2 to-transparent px-5 py-10 backdrop-blur-xl sm:px-10 sm:py-18 lg:px-16 lg:py-20'>
+                <div className='relative mx-auto max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-white/4 via-white/2 to-transparent px-5 py-10 backdrop-blur-xl sm:px-10 sm:py-18 lg:px-16 lg:py-20'>
                     <div className='mx-auto max-w-3xl text-center'>
                         <span className={`${interTight.className} text-[11px] font-semibold uppercase tracking-[0.42em] text-[#F4EDE1]/45 sm:text-xs`}>Let's Make It Memorable</span>
 

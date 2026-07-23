@@ -132,7 +132,7 @@ export default function ContactPage() {
 
     return (
         <main className='bg-[#1B1611]'>
-            <section className='relative h-[38vh] overflow-hidden rounded-b-[28px] sm:h-[50vh] lg:h-[60vh]'>
+            <section className='relative h-[38vh] overflow-hidden rounded-b-3xl sm:h-[50vh] lg:h-[60vh]'>
                 <Image src='/images/contact-banner.avif' alt='Leaf Deck Cafe interior' fill priority quality={100} className='object-cover object-center saturate-110 contrast-105 brightness-95' />
 
                 <div className='absolute inset-0 bg-linear-to-b from-black/55 via-black/35 to-black/70' />
@@ -159,7 +159,7 @@ export default function ContactPage() {
             </section>
 
             <section className='relative bg-[#1B1611]'>
-                <div className='relative overflow-hidden rounded-[28px] bg-[#EDE3D0] px-4 pt-12 pb-10 sm:rounded-[30px] sm:px-10 sm:pt-24 sm:pb-16 lg:px-14'>
+                <div className='relative overflow-hidden rounded-3xl bg-[#EDE3D0] px-4 pt-12 pb-10 sm:px-10 sm:pt-24 sm:pb-16 lg:px-14'>
                     <div className='pointer-events-none absolute right-0 top-0 h-72 w-72 -translate-y-1/3 translate-x-1/4 rounded-full bg-[#8B5E3C]/10 blur-3xl sm:h-96 sm:w-96' />
 
                     <div className='relative z-10 mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16'>
@@ -312,7 +312,7 @@ export default function ContactPage() {
                         <h2 className={`${fraunces.className} mt-4 text-[1.95rem] font-bold tracking-wide text-white sm:text-5xl`}>On GS Road, Dispur</h2>
                     </div>
 
-                    <div className='relative h-64 overflow-hidden rounded-3xl sm:h-100 sm:rounded-[30px] lg:h-115'>
+                    <div className='relative h-64 overflow-hidden rounded-3xl sm:h-100 lg:h-115'>
                         <iframe
                             src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.559669025879!2d91.78772437624063!3d26.145896477112572!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a59ff7ccf3fa1%3A0x27d18bd386e8d896!2sLeaf%20Deck%20Caf%C3%A9!5e0!3m2!1sen!2sin!4v1784125667231!5m2!1sen!2sin'
                             className='h-full w-full will-change-transform'

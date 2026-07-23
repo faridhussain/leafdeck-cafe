@@ -20,7 +20,7 @@ const fraunces = Fraunces({
 export default function Hero() {
     return (
         <section id='home' className='relative bg-[#1B1611]'>
-            <div className='relative h-svh min-h-175 overflow-hidden rounded-b-3xl sm:rounded-b-[28px] lg:rounded-b-[30px]'>
+            <div className='relative h-svh min-h-175 overflow-hidden rounded-b-3xl'>
                 <motion.div
                     initial={{ scale: 1.05 }}
                     animate={{ scale: 1 }}

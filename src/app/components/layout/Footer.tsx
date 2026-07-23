@@ -26,7 +26,7 @@ const navLinks = [
 
 export default function Footer() {
     return (
-        <footer className='relative overflow-hidden rounded-t-[30px] bg-black pt-14 sm:rounded-t-[28px] sm:pt-18 lg:rounded-t-[30px] lg:pt-20'>
+        <footer className='relative overflow-hidden rounded-t-3xl bg-black pt-14 sm:pt-18 lg:pt-20'>
             <div className='pointer-events-none absolute left-1/2 top-0 h-70 w-70 -translate-x-1/2 rounded-full bg-[#D8B25A]/5 blur-[110px] sm:h-95 sm:w-95 sm:blur-[130px] lg:h-120 lg:w-120 lg:blur-[150px]' />
 
             <div className='relative z-10 mx-auto max-w-7xl px-4 sm:px-8 lg:px-6'>
@@ -100,7 +100,7 @@ export default function Footer() {
                                 <p className={`${interTight.className} text-center text-[15px] leading-7 text-white/60`}>Opp. Guwahati Tea Auction Centre, GS Road, Dispur, Guwahati – 781006</p>
                             </div>
                             
-                            <div className='w-full max-w-xs overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md'>
+                            <div className='w-full max-w-xs overflow-hidden rounded-xl border border-white/10 bg-white/5 backdrop-blur-md'>
                                 <iframe
                                     src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.559669025879!2d91.78772437624063!3d26.145896477112572!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a59ff7ccf3fa1%3A0x27d18bd386e8d896!2sLeaf%20Deck%20Caf%C3%A9!5e0!3m2!1sen!2sin!4v1784125667231!5m2!1sen!2sin'
                                     className='h-40 w-full rounded-xl border-0'

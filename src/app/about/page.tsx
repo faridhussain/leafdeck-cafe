@@ -69,7 +69,7 @@ const gallery = [
 export default function AboutPage() {
     return (
         <main className='bg-[#1B1611]'>
-            <section className='relative h-[52svh] min-h-105 overflow-hidden rounded-b-3xl sm:h-[60svh] sm:min-h-130 sm:rounded-b-[28px] lg:h-[68svh] lg:rounded-b-[30px]'>
+            <section className='relative h-[52svh] min-h-105 overflow-hidden rounded-b-3xl sm:h-[60svh] sm:min-h-130 lg:h-[68svh]'>
                 <Image src='/images/about-banner.avif' alt='Inside Leaf Deck Cafe' fill priority quality={100} className='object-cover object-center saturate-110 contrast-105 brightness-95' />
 
                 <div className='absolute inset-0 bg-linear-to-b from-black/55 via-black/35 to-black/70' />
@@ -108,11 +108,11 @@ export default function AboutPage() {
             </section>
 
             <section className='relative bg-[#1B1611]'>
-                <div className='relative overflow-hidden rounded-3xl bg-[#EDE3D0] px-4 py-6 sm:rounded-[28px] sm:px-8 sm:py-18 lg:rounded-[30px] lg:px-14 lg:py-24'>
+                <div className='relative overflow-hidden rounded-3xl bg-[#EDE3D0] px-4 py-6 sm:px-8 sm:py-18 lg:px-14 lg:py-24'>
                     <div className='pointer-events-none absolute right-0 top-0 h-60 w-60 -translate-y-1/3 translate-x-1/4 rounded-full bg-[#8B5E3C]/10 blur-[80px] sm:h-80 sm:w-80 sm:blur-[110px] lg:h-96 lg:w-96 lg:blur-[140px]' />
 
                     <div className='relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16'>
-                        <div className='relative h-75 w-full overflow-hidden rounded-2xl bg-[#DDD0B4] shadow-[0_30px_60px_rgba(0,0,0,0.2)] sm:h-115 sm:rounded-3xl lg:h-140'>
+                        <div className='relative h-75 w-full overflow-hidden rounded-3xl bg-[#DDD0B4] shadow-[0_30px_60px_rgba(0,0,0,0.2)] sm:h-115 lg:h-140'>
                             <Image src='/images/founder-placeholder.avif' alt='Founder of Leaf Deck Cafe' fill quality={100} className='object-cover object-[center_18%]' />
                         </div>
 
@@ -151,7 +151,7 @@ export default function AboutPage() {
 
                     <motion.div className='grid grid-cols-1 gap-6 sm:mt-0 -mt-5.5 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-white/10' variants={containerVariants} initial='hidden' whileInView='visible' viewport={{ once: true, amount: 0.2 }}>
                         {values.map((value, i) => (
-                            <motion.div key={value.title} variants={itemVariants} className={`rounded-2xl border border-white/10 bg-white/2 p-6 sm:border-0 sm:bg-transparent sm:p-8 ${i === 0 ? 'sm:pl-0' : ''} ${i === values.length - 1 ? 'sm:pr-0' : ''}`}>
+                            <motion.div key={value.title} variants={itemVariants} className={`rounded-3xl border border-white/10 bg-white/2 p-6 sm:border-0 sm:bg-transparent sm:p-8 ${i === 0 ? 'sm:pl-0' : ''} ${i === values.length - 1 ? 'sm:pr-0' : ''}`}>
                                 <value.icon className='mx-auto h-7 w-7 text-[#C9A227] lg:mx-0' strokeWidth={1.5} />
 
                                 <h3 className={`${fraunces.className} mt-3 text-center text-xl font-semibold text-white lg:text-left`}>{value.title}</h3>
@@ -173,7 +173,7 @@ export default function AboutPage() {
 
                     <motion.div className='grid grid-cols-2 gap-2 sm:gap-5 lg:grid-cols-4 lg:gap-6' variants={containerVariants} initial='hidden' whileInView='visible' viewport={{ once: true, amount: 0.2 }}>
                         {gallery.map((image, i) => (
-                            <motion.div key={image.alt} variants={itemVariants} className={`group relative overflow-hidden rounded-2xl bg-[#2A2420] shadow-[0_20px_50px_rgba(0,0,0,0.18)] ${i % 2 === 1 ? 'lg:mt-8' : ''} h-44 sm:h-60 lg:h-80`}>
+                            <motion.div key={image.alt} variants={itemVariants} className={`group relative overflow-hidden rounded-3xl bg-[#2A2420] shadow-[0_20px_50px_rgba(0,0,0,0.18)] ${i % 2 === 1 ? 'lg:mt-8' : ''} h-44 sm:h-60 lg:h-80`}>
                                 <Image src={image.src} alt={image.alt} fill quality={100} className='object-cover transition-transform duration-700 group-hover:scale-105' />
 
                                 <div className='absolute inset-0 bg-linear-to-t from-black/35 via-transparent to-transparent opacity-80' />

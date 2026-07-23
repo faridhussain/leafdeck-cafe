@@ -23,7 +23,7 @@ const stats = [
 export default function AboutSection() {
     return (
         <section className='relative bg-[#1B1611] py-12 sm:py-16 lg:py-20'>
-            <div className='relative overflow-hidden rounded-[30px] bg-[#EDE3D0] px-4 py-10 sm:rounded-[28px] sm:px-8 sm:py-18 lg:rounded-[30px] lg:px-14 lg:py-24'>
+            <div className='relative overflow-hidden rounded-3xl bg-[#EDE3D0] px-4 py-10 sm:px-8 sm:py-18 lg:px-14 lg:py-24'>
                 <div className='pointer-events-none absolute right-0 top-0 h-60 w-60 -translate-y-1/3 translate-x-1/4 rounded-full bg-[#8B5E3C]/10 blur-[80px] sm:h-80 sm:w-80 sm:blur-[110px] lg:h-96 lg:w-96 lg:blur-[140px]' />
 
                 <div className='relative z-10 mx-auto max-w-6xl'>
@@ -34,7 +34,7 @@ export default function AboutSection() {
                     </div>
 
                     <div className='grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16'>
-                        <div className='relative h-65 w-full overflow-hidden rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.25)] sm:h-95 sm:rounded-3xl lg:h-140'>
+                        <div className='relative h-65 w-full overflow-hidden rounded-3xl shadow-[0_30px_60px_rgba(0,0,0,0.25)] sm:h-95 lg:h-140'>
                             <Image src='/images/interior.avif' alt='Leaf Deck Cafe interior' fill quality={100} className='object-cover brightness-110 contrast-105 saturate-105 transition-transform duration-700 hover:scale-[1.02]' />
 
                             <div className='absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent' />

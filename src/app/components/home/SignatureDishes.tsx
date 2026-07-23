@@ -98,7 +98,7 @@ export default function SignatureDishes() {
                 <motion.div className='grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-5 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16' variants={containerVariants} initial='hidden' whileInView='visible' viewport={{ once: true, amount: 0.15 }}>
                     {dishes.map((dish, index) => (
                         <motion.div key={dish.name} variants={itemVariants} className={`group ${index === dishes.length - 1 ? 'col-span-2 mx-auto w-full max-w-42.5 sm:col-span-1 sm:max-w-none' : ''}`}>
-                            <div className='relative overflow-hidden rounded-xl sm:rounded-2xl shadow-[0_18px_50px_rgba(0,0,0,0.18)]'>
+                            <div className='relative overflow-hidden rounded-2xl shadow-[0_18px_50px_rgba(0,0,0,0.18)]'>
                                 <Image
                                     src={dish.image}
                                     alt={dish.name}

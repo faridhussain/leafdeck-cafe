@@ -706,7 +706,7 @@ export default function MenuPage() {
                 }
             `}</style>
 
-            <section className='relative h-[45vh] overflow-hidden rounded-b-[30px] sm:h-[50vh]'>
+            <section className='relative h-[45vh] overflow-hidden sm:h-[50vh]'>
                 <Image src='/images/menu-banner.png' alt='Leaf Deck Cafe dishes' fill priority quality={100} className='object-cover object-center saturate-110 contrast-105 brightness-90' />
                 <div className='absolute inset-0 bg-linear-to-b from-black/50 via-black/35 to-[#16120E]' />
                 <div className='absolute inset-0 flex flex-col items-center justify-center px-6 text-center'>
@@ -740,7 +740,7 @@ export default function MenuPage() {
                 </div>
             </section>
 
-            <section className='relative rounded-[30px] bg-[#F7F0DF] px-4 sm:px-10 sm:py-10 py-5'>
+            <section className='relative rounded-3xl bg-[#F7F0DF] px-4 sm:px-10 sm:py-10 py-5'>
                 <div className='mx-auto mb-8 max-w-sm lg:hidden'>
                     <VegFilterControl value={vegFilter} onChange={setVegFilter} variant='light' />
                 </div>
@@ -748,7 +748,7 @@ export default function MenuPage() {
                     <div className='hidden lg:block'>
                         <div className='sticky top-0 flex h-screen items-center'>
                             <aside className='w-full'>
-                                <div className='flex flex-col rounded-[26px] bg-[#1B1611] px-6 py-6 shadow-[0_18px_40px_rgba(0,0,0,0.18)]'>
+                                <div className='flex flex-col rounded-3xl bg-[#1B1611] p-5 shadow-[0_18px_40px_rgba(0,0,0,0.18)]'>
                                     <div className='relative'>
                                         <Search className='pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8E7D6E]' />
 
@@ -911,7 +911,7 @@ export default function MenuPage() {
             {mobileMenuOpen && (
                 <div className='fixed inset-0 z-50 lg:hidden'>
                     <div onClick={() => setMobileMenuOpen(false)} className='absolute inset-0 bg-black/60 backdrop-blur-sm' />
-                    <div className='absolute bottom-0 left-0 right-0 flex max-h-[80vh] flex-col rounded-t-4xl border-t border-white/10 bg-[#16120E] p-6 shadow-2xl'>
+                    <div className='absolute bottom-0 left-0 right-0 flex max-h-[80vh] flex-col rounded-t-3xl border-t border-white/10 bg-[#16120E] p-6 shadow-2xl'>
                         <div className='flex items-center justify-between border-b border-white/10 pb-6'>
                             <span className={`${fraunces.className} text-xl font-bold text-white`}>Categories</span>
                             <button onClick={() => setMobileMenuOpen(false)} className='rounded-full cursor-pointer bg-white/5 p-1.5 text-white/70'>
