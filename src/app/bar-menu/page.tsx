@@ -443,15 +443,17 @@ export default function BarMenuPage() {
                         <span className={`${interTight.className} text-xs font-medium uppercase tracking-[0.42em] text-white/40`}>Bar Favourites</span>
                         <h2 className={`${fraunces.className} mt-2 sm:mt-4 text-4xl font-bold tracking-wide text-white sm:text-5xl`}>Signature Drinks</h2>
                     </div>
-                    <div className='grid grid-cols-1 gap-6 sm:grid-cols-3'>
+                    <div className='grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6'>
                         {featuredDrinks.map((drink) => (
                             <div key={drink.name} className='group'>
-                                <div className='relative h-72 w-full overflow-hidden rounded-2xl'>
+                                <div className='relative aspect-4/5 overflow-hidden rounded-2xl sm:h-72 sm:aspect-auto'>
                                     <Image src={drink.image} alt={drink.name} fill className='object-cover transition-transform duration-500 group-hover:scale-105' />
                                 </div>
-                                <div className='mt-4 flex items-center justify-between gap-3'>
-                                    <h3 className={`${fraunces.className} text-lg font-semibold text-white`}>{drink.name}</h3>
-                                    <span className={`${interTight.className} text-sm font-semibold text-[#C9A227]`}>{formatPrice(drink.price)}</span>
+
+                                <div className='mt-3 flex flex-col gap-1 sm:mt-4 sm:flex-row sm:items-center sm:justify-between sm:gap-3'>
+                                    <h3 className={`${fraunces.className} line-clamp-2 text-[15px] font-semibold leading-tight text-white sm:text-lg`}>{drink.name}</h3>
+
+                                    <span className={`${interTight.className} text-[13px] font-semibold text-[#C9A227] sm:shrink-0 sm:text-sm`}>{formatPrice(drink.price)}</span>
                                 </div>
                             </div>
                         ))}
@@ -556,10 +558,12 @@ export default function BarMenuPage() {
                                             className='scroll-mt-32'
                                         >
                                             <div className='mb-8 sm:mb-10'>
-                                                <div className='flex items-center justify-center gap-4 text-center sm:justify-start sm:text-left sm:gap-6'>
-                                                    <h2 className={`${fraunces.className} text-2xl font-bold text-[#62442d] sm:text-5xl`}>{group.label}</h2>
+                                                <div className='flex items-center gap-4 sm:gap-6'>
+                                                    <div className='h-px flex-1 bg-[#2A2420]/15 sm:hidden' />
 
-                                                    <div className='hidden h-px flex-1 bg-[#2A2420]/20 sm:block' />
+                                                    <h2 className={`${fraunces.className} shrink-0 text-center text-2xl font-bold text-[#62442d] sm:text-left sm:text-5xl`}>{group.label}</h2>
+
+                                                    <div className='h-px flex-1 bg-[#2A2420]/15' />
                                                 </div>
                                             </div>
 
