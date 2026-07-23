@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Fraunces, Inter_Tight } from 'next/font/google'
-import { ArrowRight, Phone, UtensilsCrossed, Soup, IceCreamCone, ClipboardList, ChefHat, PartyPopper } from 'lucide-react'
+import { ArrowRight, Phone, UtensilsCrossed, Soup, IceCreamCone } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const interTight = Inter_Tight({
@@ -37,17 +37,14 @@ const categories = [
 
 const steps = [
     {
-        icon: ClipboardList,
         title: 'Tell Us The Occasion',
         copy: 'Headcount, date, and the kind of event — birthday, office lunch, wedding function, anything in between.',
     },
     {
-        icon: ChefHat,
         title: 'We Build The Menu',
         copy: 'A menu shaped around your budget and guest list, not a fixed package you have to fit into.',
     },
     {
-        icon: PartyPopper,
         title: 'We Show Up And Serve',
         copy: 'Our team handles setup, service, and cleanup — you handle enjoying the occasion.',
     },
@@ -135,77 +132,48 @@ export default function CateringPage() {
                 </div>
             </section>
 
-            <section className='relative overflow-hidden bg-[#1B1611] px-4 py-12 sm:px-6 sm:py-24 lg:py-28'>
-                <div className='relative z-10 mx-auto max-w-6xl'>
+            <section className='relative bg-[#1B1611] px-4 py-20 sm:px-6 sm:py-28 lg:py-32'>
+                <div className='mx-auto max-w-5xl'>
                     <motion.div
-                        className='mb-10 flex flex-col items-center gap-6 border-b border-white/10 pb-8 text-center lg:mb-16 lg:flex-row lg:items-end lg:justify-between lg:gap-8 lg:pb-10 lg:text-left'
-                        initial={{ opacity: 0, y: 30 }}
+                        className='mb-14 flex flex-col items-center gap-3 border-b border-white/10 pb-10 text-center sm:mb-16 sm:flex-row sm:items-end sm:justify-between sm:pb-12 sm:text-left'
+                        initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <div className='lg:text-left'>
+                        <div className='text-center sm:text-left'>
                             <span className={`${interTight.className} text-[11px] font-semibold uppercase tracking-[0.42em] text-[#F4EDE1]/50 sm:text-xs md:text-sm`}>How It Works</span>
-
-                            <h2 className={`${fraunces.className} mt-4 text-[1.95rem] font-bold text-white sm:text-5xl`}>
-                                Three Steps,
-                                <br className='sm:hidden' />
-                                <span className='sm:ml-3'>Start To Finish</span>
-                            </h2>
+                            <h2 className={`${fraunces.className} mt-4 text-[1.85rem] font-bold text-white sm:text-4xl`}>Three Steps, Start To Finish</h2>
                         </div>
 
-                        <p className={`${interTight.className} mx-auto max-w-md text-[13.5px] leading-6 text-white/50 sm:text-[15px] sm:leading-7 lg:mx-0 lg:text-left`}>
-                            No fixed packages to squeeze your event into. Every catering experience is tailored around your guests, your occasion, and your budget.
+                        <p className={`${interTight.className} mx-auto max-w-xs text-center text-[13.5px] leading-6 text-white/50 sm:mx-0 sm:text-right sm:text-[14.5px] sm:leading-7`}>
+                            No fixed packages to squeeze your event into. Every experience is tailored around your guests, your occasion, and your budget.
                         </p>
                     </motion.div>
 
-                    <motion.div
-                        className='grid grid-cols-1 gap-5 md:grid-cols-3'
-                        initial='hidden'
-                        whileInView='visible'
-                        viewport={{ once: true, amount: 0.25 }}
-                        variants={{
-                            visible: {
-                                transition: {
-                                    staggerChildren: 0.12,
-                                },
-                            },
-                        }}
-                    >
+                    <motion.div className='grid grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-6' initial='hidden' whileInView='visible' viewport={{ once: true, amount: 0.2 }} variants={{ visible: { transition: { staggerChildren: 0.12 } } }}>
                         {steps.map((step, index) => (
                             <motion.div
                                 key={step.title}
                                 variants={{
-                                    hidden: {
-                                        opacity: 0,
-                                        y: 30,
-                                    },
-                                    visible: {
-                                        opacity: 1,
-                                        y: 0,
-                                        transition: {
-                                            duration: 0.55,
-                                            ease: 'easeOut',
-                                        },
-                                    },
+                                    hidden: { opacity: 0, y: 18 },
+                                    visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } },
                                 }}
-                                className='group relative overflow-hidden rounded-2xl border border-white/10 bg-white/3 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#C9A227]/25 hover:bg-white/5 sm:p-8'
+                                className='group flex h-full flex-col rounded-2xl border border-white/12 bg-white/1.5 p-7 text-left transition-colors duration-300 hover:border-[#C9A227]/35 hover:bg-white/3 sm:p-8'
                             >
-                                <span className={`${fraunces.className} absolute right-6 top-6 text-[2.6rem] font-bold text-white/5 sm:text-5xl`}>0{index + 1}</span>
-
-                                <div className='mb-6 flex h-11 w-11 items-center justify-center rounded-xl bg-[#C9A227]/10 sm:h-14 sm:w-14'>
-                                    <step.icon className='h-5 w-5 text-[#C9A227] sm:h-7 sm:w-7' strokeWidth={1.5} />
+                                <div className='flex items-center gap-3'>
+                                    <span className={`${interTight.className} shrink-0 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#C9A227]/70`}>Step 0{index + 1}</span>
+                                    <span className='h-px flex-1 bg-white/10 transition-colors duration-300 group-hover:bg-[#C9A227]/25' />
                                 </div>
 
-                                <h3 className={`${fraunces.className} text-[1.45rem] font-semibold text-white sm:text-2xl`}>{step.title}</h3>
+                                <h3 className={`${fraunces.className} mt-6 text-[1.3rem] font-semibold leading-tight text-white sm:text-[1.4rem]`}>{step.title}</h3>
 
-                                <p className={`${interTight.className} mt-2.5 text-[13.5px] leading-6 text-white/55 sm:mt-4 sm:text-[15px] sm:leading-7`}>{step.copy}</p>
+                                <p className={`${interTight.className} mt-3 flex-1 text-[14px] leading-6 tracking-wide text-white/55 sm:text-[14.5px] sm:leading-7`}>{step.copy}</p>
                             </motion.div>
                         ))}
                     </motion.div>
                 </div>
             </section>
-
             <motion.section className='relative bg-[#1B1611] px-4 pb-12 sm:px-6 sm:pb-24 lg:pb-28' initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.6 }}>
                 <div className='mx-auto max-w-6xl'>
                     <motion.div className='mb-8 text-center lg:mb-14' initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
@@ -251,7 +219,7 @@ export default function CateringPage() {
                                 className={`group relative overflow-hidden rounded2xl ${i % 2 === 1 ? 'lg:mt-10' : ''}`}
                             >
                                 <div className='relative h-36 sm:h-64 lg:h-80'>
-                                    <Image src={image.src} alt={image.alt} fill quality={100} className='object-cover transition-transform duration-700 group-hover:scale-105' />
+                                    <Image src={image.src} alt={image.alt} fill quality={100} className='object-cover transition-transform duration-700 rounded-xl group-hover:scale-105' />
 
                                     <div className='absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-100' />
                                 </div>
@@ -261,7 +229,7 @@ export default function CateringPage() {
                 </div>
             </motion.section>
 
-            <section className='relative overflow-hidden bg-[#1B1611] px-4 py-16 sm:px-6 sm:py-24 lg:py-28'>
+            <section className='relative overflow-hidden bg-[#1B1611] px-4 py-10 sm:px-6 sm:py-15 lg:py-20'>
                 <div className='pointer-events-none absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A227]/5 blur-3xl' />
 
                 <div className='relative mx-auto max-w-5xl'>
@@ -302,17 +270,17 @@ export default function CateringPage() {
                         <div className='mt-7 flex flex-col gap-4 sm:flex-row sm:justify-center'>
                             <Link
                                 href='/contact'
-                                className='group inline-flex items-center justify-center gap-2 rounded-full bg-[#F4EDE1] px-6 py-3.5 text-[13px] font-bold uppercase tracking-[0.14em] text-[#2A2420] shadow-[0_14px_35px_rgba(0,0,0,.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-white sm:px-8 sm:py-4'
+                                className='group inline-flex items-center justify-center gap-2 rounded-full bg-[#F4EDE1] px-5 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-[#2A2420] shadow-[0_14px_35px_rgba(0,0,0,.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-white sm:px-8 sm:py-4 sm:text-[13px] sm:tracking-[0.14em]'
                             >
                                 Enquire Now
-                                <ArrowRight className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-1' />
+                                <ArrowRight className='h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1 sm:h-4 sm:w-4' />
                             </Link>
 
                             <Link
                                 href='tel:+917400019024'
-                                className='group inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/4 px-6 py-3.5 text-[13px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-300 hover:border-[#C9A227]/40 hover:bg-white/[0.07] sm:px-8 sm:py-4'
+                                className='group inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/4 px-5 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-white backdrop-blur-md transition-all duration-300 hover:border-[#C9A227]/40 hover:bg-white/[0.07] sm:px-8 sm:py-4 sm:text-[13px] sm:tracking-[0.14em]'
                             >
-                                <Phone className='h-4 w-4 text-[#C9A227]' />
+                                <Phone className='h-3.5 w-3.5 text-[#C9A227] sm:h-4 sm:w-4' />
                                 Call Us
                             </Link>
                         </div>
