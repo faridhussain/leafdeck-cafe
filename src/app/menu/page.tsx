@@ -885,7 +885,7 @@ export default function MenuPage() {
             <section className='relative bg-[#1B1611] px-6 py-14 text-center'>
                 <div className='mx-auto mb-5 h-px w-24 bg-[#C9A227]/30' />
 
-                <p className={`${interTight.className} mx-auto max-w-xl text-[13px] leading-7 font-medium tracking-[0.01em] text-white/60`}>
+                <p className={`${interTight.className} mx-auto max-w-xl text-[13px] sm:text-[16px] leading-7 font-medium tracking-[0.01em] text-white/60`}>
                     We charge an optional <span className='text-[#C9A227] font-semibold'>5% service charge</span> to maintain the ambience. Please allow approximately <span className='text-white/80 font-semibold'>30 minutes</span> for careful preparation.
                 </p>
             </section>
