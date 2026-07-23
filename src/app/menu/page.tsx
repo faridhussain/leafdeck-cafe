@@ -825,10 +825,14 @@ export default function MenuPage() {
                                             className='scroll-mt-32'
                                         >
                                             <div className='mb-8 sm:mb-10'>
-                                                <div className='flex items-center justify-center gap-4 text-center sm:justify-start sm:text-left sm:gap-6'>
-                                                    <h2 className={`${fraunces.className} text-2xl font-bold text-[#62442d] sm:text-5xl`}>{group.label}</h2>
+                                                <div className='mb-8 sm:mb-10'>
+                                                    <div className='flex items-center gap-4 sm:gap-6'>
+                                                        <div className='h-px flex-1 bg-[#2A2420]/15 sm:hidden' />
 
-                                                    <div className='hidden h-px flex-1 bg-[#2A2420]/20 sm:block' />
+                                                        <h2 className={`${fraunces.className} shrink-0 text-center text-2xl font-bold text-[#62442d] sm:text-left sm:text-5xl`}>{group.label}</h2>
+
+                                                        <div className='h-px flex-1 bg-[#2A2420]/15' />
+                                                    </div>
                                                 </div>
                                             </div>
 
